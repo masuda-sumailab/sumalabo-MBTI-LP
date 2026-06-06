@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ===== SEO基本設定 ===== -->
+<title>大阪・関西の部屋探し｜MBTI診断でエリアを提案｜初期費用安い・家電付き賃貸なら住まらぼ</title>
+<meta name="description" content="MBTIタイプ×通勤・家賃でぴったりの大阪・関西エリアを診断。初期費用を大幅カット、家電3点プレゼントまたはお引越し費用無料の特典付き。大阪の人気エリア診断を無料で今すぐ体験。">
+<meta name="keywords" content="大阪 部屋探し,大阪 賃貸,MBTI 引越し,MBTI 部屋探し,大阪 初期費用 安い,大阪 家電付き 賃貸,大阪 エリア診断,大阪 引っ越し 人気エリア,関西 賃貸 初期費用,大阪 引越し費用無料,大阪 不動産 LINE,梅田 難波 天王寺 賃貸,住まらぼ,引っ越し無料,家電プレゼント,家電３点,初期費用分割払い,クレジットカード払い,MBTI診断,ラブ診断,MBTI 相性 大阪 部屋探し,占い 引っ越し,占い 部屋探し,MBTI 引っ越し 運気,MBTI 相性 賃貸,占い 大阪 住まい,MBTIタイプ別おすすめエリア,MBTIタイプ別 大阪 住みやすい街,MBTI 大阪 相性 エリア">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://sumalabo-lp.vercel.app/">
+
+<!-- ===== OGP（SNSシェア用） ===== -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="大阪の部屋探しをMBTI診断でサポート｜住まらぼ">
+<meta property="og:description" content="MBTIタイプで大阪・関西のぴったりエリアを診断。初期費用安い・家電3点プレゼント・引越し費用無料の特典付き。完全無料・来店不要でLINEで完結。">
+<meta property="og:url" content="https://sumalabo-lp.vercel.app/">
+<meta property="og:site_name" content="住まらぼ｜大阪・関西の部屋探し研究所">
+<meta property="og:locale" content="ja_JP">
+
+<!-- ===== Twitter Card ===== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="大阪の部屋探しをMBTI診断でサポート｜住まらぼ">
+<meta name="twitter:description" content="MBTIタイプで大阪・関西のぴったりエリアを診断。家電3点プレゼントor引越し費用無料の特典付き！">
+
+<!-- ===== 構造化データ（JSON-LD） ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "住まらぼ｜大阪・関西の部屋探し研究所",
+  "description": "MBTIタイプ診断で大阪・関西のぴったり住まいエリアを提案する不動産サービス。初期費用を大幅カット、家電3点プレゼントまたはお引越し費用無料の特典付き。",
+  "url": "https://sumalabo-lp.vercel.app/",
+  "areaServed": ["大阪府", "兵庫県", "京都府", "奈良県", "滋賀県"],
+  "serviceType": ["賃貸物件紹介", "エリア診断", "引越し費用無料", "家電プレゼント"],
+  "offers": {
+    "@type": "Offer",
+    "description": "家電3点プレゼント（冷蔵庫・洗濯機・電子レンジ）またはお引越し費用無料",
+    "price": "0",
+    "priceCurrency": "JPY"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#F8F0F6;color:#1E3A8A;}
+
+/* ===== ヒーロー ===== */
+.hero{
+  background:#F8F0F6;
+  padding:52px 20px 56px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+/* 背景の装飾円 */
+.hero::before{
+  content:'';
+  position:absolute;
+  top:-80px; right:-80px;
+  width:260px; height:260px;
+  border-radius:50%;
+  background:#FBCFE8;
+  opacity:0.35;
+  pointer-events:none;
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  bottom:-60px; left:-60px;
+  width:200px; height:200px;
+  border-radius:50%;
+  background:#BFDBFE;
+  opacity:0.3;
+  pointer-events:none;
+}
+
+/* メインカード */
+.hero-card{
+  background:white;
+  border-radius:24px;
+  padding:36px 28px 32px;
+  max-width:480px;
+  margin:0 auto;
+  box-shadow:
+    0 2px 0 #FBCFE8,
+    0 8px 32px rgba(30,58,138,0.1),
+    0 1px 3px rgba(30,58,138,0.08);
+  border:1.5px solid #FCE7F3;
+  position:relative;
+  z-index:1;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#FFF0F6;
+  border:1.5px solid #F9A8D4;
+  border-radius:20px;
+  padding:5px 16px;font-size:11px;font-weight:700;color:#BE185D;
+  margin-bottom:18px;letter-spacing:1px;
+  box-shadow:0 2px 6px rgba(190,24,93,0.1);
+}
+.hero-eyebrow{
+  font-size:0.78rem;color:#BE185D;margin-bottom:12px;letter-spacing:0.5px;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{
+  content:'';display:inline-block;width:24px;height:1px;background:#F9A8D4;
+}
+.hero h1{
+  font-size:1.9rem;font-weight:900;line-height:1.3;
+  margin-bottom:16px;letter-spacing:1px;color:#1E3A8A;
+}
+.hero-divider{
+  width:40px;height:3px;background:#E11D48;border-radius:4px;
+  margin:0 auto 16px;
+}
+.hero p{
+  font-size:0.92rem;line-height:1.8;margin-bottom:24px;color:#374151;
+}
+.hero-sub{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:0.78rem;color:#6B7280;margin-bottom:28px;
+  background:#F9FAFB;border:1px solid #E5E7EB;border-radius:30px;padding:6px 18px;
+}
+.hero-sub span{color:#D1D5DB;}
+.btn-hero{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#1E3A8A;color:white;
+  padding:17px 44px;border-radius:50px;font-size:1rem;font-weight:800;
+  text-decoration:none;letter-spacing:1px;
+  box-shadow:0 4px 0 #1e2f6a, 0 8px 24px rgba(30,58,138,0.3);
+  transition:transform 0.12s, box-shadow 0.12s;
+}
+.btn-hero:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 0 #1e2f6a, 0 12px 28px rgba(30,58,138,0.35);
+}
+.btn-hero:active{
+  transform:translateY(2px);
+  box-shadow:0 2px 0 #1e2f6a, 0 4px 12px rgba(30,58,138,0.2);
+}
+.btn-line-hero{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#06C755;color:white;
+  padding:17px 32px;border-radius:50px;font-size:0.95rem;font-weight:800;
+  text-decoration:none;letter-spacing:0.5px;
+  box-shadow:0 4px 0 #04a347, 0 8px 24px rgba(6,199,85,0.3);
+  transition:transform 0.12s, box-shadow 0.12s;
+}
+.btn-line-hero:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 0 #04a347, 0 12px 28px rgba(6,199,85,0.35);
+}
+.btn-line-hero:active{
+  transform:translateY(2px);
+  box-shadow:0 2px 0 #04a347, 0 4px 12px rgba(6,199,85,0.2);
+}
+.hero-btns{display:flex;flex-direction:column;align-items:center;gap:12px;}
+.hero-note{
+  font-size:12px;color:#4B5563;margin-top:14px;
+  display:inline-flex;align-items:center;gap:6px;font-weight:500;
+}
+
+/* ===== 特徴セクション ===== */
+.features{background:white;padding:64px 20px;border-top:2px solid #FCE7F3;}
+.section-label{
+  text-align:center;font-size:0.72rem;font-weight:700;letter-spacing:3px;
+  color:#BE185D;margin-bottom:8px;text-transform:uppercase;
+}
+.section-title{text-align:center;font-size:1.4rem;font-weight:900;margin-bottom:6px;color:#1E3A8A;}
+.section-sub{text-align:center;font-size:0.82rem;color:#9CA3AF;margin-bottom:44px;}
+
+/* 特典バナー */
+.perk-banner{
+  max-width:900px;margin:0 auto 32px;
+  background:#1E3A8A;border-radius:20px;padding:32px 24px 28px;
+  color:white;text-align:center;
+  box-shadow:0 4px 0 #152a6e, 0 10px 40px rgba(30,58,138,0.25);
+  position:relative;overflow:hidden;
+}
+.perk-banner-icon{font-size:2rem;margin-bottom:6px;}
+.perk-banner-title{font-size:1.1rem;font-weight:900;margin-bottom:6px;opacity:0.88;}
+.perk-banner-note{
+  display:inline-block;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.35);
+  border-radius:30px;padding:5px 18px;font-size:0.75rem;font-weight:700;
+  margin-top:16px;
+}
+.perk-choices{
+  display:flex;align-items:center;gap:12px;
+  max-width:640px;margin:16px auto 0;
+}
+.perk-btn{
+  flex:1;background:white;border-radius:16px;
+  padding:18px 12px;cursor:pointer;
+  border:none;outline:none;
+  box-shadow:0 6px 0 rgba(0,0,0,0.25), 0 8px 20px rgba(0,0,0,0.15);
+  transition:transform 0.08s, box-shadow 0.08s;
+  position:relative;
+}
+.perk-btn:active{
+  transform:translateY(5px);
+  box-shadow:0 1px 0 rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.1);
+}
+.perk-btn-icon{font-size:2rem;margin-bottom:8px;display:block;}
+.perk-btn-title{font-size:0.92rem;font-weight:900;color:#1E3A8A;line-height:1.4;display:block;}
+.perk-btn-sub{font-size:0.72rem;color:#6B7280;margin-top:4px;display:block;line-height:1.5;}
+.perk-btn-badge{
+  position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+  background:#E11D48;color:white;font-size:10px;font-weight:800;
+  padding:3px 12px;border-radius:20px;white-space:nowrap;letter-spacing:0.5px;
+  box-shadow:0 2px 6px rgba(225,29,72,0.4);
+}
+.perk-or{
+  font-size:1rem;font-weight:900;color:rgba(255,255,255,0.6);
+  flex-shrink:0;letter-spacing:1px;
+}
+
+/* 特徴カード */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:900px;margin:0 auto;}
+.feature-card{
+  background:white;border-radius:18px;padding:28px 22px;
+  border:1.5px solid #FCE7F3;
+  box-shadow:0 4px 0 #FCE7F3, 0 6px 20px rgba(190,24,93,0.06);
+  position:relative;overflow:hidden;
+}
+.feature-card:nth-child(even){
+  border-color:#DBEAFE;
+  box-shadow:0 4px 0 #DBEAFE, 0 6px 20px rgba(30,58,138,0.06);
+}
+.feature-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:#E11D48;border-radius:18px 18px 0 0;
+}
+.feature-card:nth-child(even)::before{background:#1E3A8A;}
+.feature-icon{
+  font-size:2rem;margin-bottom:14px;
+  display:inline-flex;align-items:center;justify-content:center;
+  width:52px;height:52px;background:#FFF0F6;border-radius:14px;
+  box-shadow:0 2px 8px rgba(190,24,93,0.1);
+}
+.feature-card:nth-child(even) .feature-icon{background:#EFF6FF;box-shadow:0 2px 8px rgba(30,58,138,0.1);}
+.feature-title{font-size:1rem;font-weight:800;color:#9D174D;margin-bottom:8px;}
+.feature-card:nth-child(even) .feature-title{color:#1E3A8A;}
+.feature-desc{font-size:0.82rem;color:#6B7280;line-height:1.8;}
+
+/* 特別カード（絵文字アイコン大） */
+.feature-card--gift,.feature-card--truck,.feature-card--card{
+  border-left:none;
+  border-top:4px solid transparent;
+  text-align:center;
+}
+.feature-card--gift{border-top-color:#F59E0B; box-shadow:0 4px 0 #FDE68A, 0 6px 20px rgba(245,158,11,0.1);}
+.feature-card--truck{border-top-color:#F97316; box-shadow:0 4px 0 #FED7AA, 0 6px 20px rgba(249,115,22,0.1);}
+.feature-card--card{border-top-color:#3B82F6; box-shadow:0 4px 0 #BFDBFE, 0 6px 20px rgba(59,130,246,0.1);}
+.feature-card--gift::before{background:#F59E0B;}
+.feature-card--truck::before{background:#F97316;}
+.feature-card--card::before{background:#3B82F6;}
+.feature-icon-wrap{
+  font-size:2.8rem;margin:0 auto 14px;
+  display:flex;align-items:center;justify-content:center;
+  width:72px;height:72px;border-radius:50%;
+  box-shadow:0 4px 16px rgba(0,0,0,0.1);
+}
+.feature-icon-wrap--yellow{background:#FEF3C7;}
+.feature-icon-wrap--orange{background:#FFEDD5;}
+.feature-icon-wrap--blue{background:#EFF6FF;}
+.feature-title--yellow{color:#B45309;font-size:1rem;font-weight:800;margin-bottom:8px;}
+.feature-title--orange{color:#C2410C;font-size:1rem;font-weight:800;margin-bottom:8px;}
+.feature-title--blue{color:#1D4ED8;font-size:1rem;font-weight:800;margin-bottom:8px;}
+
+/* ===== 診断ツール埋め込み ===== */
+.tool-section{
+  background:#EFF6FF;
+  padding:64px 20px;text-align:center;
+  border-top:2px solid #BFDBFE;
+  border-bottom:2px solid #BFDBFE;
+}
+.tool-section .section-title{color:#1E3A8A;}
+.tool-wrap{
+  max-width:520px;margin:32px auto 0;
+  border-radius:24px;overflow:hidden;
+  box-shadow:
+    0 4px 0 #BFDBFE,
+    0 12px 48px rgba(30,58,138,0.15);
+  border:2px solid #DBEAFE;
+}
+.tool-wrap iframe{width:100%;height:800px;border:none;display:block;}
+
+/* ===== LINE CTA ===== */
+.line-section{
+  background:#06C755;
+  padding:64px 20px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.line-section::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:220px;height:220px;border-radius:50%;
+  background:rgba(255,255,255,0.08);pointer-events:none;
+}
+.line-section::after{
+  content:'';position:absolute;bottom:-50px;left:-50px;
+  width:180px;height:180px;border-radius:50%;
+  background:rgba(255,255,255,0.06);pointer-events:none;
+}
+.line-section .section-label{color:rgba(255,255,255,0.7);letter-spacing:3px;}
+.line-section h2{font-size:1.4rem;font-weight:900;margin-bottom:10px;color:white;}
+.line-section p{font-size:0.85rem;color:rgba(255,255,255,0.88);margin-bottom:28px;line-height:1.8;}
+
+.perks-box{
+  max-width:360px;margin:0 auto 32px;
+  background:white;
+  border-radius:16px;padding:20px 24px;
+  border:2px solid rgba(255,255,255,0.6);
+  box-shadow:0 4px 0 rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.12);
+  text-align:left;
+  position:relative;z-index:1;
+}
+.perk{font-size:0.85rem;color:#1a5c34;display:flex;align-items:center;gap:12px;line-height:1.5;padding:9px 0;border-bottom:1px solid #D1FAE5;font-weight:600;}
+.perk:last-child{border-bottom:none;padding-bottom:0;}
+.perk-ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0;}
+.perk-icon{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:32px;height:32px;border-radius:50%;flex-shrink:0;font-size:1rem;
+}
+
+.btn-line-wrap{position:relative;z-index:1;display:inline-block;}
+.btn-line-label{
+  font-size:11px;font-weight:700;color:rgba(255,255,255,0.9);
+  background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.45);
+  border-radius:30px;padding:3px 14px;letter-spacing:1px;
+  margin-bottom:10px;display:inline-block;
+}
+.btn-line{
+  display:inline-flex;align-items:center;gap:12px;
+  background:white;color:#059748;
+  padding:18px 44px;border-radius:50px;font-size:1.1rem;font-weight:900;
+  text-decoration:none;
+  box-shadow:0 5px 0 #04a347, 0 10px 28px rgba(0,0,0,0.18);
+  letter-spacing:0.5px;
+  transition:transform 0.12s, box-shadow 0.12s;
+  position:relative;z-index:1;
+  border:2.5px solid rgba(6,199,85,0.15);
+}
+.btn-line:hover{transform:translateY(-2px);box-shadow:0 7px 0 #04a347, 0 14px 32px rgba(0,0,0,0.22);}
+.btn-line:active{transform:translateY(3px);box-shadow:0 2px 0 #04a347, 0 4px 12px rgba(0,0,0,0.15);}
+.btn-line-note{font-size:11px;color:rgba(255,255,255,0.75);margin-top:10px;position:relative;z-index:1;}
+
+/* ===== フッター ===== */
+footer{
+  background:#1E3A8A;color:#93C5FD;
+  text-align:center;padding:24px;font-size:12px;
+  border-top:4px solid #1e2f6a;
+}
+
+/* ===== レスポンシブ ===== */
+@media(max-width:480px){
+  .hero h1{font-size:1.55rem;}
+  .hero-card{padding:28px 20px 26px;}
+  .features-grid{grid-template-columns:1fr;}
+  .tool-wrap iframe{height:700px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ヒーローセクション -->
+<section class="hero">
+  <div class="hero-card">
+    <div class="hero-badge">✨ MBTIタイプ診断搭載</div>
+    <div class="hero-eyebrow">大阪の不動産スタッフが作った</div>
+    <h1>大阪・関西で<br>あなたにぴったりの<br>住まいエリアを見つけよう</h1>
+    <div class="hero-divider"></div>
+    <p>通勤時間・家賃・ライフスタイルから<br>最適なエリアを診断</p>
+    <div class="hero-sub">
+      来店不要・完全無料
+      <span>｜</span>
+      所要時間 約3分
+    </div>
+    <div class="hero-btns">
+      <a href="#tool" class="btn-hero">まずは診断をしてみる　→</a>
+      <a href="https://line.me/ti/p/@935yytsb" class="btn-line-hero" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.89c.499 0 .906.41.906.91s-.407.907-.906.907h-2.87v1.875h2.87c.499 0 .906.407.906.906 0 .5-.407.908-.906.908h-3.777c-.499 0-.906-.408-.906-.908V8.984c0-.5.407-.907.906-.907h3.777zm-12.77 4.6c0 .5-.408.907-.907.907-.499 0-.907-.407-.907-.907V8.984c0-.5.408-.907.907-.907.499 0 .907.407.907.907v5.505zm3.245.907c-.346 0-.668-.199-.828-.511l-2.631-4.994v4.598c0 .5-.408.907-.908.907-.499 0-.907-.407-.907-.907V8.984c0-.5.408-.907.908-.907.346 0 .668.198.827.51l2.632 4.996V8.984c0-.5.407-.907.907-.907.5 0 .907.407.907.907v5.505c0 .5-.407.907-.907.907zm3.97 0h-1.816c-.499 0-.907-.407-.907-.907V8.984c0-.5.408-.907.907-.907.5 0 .907.407.907.907v4.598h.909c.499 0 .906.407.906.907 0 .5-.407.907-.906.907zM12 2C6.477 2 2 6.145 2 11.25c0 4.557 3.524 8.35 8.272 9.093.322.07.76.213.87.49.1.25.066.643.032.896l-.14.847c-.043.25-.196.978.857.533 1.054-.444 5.68-3.354 7.752-5.744C21.01 15.434 22 13.44 22 11.25 22 6.145 17.523 2 12 2z"/></svg>
+        LINEで直接診断を受ける
+      </a>
+    </div>
+    <div class="hero-note">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#06C755"><path d="M19.365 9.89c.499 0 .906.41.906.91s-.407.907-.906.907h-2.87v1.875h2.87c.499 0 .906.407.906.906 0 .5-.407.908-.906.908h-3.777c-.499 0-.906-.408-.906-.908V8.984c0-.5.407-.907.906-.907h3.777zm-12.77 4.6c0 .5-.408.907-.907.907-.499 0-.907-.407-.907-.907V8.984c0-.5.408-.907.907-.907.499 0 .907.407.907.907v5.505zm3.245.907c-.346 0-.668-.199-.828-.511l-2.631-4.994v4.598c0 .5-.408.907-.908.907-.499 0-.907-.407-.907-.907V8.984c0-.5.408-.907.908-.907.346 0 .668.198.827.51l2.632 4.996V8.984c0-.5.407-.907.907-.907.5 0 .907.407.907.907v5.505c0 .5-.407.907-.907.907zm3.97 0h-1.816c-.499 0-.907-.407-.907-.907V8.984c0-.5.408-.907.907-.907.5 0 .907.407.907.907v4.598h.909c.499 0 .906.407.906.907 0 .5-.407.907-.906.907zM12 2C6.477 2 2 6.145 2 11.25c0 4.557 3.524 8.35 8.272 9.093.322.07.76.213.87.49.1.25.066.643.032.896l-.14.847c-.043.25-.196.978.857.533 1.054-.444 5.68-3.354 7.752-5.744C21.01 15.434 22 13.44 22 11.25 22 6.145 17.523 2 12 2z"/></svg>
+      診断後はLINEでスタッフがご提案します
+    </div>
+  </div>
+</section>
+
+<!-- 特徴セクション -->
+<section class="features">
+  <div class="section-label">Why choose us</div>
+  <div class="section-title">エリア診断が選ばれる理由</div>
+  <div class="section-sub">大阪・関西エリアの部屋探しを徹底サポート</div>
+
+  <!-- 特典フルバナー -->
+  <div class="perk-banner">
+    <div class="perk-banner-title">🎁 どちらか選べる！特典プレゼント</div>
+    <div class="perk-choices">
+      <button class="perk-btn" onclick="void(0)">
+        <div class="perk-btn-badge">人気No.1</div>
+        <span class="perk-btn-icon">
+          <span style="display:inline-flex;align-items:flex-end;justify-content:center;gap:10px;margin-bottom:4px;">
+
+            <!-- 冷蔵庫（縦型・カラフル絵文字風） -->
+            <span style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+              <svg width="42" height="52" viewBox="0 0 42 52" xmlns="http://www.w3.org/2000/svg">
+                <!-- 影 -->
+                <ellipse cx="21" cy="51" rx="14" ry="3" fill="rgba(0,0,0,0.1)"/>
+                <!-- 冷凍室（上） -->
+                <rect x="4" y="2" width="34" height="16" rx="5" fill="#5B9BD5"/>
+                <rect x="4" y="14" width="34" height="4" fill="#4A86BB"/>
+                <!-- 冷蔵室（下） -->
+                <rect x="4" y="18" width="34" height="28" rx="0" fill="#E8F4FF"/>
+                <rect x="4" y="42" width="34" height="6" rx="5" fill="#E8F4FF"/>
+                <!-- 外枠 -->
+                <rect x="4" y="2" width="34" height="46" rx="5" fill="none" stroke="#3A7ABF" stroke-width="1.5"/>
+                <line x1="4" y1="18" x2="38" y2="18" stroke="#3A7ABF" stroke-width="1.5"/>
+                <!-- 冷凍室ハンドル -->
+                <rect x="9" y="7" width="3.5" height="7" rx="1.75" fill="white" opacity="0.6"/>
+                <!-- 冷蔵室ハンドル -->
+                <rect x="9" y="24" width="3.5" height="14" rx="1.75" fill="#A8CBEA"/>
+                <!-- 光沢 -->
+                <rect x="8" y="4" width="6" height="10" rx="3" fill="white" opacity="0.25"/>
+              </svg>
+              <span style="font-size:9px;color:#1E3A8A;font-weight:800;">冷蔵庫</span>
+            </span>
+
+            <!-- 縦型洗濯機（真上から+正面ミックス・カラフル） -->
+            <span style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+              <svg width="44" height="52" viewBox="0 0 44 52" xmlns="http://www.w3.org/2000/svg">
+                <!-- 影 -->
+                <ellipse cx="22" cy="51" rx="14" ry="3" fill="rgba(0,0,0,0.1)"/>
+                <!-- 本体（白） -->
+                <rect x="3" y="12" width="38" height="36" rx="5" fill="#F0F4FF"/>
+                <!-- 操作パネル（後部上方） -->
+                <rect x="3" y="3" width="38" height="13" rx="5" fill="#4A86BB"/>
+                <rect x="3" y="12" width="38" height="4" fill="#3A7ABF"/>
+                <!-- パネルボタン -->
+                <circle cx="14" cy="8.5" r="3" fill="#E74C3C"/>
+                <circle cx="22" cy="8.5" r="3" fill="#F1C40F"/>
+                <circle cx="30" cy="8.5" r="3" fill="#2ECC71"/>
+                <!-- フタ（正面から見た上蓋） -->
+                <rect x="9" y="16" width="26" height="6" rx="3" fill="#5B9BD5"/>
+                <rect x="11" y="17.5" width="22" height="3" rx="1.5" fill="#7BB3E0"/>
+                <!-- 洗濯槽の開口部（楕円） -->
+                <ellipse cx="22" cy="34" rx="14" ry="10" fill="#BFDBFE"/>
+                <ellipse cx="22" cy="34" rx="10" ry="7" fill="#7BB3E0"/>
+                <!-- 洗濯槽の中 -->
+                <ellipse cx="22" cy="34" rx="6" ry="4" fill="#5B9BD5"/>
+                <ellipse cx="22" cy="34" rx="2.5" ry="1.8" fill="#3A7ABF"/>
+                <!-- 外枠 -->
+                <rect x="3" y="3" width="38" height="45" rx="5" fill="none" stroke="#3A7ABF" stroke-width="1.5"/>
+              </svg>
+              <span style="font-size:9px;color:#1E3A8A;font-weight:800;">洗濯機</span>
+            </span>
+
+            <!-- 電子レンジ（横型・カラフル） -->
+            <span style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+              <svg width="52" height="40" viewBox="0 0 52 40" xmlns="http://www.w3.org/2000/svg">
+                <!-- 影 -->
+                <ellipse cx="26" cy="39" rx="18" ry="3" fill="rgba(0,0,0,0.1)"/>
+                <!-- 本体 -->
+                <rect x="1" y="4" width="50" height="32" rx="6" fill="#F0F4FF"/>
+                <!-- 窓エリア -->
+                <rect x="4" y="7" width="30" height="24" rx="4" fill="#1E3A8A"/>
+                <!-- 窓の光 -->
+                <rect x="6" y="9" width="26" height="20" rx="3" fill="#243E8F"/>
+                <!-- レンジ内の食品（丸） -->
+                <circle cx="19" cy="19" r="6" fill="#E67E22" opacity="0.85"/>
+                <circle cx="19" cy="19" r="4" fill="#F39C12"/>
+                <!-- 回転台 -->
+                <ellipse cx="19" cy="24" rx="10" ry="2.5" fill="#2C4FA8" opacity="0.5"/>
+                <!-- 窓の光沢 -->
+                <rect x="7" y="10" width="9" height="5" rx="2" fill="white" opacity="0.15"/>
+                <!-- パネル部分 -->
+                <rect x="36" y="7" width="12" height="24" rx="3" fill="#E0E8FF"/>
+                <!-- ダイヤル -->
+                <circle cx="42" cy="15" r="4.5" fill="#5B9BD5"/>
+                <circle cx="42" cy="15" r="2.5" fill="#3A7ABF"/>
+                <circle cx="42" cy="12" r="1" fill="white"/>
+                <!-- スタートボタン -->
+                <rect x="38" y="22" width="8" height="5" rx="2.5" fill="#E74C3C"/>
+                <rect x="38" y="29" width="8" height="2" rx="1" fill="#A8CBEA"/>
+                <!-- 外枠 -->
+                <rect x="1" y="4" width="50" height="32" rx="6" fill="none" stroke="#3A7ABF" stroke-width="1.5"/>
+              </svg>
+              <span style="font-size:9px;color:#1E3A8A;font-weight:800;">電子レンジ</span>
+            </span>
+
+          </span>
+        </span>
+        <span class="perk-btn-title">家電3点プレゼント</span>
+        <span class="perk-btn-sub">冷蔵庫・洗濯機・電子レンジ<br>新生活セット無料プレゼント✨</span>
+      </button>
+      <div class="perk-or">OR</div>
+      <button class="perk-btn" onclick="void(0)">
+        <span class="perk-btn-icon">🚚</span>
+        <span class="perk-btn-title">お引越し費用無料</span>
+        <span class="perk-btn-sub">引越し業者への費用が<br>まるごと無料に✨</span>
+      </button>
+    </div>
+    <div class="perk-banner-note">弊社からのお申込みの物件に限ります</div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🧠</div>
+      <div class="feature-title">MBTIタイプで診断</div>
+      <div class="feature-desc">あなたの性格タイプと通勤時間・家賃をかけ合わせた独自のエリア診断で、本当に合う街を提案します。</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <div class="feature-title">初期費用を大幅カット</div>
+      <div class="feature-desc">敷金・礼金0円物件を多数ご用意。お得な特典付き物件で初期費用を大幅に抑えられます。</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <div class="feature-title">全てLINEで完結</div>
+      <div class="feature-desc">来店不要。内見予約・物件提案・契約手続きまで全てLINEで完結。忙しい方でも安心です。</div>
+    </div>
+    <div class="feature-card feature-card--gift">
+      <div class="feature-icon-wrap feature-icon-wrap--yellow">🎁</div>
+      <div class="feature-title feature-title--yellow">家電3点プレゼント</div>
+      <div class="feature-desc">冷蔵庫・洗濯機・電子レンジの3点セットを無料プレゼント。新生活をすぐにスタートできます。</div>
+    </div>
+    <div class="feature-card feature-card--truck">
+      <div class="feature-icon-wrap feature-icon-wrap--orange">🚚</div>
+      <div class="feature-title feature-title--orange">お引越し費用無料</div>
+      <div class="feature-desc">対象物件では引越し費用が無料に。家電3点プレゼントとどちらか選べてお得です。</div>
+    </div>
+    <div class="feature-card feature-card--card">
+      <div class="feature-icon-wrap feature-icon-wrap--blue">💳</div>
+      <div class="feature-title feature-title--blue">分割払い・カード払いOK</div>
+      <div class="feature-desc">初期費用の分割払い・クレジットカード払いも可能です。ご希望の場合はスタッフへお気軽にご相談ください。</div>
+    </div>
+  </div>
+</section>
+
+<!-- MBTIタイプ別エリア紹介 -->
+<section style="background:#FDF2F8;padding:48px 20px;border-top:2px solid #FCE7F3;">
+  <div style="text-align:center;margin-bottom:28px;">
+    <div style="font-size:0.72rem;font-weight:700;letter-spacing:3px;color:#BE185D;margin-bottom:6px;">MBTI × AREA</div>
+    <div style="font-size:1.2rem;font-weight:900;color:#1E3A8A;">MBTIタイプ別おすすめエリア</div>
+    <div style="font-size:0.78rem;color:#9CA3AF;margin-top:6px;">あなたのタイプはどれ？詳しくは診断でチェック🔍</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;max-width:860px;margin:0 auto 20px;">
+
+    <div style="background:white;border-radius:14px;padding:16px 14px;border:1.5px solid #FCE7F3;box-shadow:0 3px 0 #FCE7F3;">
+      <div style="font-size:0.72rem;font-weight:800;color:#BE185D;letter-spacing:1px;margin-bottom:4px;">INFP / ISFP</div>
+      <div style="font-size:0.92rem;font-weight:900;color:#1E3A8A;margin-bottom:4px;">中崎町・堀江エリア</div>
+      <div style="font-size:0.76rem;color:#6B7280;line-height:1.6;">カフェや雑貨屋が多く、自分らしい暮らしができるクリエイティブな街</div>
+    </div>
+
+    <div style="background:white;border-radius:14px;padding:16px 14px;border:1.5px solid #DBEAFE;box-shadow:0 3px 0 #DBEAFE;">
+      <div style="font-size:0.72rem;font-weight:800;color:#1D4ED8;letter-spacing:1px;margin-bottom:4px;">ENTJ / ENTP</div>
+      <div style="font-size:0.92rem;font-weight:900;color:#1E3A8A;margin-bottom:4px;">梅田・本町エリア</div>
+      <div style="font-size:0.76rem;color:#6B7280;line-height:1.6;">ビジネス感があり刺激的。野心家タイプに人気の都会的なエリア</div>
+    </div>
+
+    <div style="background:white;border-radius:14px;padding:16px 14px;border:1.5px solid #FCE7F3;box-shadow:0 3px 0 #FCE7F3;">
+      <div style="font-size:0.72rem;font-weight:800;color:#BE185D;letter-spacing:1px;margin-bottom:4px;">INFJ / INTJ</div>
+      <div style="font-size:0.92rem;font-weight:900;color:#1E3A8A;margin-bottom:4px;">天王寺・阿倍野エリア</div>
+      <div style="font-size:0.76rem;color:#6B7280;line-height:1.6;">落ち着いた住環境で静かに過ごせる。交通の便も良く賢い選択</div>
+    </div>
+
+    <div style="background:white;border-radius:14px;padding:16px 14px;border:1.5px solid #DBEAFE;box-shadow:0 3px 0 #DBEAFE;">
+      <div style="font-size:0.72rem;font-weight:800;color:#1D4ED8;letter-spacing:1px;margin-bottom:4px;">ESFP / ENFP</div>
+      <div style="font-size:0.92rem;font-weight:900;color:#1E3A8A;margin-bottom:4px;">難波・心斎橋エリア</div>
+      <div style="font-size:0.76rem;color:#6B7280;line-height:1.6;">にぎやかで楽しいことが好きな社交的タイプにぴったりな繁華街</div>
+    </div>
+
+  </div>
+  <div style="text-align:center;">
+    <a href="#tool" style="display:inline-flex;align-items:center;gap:8px;background:#1E3A8A;color:white;padding:13px 32px;border-radius:50px;font-size:0.88rem;font-weight:800;text-decoration:none;box-shadow:0 4px 0 #152a6e;">
+      自分のタイプを詳しく診断する　→
+    </a>
+  </div>
+</section>
+
+<!-- 診断ツール -->
+<section class="tool-section" id="tool">
+  <div class="section-label">Diagnosis Tool</div>
+  <div class="section-title">さっそく診断してみよう！</div>
+  <div class="section-sub">約3分で完了 ｜ 無料 ｜ 大阪・関西エリア対応</div>
+  <div class="tool-wrap">
+    <iframe src="https://sumalabo-line.vercel.app/" scrolling="yes" title="住まいエリア診断ツール"></iframe>
+  </div>
+</section>
+
+<!-- LINE CTA -->
+<section class="line-section">
+  <div class="section-label">Contact</div>
+  <h2>📱 公式LINEで相談しよう！</h2>
+  <p>診断後はLINEでスタッフが<br>ぴったりの物件をご提案します！</p>
+  <div class="perks-box">
+    <div class="perk">
+      <span class="perk-ic" style="background:#DCFCE7;">✅</span>
+      <span>来店不要・完全無料</span>
+    </div>
+    <div class="perk">
+      <span class="perk-ic" style="background:#FEF9C3;">🎁</span>
+      <span>家電3点プレゼント<br><span style="font-size:0.75rem;font-weight:500;color:#3d8c5a;">冷蔵庫・洗濯機・電子レンジ</span></span>
+    </div>
+    <div class="perk">
+      <span class="perk-ic" style="background:#FFEDD5;">🚚</span>
+      <span>お引越し費用無料<br><span style="font-size:0.75rem;font-weight:500;color:#3d8c5a;">🎁 または家電プレゼントどちらか選べる！</span></span>
+    </div>
+    <div class="perk">
+      <span class="perk-ic" style="background:#EFF6FF;">💳</span>
+      <span>分割払い・クレジットカード払いOK</span>
+    </div>
+    <div class="perk">
+      <span class="perk-ic" style="background:#DCFCE7;">📱</span>
+      <span>内見予約・契約もLINEで完結可能</span>
+    </div>
+  </div>
+  <div class="btn-line-wrap">
+    <div class="btn-line-label">✦ 無料・来店不要 ✦</div><br>
+    <a href="https://line.me/ti/p/@935yytsb" class="btn-line" target="_blank">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="#06C755"><path d="M19.365 9.89c.499 0 .906.41.906.91s-.407.907-.906.907h-2.87v1.875h2.87c.499 0 .906.407.906.906 0 .5-.407.908-.906.908h-3.777c-.499 0-.906-.408-.906-.908V8.984c0-.5.407-.907.906-.907h3.777zm-12.77 4.6c0 .5-.408.907-.907.907-.499 0-.907-.407-.907-.907V8.984c0-.5.408-.907.907-.907.499 0 .907.407.907.907v5.505zm3.245.907c-.346 0-.668-.199-.828-.511l-2.631-4.994v4.598c0 .5-.408.907-.908.907-.499 0-.907-.407-.907-.907V8.984c0-.5.408-.907.908-.907.346 0 .668.198.827.51l2.632 4.996V8.984c0-.5.407-.907.907-.907.5 0 .907.407.907.907v5.505c0 .5-.407.907-.907.907zm3.97 0h-1.816c-.499 0-.907-.407-.907-.907V8.984c0-.5.408-.907.907-.907.5 0 .907.407.907.907v4.598h.909c.499 0 .906.407.906.907 0 .5-.407.907-.906.907zM12 2C6.477 2 2 6.145 2 11.25c0 4.557 3.524 8.35 8.272 9.093.322.07.76.213.87.49.1.25.066.643.032.896l-.14.847c-.043.25-.196.978.857.533 1.054-.444 5.68-3.354 7.752-5.744C21.01 15.434 22 13.44 22 11.25 22 6.145 17.523 2 12 2z"/></svg>
+      友だち追加して相談する
+    </a>
+    <div class="btn-line-note">👆 タップしてLINEを開く · 費用は一切かかりません</div>
+  </div>
+</section>
+
+<footer>
+  © 2026 大阪・関西の部屋探し研究所
+</footer>
+
+</body>
+</html>

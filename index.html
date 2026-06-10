@@ -595,6 +595,68 @@ footer{
   <div class="tool-wrap">
     <iframe src="https://sumalabo-line.vercel.app/" scrolling="yes" title="住まいエリア診断ツール"></iframe>
   </div>
+  <!-- エリア相場アコーディオン -->
+<section style="background:#EFF6FF;padding:32px 20px;border-top:2px solid #BFDBFE;border-bottom:2px solid #BFDBFE;">
+  <div style="max-width:520px;margin:0 auto;">
+    <button id="area-btn" onclick="toggleArea()" style="width:100%;background:white;border:1.5px solid #DBEAFE;border-radius:16px;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:14px;font-weight:700;color:#1E3A8A;box-shadow:0 3px 0 #DBEAFE;font-family:inherit;">
+      <span style="display:flex;align-items:center;gap:10px;">🏙️ 大阪エリア別 家賃相場を見る</span>
+      <span id="area-arrow" style="font-size:18px;color:#93C5FD;transition:transform 0.3s;">▼</span>
+    </button>
+    <div id="area-content" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease;">
+      <div style="background:white;border:1.5px solid #DBEAFE;border-top:none;border-radius:0 0 16px 16px;padding:20px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+          <div style="background:#F8FAFF;border-radius:12px;border:1px solid #DBEAFE;padding:12px;">
+            <span style="font-size:10px;font-weight:700;color:#1D4ED8;background:#EFF6FF;padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:6px;">転勤者に人気</span>
+            <div style="font-size:13px;font-weight:700;color:#1E3A8A;margin-bottom:4px;">梅田・福島</div>
+            <div style="font-size:16px;font-weight:700;color:#1E3A8A;">7〜9万<span style="font-size:11px;font-weight:400;color:#6B7280;">円 / 1K</span></div>
+            <div style="font-size:11px;color:#6B7280;line-height:1.6;margin-top:6px;padding-top:6px;border-top:1px solid #DBEAFE;">交通便利・都会的。アクセス重視の方に</div>
+            <span style="display:inline-block;font-size:10px;background:#EFF6FF;color:#1D4ED8;padding:2px 6px;border-radius:20px;margin-top:4px;">ENTJ / ENTP 向き</span>
+          </div>
+          <div style="background:#F8FAFF;border-radius:12px;border:1px solid #DBEAFE;padding:12px;">
+            <span style="font-size:10px;font-weight:700;color:#BE185D;background:#FDF2F8;padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:6px;">女性に人気</span>
+            <div style="font-size:13px;font-weight:700;color:#1E3A8A;margin-bottom:4px;">天王寺・阿倍野</div>
+            <div style="font-size:16px;font-weight:700;color:#1E3A8A;">6〜8万<span style="font-size:11px;font-weight:400;color:#6B7280;">円 / 1K</span></div>
+            <div style="font-size:11px;color:#6B7280;line-height:1.6;margin-top:6px;padding-top:6px;border-top:1px solid #DBEAFE;">落ち着いた住環境。治安が良く安心</div>
+            <span style="display:inline-block;font-size:10px;background:#EFF6FF;color:#1D4ED8;padding:2px 6px;border-radius:20px;margin-top:4px;">INFJ / INTJ 向き</span>
+          </div>
+          <div style="background:#F8FAFF;border-radius:12px;border:1px solid #DBEAFE;padding:12px;">
+            <span style="font-size:10px;font-weight:700;color:#BE185D;background:#FDF2F8;padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:6px;">おしゃれ系に人気</span>
+            <div style="font-size:13px;font-weight:700;color:#1E3A8A;margin-bottom:4px;">中崎町・堀江</div>
+            <div style="font-size:16px;font-weight:700;color:#1E3A8A;">6〜8万<span style="font-size:11px;font-weight:400;color:#6B7280;">円 / 1K</span></div>
+            <div style="font-size:11px;color:#6B7280;line-height:1.6;margin-top:6px;padding-top:6px;border-top:1px solid #DBEAFE;">カフェ・雑貨屋多数。感性重視の方に</div>
+            <span style="display:inline-block;font-size:10px;background:#EFF6FF;color:#1D4ED8;padding:2px 6px;border-radius:20px;margin-top:4px;">INFP / ISFP 向き</span>
+          </div>
+          <div style="background:#F8FAFF;border-radius:12px;border:1px solid #DBEAFE;padding:12px;">
+            <span style="font-size:10px;font-weight:700;color:#1D4ED8;background:#EFF6FF;padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:6px;">にぎやか好きに人気</span>
+            <div style="font-size:13px;font-weight:700;color:#1E3A8A;margin-bottom:4px;">難波・心斎橋</div>
+            <div style="font-size:16px;font-weight:700;color:#1E3A8A;">7〜10万<span style="font-size:11px;font-weight:400;color:#6B7280;">円 / 1K</span></div>
+            <div style="font-size:11px;color:#6B7280;line-height:1.6;margin-top:6px;padding-top:6px;border-top:1px solid #DBEAFE;">外食充実・活気ある街。社交的な方に</div>
+            <span style="display:inline-block;font-size:10px;background:#EFF6FF;color:#1D4ED8;padding:2px 6px;border-radius:20px;margin-top:4px;">ESFP / ENFP 向き</span>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#9CA3AF;text-align:center;margin-bottom:16px;">※相場は2026年現在の目安です。実際の物件はLINEでご相談ください。</div>
+        <div style="background:#F8F0F6;border:1.5px solid #FCE7F3;border-radius:14px;padding:16px 20px;text-align:center;">
+          <p style="font-size:13px;color:#4B5563;margin-bottom:12px;line-height:1.7;"><strong style="color:#BE185D;">自分に合ったエリア</strong>をもっと詳しく知りたい方は<br>まずはMBTI診断からチェックしてみよう！</p>
+          <a href="#tool" style="display:inline-flex;align-items:center;gap:8px;background:#1E3A8A;color:white;padding:12px 28px;border-radius:50px;font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 3px 0 #152a6e;">今すぐ無料で診断する　→</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+function toggleArea(){
+  var c=document.getElementById('area-content');
+  var a=document.getElementById('area-arrow');
+  var btn=document.getElementById('area-btn');
+  if(c.style.maxHeight==='0px'||c.style.maxHeight===''){
+    c.style.maxHeight='700px';
+    a.style.transform='rotate(180deg)';
+  } else {
+    c.style.maxHeight='0px';
+    a.style.transform='rotate(0deg)';
+  }
+}
+</script>
 </section>
 
 <!-- LINE CTA -->

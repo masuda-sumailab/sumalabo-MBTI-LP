@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sumalabo-mbti-lp.vercel.app/sitemap.xml

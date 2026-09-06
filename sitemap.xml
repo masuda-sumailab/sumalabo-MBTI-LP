@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mbti.sumailab.jp/</loc>
+    <loc>https://sumalabo-mbti-lp.vercel.app/</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://mbti.sumailab.jp/articles/</loc>
+    <loc>https://sumalabo-mbti-lp.vercel.app/articles/</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mbti.sumailab.jp/articles/mbti-osaka-area.html</loc>
+    <loc>https://sumalabo-mbti-lp.vercel.app/articles/mbti-osaka-area.html</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://mbti.sumailab.jp/articles/osaka-shokihiyou.html</loc>
+    <loc>https://sumalabo-mbti-lp.vercel.app/articles/osaka-shokihiyou.html</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://mbti.sumailab.jp/articles/osaka-yasui-eki.html</loc>
+    <loc>https://sumalabo-mbti-lp.vercel.app/articles/osaka-yasui-eki.html</loc>
     <lastmod>2026-08-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://mbti.sumailab.jp/articles/osaka-yachin-souba.html</loc>
+    <loc>https://sumalabo-mbti-lp.vercel.app/articles/osaka-yachin-souba.html</loc>
     <lastmod>2026-08-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://mbti.sumailab.jp/articles/osaka-seikatsuhi.html</loc>
+    <loc>https://sumalabo-mbti-lp.vercel.app/articles/osaka-seikatsuhi.html</loc>
     <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>

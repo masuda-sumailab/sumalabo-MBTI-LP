@@ -124,7 +124,7 @@ a{color:inherit}
 .hero-cta .sub{font-size:12px;color:var(--ink-soft)}
 /* diagnosis start card(診断ツールとUI連続性を持たせる) */
 .diag-card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 14px 40px rgba(27,43,82,.16);border:1px solid var(--line)}
-.diag-head{background:linear-gradient(120deg,#B45FBF,#EC6B7C,#F59E7B);color:#fff;text-align:center;padding:22px 20px 20px;display:grid;gap:4px}
+.diag-head{background:linear-gradient(135deg,#7A4A2B 0%,#DE6E3C 100%);color:#fff;text-align:center;padding:22px 20px 20px;display:grid;gap:4px}
 .diag-head-tag{font-size:12px;opacity:.95}
 .diag-head strong{font-family:var(--font-display);font-weight:900;font-size:24px;letter-spacing:.04em}
 .diag-head-sub{font-size:12px;opacity:.92;line-height:1.6}
@@ -311,6 +311,15 @@ a{color:inherit}
 .fixed-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 14px;display:flex;gap:10px}
 .fixed-cta .btn{flex:1;padding:13px 8px;font-size:14px}
 @media(min-width:821px){.fixed-cta{display:none}.footer{padding-bottom:32px}}
+
+/* v47: 診断スタートカードを診断ツール本体(オレンジ)と同じ世界観に */
+.btn-primary.diag-start{background:linear-gradient(135deg,#DE6E3C,#D96820);box-shadow:0 6px 16px rgba(217,104,32,.35);}
+.btn-primary.diag-start:hover{filter:brightness(1.05);}
+.diag-q strong,.diag-q b,.diag-q .hl{color:#C9611A;}
+.diag-input:focus{border-color:#DE6E3C;box-shadow:0 0 0 3px rgba(222,110,60,.18);outline:none;}
+
+/* v49: 診断カードの内側だけ、色変数を診断ツールの実色に差し替え */
+.diag-card{--orange:#D96820;--marker:#F8DCC0;--line:#EDE0CE;--ink:#4A392C;--ink-soft:#7A6752;}
 </style>
 </head>
 <body>

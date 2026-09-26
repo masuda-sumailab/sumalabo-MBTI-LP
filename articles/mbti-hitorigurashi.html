@@ -117,6 +117,17 @@ h2 .h2-cat{width:38px;height:38px;border-radius:50%;border:2px solid #EDE0E6;bac
 
 .ticon{display:block;width:46px;height:46px;border-radius:50%;border:3px solid #EDE0E6;background:#fff;margin:0 auto 4px;object-fit:cover}
 .tcell{text-align:center;white-space:nowrap}
+
+/* 次に読むレポート(廊下増設) */
+.next-read{margin:40px 0 0}
+.next-read .nr-title{font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--ink);margin-bottom:12px}
+.next-read .nr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.next-read .nr-grid a{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:16px 16px 14px;text-decoration:none;display:block;color:var(--ink);transition:transform .15s}
+.next-read .nr-grid a:hover{transform:translateY(-3px)}
+.next-read .nr-cat{font-family:var(--font-display);font-size:11px;font-weight:700;color:var(--orange);display:block;margin-bottom:6px;letter-spacing:.02em}
+.next-read .nr-grid b{display:block;font-size:14px;line-height:1.55;margin-bottom:6px}
+.next-read .nr-grid p{font-size:12.5px;color:var(--ink-soft);line-height:1.6;margin:0}
+@media(max-width:680px){.next-read .nr-grid{grid-template-columns:1fr}}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -260,7 +271,14 @@ h2 .h2-cat{width:38px;height:38px;border-radius:50%;border:2px solid #EDE0E6;bac
       <p class="say">向いていないタイプは、いません。あとは——あなたに向いている部屋を、見つけるだけです!</p>
     </div>
 
-    <p>あわせて読みたい: <a href="mbti-osaka-area.html" style="color:var(--orange);font-weight:700">【MBTI別】大阪のおすすめエリア</a>|<a href="osaka-seikatsuhi.html" style="color:var(--orange);font-weight:700">生活費は月いくら?</a>|<a href="osaka-yasui-eki.html" style="color:var(--orange);font-weight:700">家賃が安い駅5選</a></p>
+    <div class="next-read">
+      <div class="nr-title">🐾 次に読むレポート</div>
+      <div class="nr-grid">
+      <a href="mbti-osaka-area.html"><span class="nr-cat">レポート No.001</span><b>【MBTI別】大阪一人暮らしのおすすめエリア|16タイプ全解説</b><p>性格タイプごとに合う街と家賃目安を、大阪の賃貸のプロが解説します。</p></a>
+      <a href="osaka-yachin-souba.html"><span class="nr-cat">レポート No.004</span><b>大阪の一人暮らし、家賃相場はどれくらい?|月給別の目安と住める街</b><p>月給18万〜26万円ごとの手取りと無理のない家賃、狙える街を早見表で解説します。</p></a>
+      <a href="kaisoku-tomaranai-eki.html"><span class="nr-cat">レポート No.007</span><b>梅田まで10分なのに家賃が安い駅9選|快速・急行が止まらない駅の探し方</b><p>「各停だけの駅」はなぜ安い?梅田10分圏の狙い目9駅を、穴場駅チェッカーつきで賃貸のプロが解説します。</p></a>
+      </div>
+    </div>
 
     <div class="author">
       <b>この記事について</b><br>

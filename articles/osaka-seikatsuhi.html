@@ -114,6 +114,17 @@ h2 .h2-cat{width:38px;height:38px;border-radius:50%;border:2px solid #EDE0E6;bac
 .cat-note img{width:54px;height:54px;border-radius:50%;border:2px solid #EDE0E6;background:#fff;flex-shrink:0}
 .cat-note .say{background:#fff;border:2px solid #EDE0E6;border-radius:14px;padding:12px 16px;font-weight:700;color:#4A3455;position:relative}
 .cat-note .say:before{content:"";position:absolute;left:-8px;top:20px;width:12px;height:12px;background:#fff;border-left:2px solid #EDE0E6;border-bottom:2px solid #EDE0E6;transform:rotate(45deg)}
+
+/* 次に読むレポート(廊下増設) */
+.next-read{margin:40px 0 0}
+.next-read .nr-title{font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--ink);margin-bottom:12px}
+.next-read .nr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.next-read .nr-grid a{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:16px 16px 14px;text-decoration:none;display:block;color:var(--ink);transition:transform .15s}
+.next-read .nr-grid a:hover{transform:translateY(-3px)}
+.next-read .nr-cat{font-family:var(--font-display);font-size:11px;font-weight:700;color:var(--orange);display:block;margin-bottom:6px;letter-spacing:.02em}
+.next-read .nr-grid b{display:block;font-size:14px;line-height:1.55;margin-bottom:6px}
+.next-read .nr-grid p{font-size:12.5px;color:var(--ink-soft);line-height:1.6;margin:0}
+@media(max-width:680px){.next-read .nr-grid{grid-template-columns:1fr}}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -231,7 +242,14 @@ h2 .h2-cat{width:38px;height:38px;border-radius:50%;border:2px solid #EDE0E6;bac
       <div class="a">どちらにも良さがあります。まずこの記事の家計簿で「一人暮らしした場合の月の金額」を具体的にイメージしてから決めるのがおすすめです。通勤時間・自由な時間・お金の3つを並べて比べると、自分の答えが見えてきます。</div>
     </details>
 
-    <p>あわせて読みたい: <a href="osaka-yachin-souba.html" style="color:var(--orange);font-weight:700">家賃相場はどれくらい?</a>|<a href="osaka-shokihiyou.html" style="color:var(--orange);font-weight:700">初期費用はいくら?</a>|<a href="osaka-yasui-eki.html" style="color:var(--orange);font-weight:700">家賃が安い駅5選</a></p>
+    <div class="next-read">
+      <div class="nr-title">🐾 次に読むレポート</div>
+      <div class="nr-grid">
+      <a href="osaka-yachin-souba.html"><span class="nr-cat">レポート No.004</span><b>大阪の一人暮らし、家賃相場はどれくらい?|月給別の目安と住める街</b><p>月給18万〜26万円ごとの手取りと無理のない家賃、狙える街を早見表で解説します。</p></a>
+      <a href="osaka-shokihiyou.html"><span class="nr-cat">レポート No.002</span><b>大阪の一人暮らし、初期費用はいくら?|相場・内訳と抑えるコツ</b><p>目安は家賃の4〜6.5ヶ月分。内訳3パターンと家賃別の総額、抑えるコツをプロが解説します。</p></a>
+      <a href="mbti-hitorigurashi.html"><span class="nr-cat">レポート No.006</span><b>一人暮らしに向いているMBTIは?|16タイプ別の向き・不向きと部屋選び</b><p>向いていないタイプはいません。16タイプの強みとつまずき、合う部屋のヒントを早見表で。</p></a>
+      </div>
+    </div>
 
     <div class="author">
       <b>この記事について</b><br>

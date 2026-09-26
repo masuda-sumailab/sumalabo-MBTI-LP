@@ -320,6 +320,14 @@ a{color:inherit}
 
 /* v49: 診断カードの内側だけ、色変数を診断ツールの実色に差し替え */
 .diag-card{--orange:#D96820;--marker:#F8DCC0;--line:#EDE0CE;--ink:#4A392C;--ink-soft:#7A6752;}
+
+/* レポート全本への入口(廊下増設) */
+.report-list{margin-top:14px;display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px}
+.report-list a{display:flex;white-space:nowrap;overflow:hidden;gap:10px;align-items:baseline;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;text-decoration:none;color:var(--ink);font-size:13.5px;font-weight:700;line-height:1.5;transition:transform .15s}
+.report-list a:hover{transform:translateY(-2px)}
+.report-list a span:last-child{overflow:hidden;text-overflow:ellipsis}
+.report-list a .no{font-family:var(--font-mono);font-size:11px;color:var(--orange);white-space:nowrap}
+@media(max-width:680px){.report-list{grid-template-columns:1fr}}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -530,6 +538,14 @@ a{color:inherit}
         <h3>大阪で家賃が安い駅はどこ?|梅田まで15分圏の狙い目5駅</h3>
         <p>1Kが5万円台から狙える野田・塚本など5駅を、家賃目安つきで紹介します。</p>
       </a>
+    </div>
+    <div class="report-list">
+      <a href="articles/osaka-yachin-souba.html"><span class="no">No.004</span><span>大阪の一人暮らし、家賃相場は?</span></a>
+      <a href="articles/osaka-seikatsuhi.html"><span class="no">No.005</span><span>大阪の一人暮らし、生活費は月いくら?</span></a>
+      <a href="articles/mbti-hitorigurashi.html"><span class="no">No.006</span><span>一人暮らしに向いているMBTIは?</span></a>
+      <a href="articles/kaisoku-tomaranai-eki.html"><span class="no">No.007</span><span>梅田まで10分なのに家賃が安い駅9選</span></a>
+      <a href="articles/shin-osaka-hokusetsu-eki.html"><span class="no">No.008</span><span>新大阪まで1駅・北摂で家賃が安い駅11選</span></a>
+      <a href="articles/kyobashi-namba-eki.html"><span class="no">No.009</span><span>京橋・なんばまで10分で家賃が安い駅9選</span></a>
     </div>
     <div class="chips-more">
       <a class="btn btn-ghost" href="articles/index.html">レポート一覧を見る</a>

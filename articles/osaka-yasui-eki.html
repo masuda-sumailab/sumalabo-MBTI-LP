@@ -114,6 +114,17 @@ h2 .h2-cat{width:38px;height:38px;border-radius:50%;border:2px solid #EDE0E6;bac
 .cat-note img{width:54px;height:54px;border-radius:50%;border:2px solid #EDE0E6;background:#fff;flex-shrink:0}
 .cat-note .say{background:#fff;border:2px solid #EDE0E6;border-radius:14px;padding:12px 16px;font-weight:700;color:#4A3455;position:relative}
 .cat-note .say:before{content:"";position:absolute;left:-8px;top:20px;width:12px;height:12px;background:#fff;border-left:2px solid #EDE0E6;border-bottom:2px solid #EDE0E6;transform:rotate(45deg)}
+
+/* 次に読むレポート(廊下増設) */
+.next-read{margin:40px 0 0}
+.next-read .nr-title{font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--ink);margin-bottom:12px}
+.next-read .nr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.next-read .nr-grid a{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:16px 16px 14px;text-decoration:none;display:block;color:var(--ink);transition:transform .15s}
+.next-read .nr-grid a:hover{transform:translateY(-3px)}
+.next-read .nr-cat{font-family:var(--font-display);font-size:11px;font-weight:700;color:var(--orange);display:block;margin-bottom:6px;letter-spacing:.02em}
+.next-read .nr-grid b{display:block;font-size:14px;line-height:1.55;margin-bottom:6px}
+.next-read .nr-grid p{font-size:12.5px;color:var(--ink-soft);line-height:1.6;margin:0}
+@media(max-width:680px){.next-read .nr-grid{grid-template-columns:1fr}}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -232,7 +243,14 @@ h2 .h2-cat{width:38px;height:38px;border-radius:50%;border:2px solid #EDE0E6;bac
       <p class="say">駅選びは「安さ×通勤×性格」の掛け算。迷ったら、あなたのタイプから逆引きするのが近道です!</p>
     </div>
 
-    <p>あわせて読みたい: <a href="osaka-shokihiyou.html" style="color:var(--orange);font-weight:700">大阪の一人暮らし、初期費用はいくら?</a>|<a href="mbti-osaka-area.html" style="color:var(--orange);font-weight:700">【MBTI別】大阪一人暮らしのおすすめエリア</a></p>
+    <div class="next-read">
+      <div class="nr-title">🐾 次に読むレポート</div>
+      <div class="nr-grid">
+      <a href="kaisoku-tomaranai-eki.html"><span class="nr-cat">レポート No.007</span><b>梅田まで10分なのに家賃が安い駅9選|快速・急行が止まらない駅の探し方</b><p>「各停だけの駅」はなぜ安い?梅田10分圏の狙い目9駅を、穴場駅チェッカーつきで賃貸のプロが解説します。</p></a>
+      <a href="shin-osaka-hokusetsu-eki.html"><span class="nr-cat">レポート No.008</span><b>新大阪まで1駅・北摂で家賃が安い駅11選|快速・準急が止まらない駅の探し方</b><p>新幹線1駅の「各停ゾーン」はなぜ安い?北摂の狙い目11駅を、縦型路線図と穴場駅チェッカーつきで解説します。</p></a>
+      <a href="kyobashi-namba-eki.html"><span class="nr-cat">レポート No.009</span><b>京橋・なんばまで10分で家賃が安い駅9選|準急が止まらない駅の探し方</b><p>準急が停まるのに最安の駅も?京橋・なんば10分圏の9駅を、縦型路線図と穴場駅チェッカーつきで解説します。</p></a>
+      </div>
+    </div>
 
     <div class="author">
       <b>この記事について</b><br>

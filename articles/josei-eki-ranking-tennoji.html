@@ -163,6 +163,12 @@ details.col[open] summary{margin-bottom:6px}
 .ax4-e{font-size:1.4rem;display:block}
 .ax4-i b{display:block;font-family:var(--font-display);font-size:.95rem;margin:2px 0}
 .ax4-i small{display:block;font-size:.68rem;color:var(--ink-soft);line-height:1.4}
+
+.faq details{background:#fff;border:1.5px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.faq summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;gap:12px;align-items:baseline}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q";font-family:var(--font-display);font-weight:900;color:var(--orange);flex-shrink:0}
+.faq details .a{padding:0 18px 16px 42px;font-size:14px;color:var(--ink-soft);line-height:1.8}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -398,12 +404,20 @@ details.col[open] summary{margin-bottom:6px}
     <p>2階以上・モニター付きインターホン・宅配ボックスの3点から。1階上がるごとに+500〜1,000円が相場。</p>
 
     <h2 id="faq">よくある質問</h2>
-    <p><strong>ランキングの「治安」はどう決めていますか?</strong></p>
-    <p>大阪府警2025年統計の6種(路上強盗・暴行・傷害・ひったくり・公然わいせつ・住居侵入)を区ごとに足し、人口1万人あたりで比べた数字です。区の平均なので、最後はご自身の目で。</p>
-    <p><strong>「人通り」はなぜ乗降客数で測るのですか?</strong></p>
-    <p>駅を使う人が多いほど、夜も帰り道に人がいるからです。各社公表の1日乗降客数を使い、徒歩5分圏の隣駅は合算。商店街など数字に出ない良さは、各駅の一言で補っています。</p>
-    <p><strong>天王寺勤務とあべの(阿部野橋)勤務、どちら側を選べばいいですか?</strong></p>
-    <p>天王寺と大阪阿部野橋は徒歩数分でつながっているので、実用上の差は小さいです。家賃と人通りの点数で選んで大丈夫。迷ったらLINEで勤務地と予算を。</p>
+    <div class="faq">
+    <details>
+      <summary>ランキングの「治安」はどう決めていますか?</summary>
+      <div class="a">大阪府警2025年統計の6種(路上強盗・暴行・傷害・ひったくり・公然わいせつ・住居侵入)を区ごとに足し、人口1万人あたりで比べた数字です。区の平均なので、最後はご自身の目で。</div>
+    </details>
+    <details>
+      <summary>「人通り」はなぜ乗降客数で測るのですか?</summary>
+      <div class="a">駅を使う人が多いほど、夜も帰り道に人がいるからです。各社公表の1日乗降客数を使い、徒歩5分圏の隣駅は合算。商店街など数字に出ない良さは、各駅の一言で補っています。</div>
+    </details>
+    <details>
+      <summary>天王寺勤務とあべの(阿部野橋)勤務、どちら側を選べばいいですか?</summary>
+      <div class="a">天王寺と大阪阿部野橋は徒歩数分でつながっているので、実用上の差は小さいです。家賃と人通りの点数で選んで大丈夫。迷ったらLINEで勤務地と予算を。</div>
+    </details>
+    </div>
 
     <div class="cat-note">
       <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAMAAAAOusbgAAAAwFBMVEWfWx3tnWfsnhNbYSdgMhdvYVero5uca2GdkGvx0qMnFwdsjzPq4dnYrph2jFbHaAT7xWuJNxA3TR7Dc2DKu8GBpz2QfoS8vcNKPUH9/fz5mwL8ogT3mofu6uWxd0P7ppFwV1HY1tTQyMjv59ayp6aql5SOdnDMeAXriwOViIfIubWrZlSQWE2PZViyZwdzRysAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC4hoxJAAAAMHRSTlP///////////////////////////////////////////////////////////////9Ppz/1AAAKSklEQVR42u2aC3OiyhKAhxkYQEFjsnvOBZzI+yXg//93t2cGkFcUNbV7b1W6dk2CiZ/d029Ezl8S9AP+Af+A/2fBzLbZ3wCH1eGg/wUwRXvPReUfB+so91w30/8w2KqQC1w3R+yPgtllz7EgiH4PmKJzEt53qwtquR7SvwWcHPJ8f6jvoC20F1RTcb3994CrvQeyR+fyNlfoqzim6+Uo+AYw0zNPSHZDa1a1XIuD3ebXN4AtPRdceD2Eki/8NUXiV3DkOBEcchN/BxhJMJDBhtWi0lQVT7sm/30M3pV8AzjkSeHNxJK+R60yzApLm1JqGDShl0xwFfEM9y7jW8DcV53ordUbpXCNVgihfSZk3yDp0V4k/uDN9bIzex38S4ItpyfX1QHtc9drf+5FKsy9C9936/vgsgM7psB47j5zO+oAC9cUswXnaMEVgmc15kaUgB43IbvuWyTA7hzMivRxsHTXK/mGeG/LYKYnTzgXeHV7fN6cNL2kCPCvKbdwngVbjqUs6ji1OP9+2gskyePOFfA4VoAbKcvGdeduNgWXKXsiV/M0DJES4S9OdYl8GIP1+JkiUUFawpaFZxYe+PaYPC1PZfFUWaxBY89UZoqOomrEnsZxEj8F1nkgK7MzHes4tvWkB0nM5zoQ5C7oNtGRC8bdz543jCeWWE+BKRJargCjPqrxsMUNCvYUmPF46iqyFNxjB4aHetV0thnlrqB4TmPHyDrlWiy0It74Uvu2lk+ZJcFzYDO/eo5QjSCEparu3OqdyupVzaXmeBV4HLMuar1o8bT730Px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" alt="">

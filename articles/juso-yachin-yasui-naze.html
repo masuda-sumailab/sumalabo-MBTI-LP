@@ -163,6 +163,12 @@ details.col[open] summary{margin-bottom:6px}
 .ax4-e{font-size:1.4rem;display:block}
 .ax4-i b{display:block;font-family:var(--font-display);font-size:.95rem;margin:2px 0}
 .ax4-i small{display:block;font-size:.68rem;color:var(--ink-soft);line-height:1.4}
+
+.faq details{background:#fff;border:1.5px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.faq summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;gap:12px;align-items:baseline}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q";font-family:var(--font-display);font-weight:900;color:var(--orange);flex-shrink:0}
+.faq details .a{padding:0 18px 16px 42px;font-size:14px;color:var(--ink-soft);line-height:1.8}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -274,12 +280,20 @@ details.col[open] summary{margin-bottom:6px}
     <p>繁華街のある駅ほど、部屋の条件で安心を足す。1階上がるごとに+500〜1,000円が相場で、安心を買う値段としては現実的です。</p>
 
     <h2 id="faq">よくある質問</h2>
-    <p><strong>十三の治安は悪いですか?</strong></p>
-    <p>十三のある淀川区は、大阪府警2025年統計の6種(路上強盗・暴行・傷害・ひったくり・公然わいせつ・住居侵入)が人口1万人あたり8.1件で、大阪市平均(11.2件)より少ない区です。ただし駅の西口側は飲食店が密集する繁華街なので、夜道は東口側・大通り沿いを選ぶのが現実的です。</p>
-    <p><strong>女性の一人暮らしでも十三は大丈夫ですか?</strong></p>
-    <p>選び方次第で大丈夫です。東口から北東方向の住宅地(新北野・野中方面)で、大通り沿い・2階以上・モニター付きインターホンの部屋なら、梅田3分の便利さを6万円前後で手に入れられます。内見は夕方に1回、夜道はご自身で一度歩いて確かめてください。</p>
-    <p><strong>十三から梅田以外へは通いやすいですか?</strong></p>
-    <p>阪急の神戸線・宝塚線・京都線が全部止まるので、神戸三宮・宝塚・京都河原町へ乗換なし。新大阪へは南方(京都線1駅)から御堂筋線で1駅、なんばへは梅田で御堂筋線に乗り換えて約12分。関西のどこへも行きやすいのが十三の強みです。</p>
+    <div class="faq">
+    <details>
+      <summary>十三の治安は悪いですか?</summary>
+      <div class="a">十三のある淀川区は、大阪府警2025年統計の6種(路上強盗・暴行・傷害・ひったくり・公然わいせつ・住居侵入)が人口1万人あたり8.1件で、大阪市平均(11.2件)より少ない区です。ただし駅の西口側は飲食店が密集する繁華街なので、夜道は東口側・大通り沿いを選ぶのが現実的です。</div>
+    </details>
+    <details>
+      <summary>女性の一人暮らしでも十三は大丈夫ですか?</summary>
+      <div class="a">選び方次第で大丈夫です。東口から北東方向の住宅地(新北野・野中方面)で、大通り沿い・2階以上・モニター付きインターホンの部屋なら、梅田3分の便利さを6万円前後で手に入れられます。内見は夕方に1回、夜道はご自身で一度歩いて確かめてください。</div>
+    </details>
+    <details>
+      <summary>十三から梅田以外へは通いやすいですか?</summary>
+      <div class="a">阪急の神戸線・宝塚線・京都線が全部止まるので、神戸三宮・宝塚・京都河原町へ乗換なし。新大阪へは南方(京都線1駅)から御堂筋線で1駅、なんばへは梅田で御堂筋線に乗り換えて約12分。関西のどこへも行きやすいのが十三の強みです。</div>
+    </details>
+    </div>
 
     <div class="cat-note">
       <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAMAAAAOusbgAAAAwFBMVEWamZmhWw1cXV7c4eAnIRxjmLApTGvpmxHt0aapzdoONVjNdAKVbF5YNBTJt6puSRtWcov2sFekt8UsZoubiHY0jbH7xnB0sceNOhGVfoHRb0zNvME+QzdAPUK9gAX/wQz9/f36mwL9owXr6ujW1tU1Zo2tqKfz59PKyMmOuMxpqsTxiwO2tbOtytZWpcJTVVMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwBxmaAAAAMHRSTlP///////////////////////////////////////////////////////////////9Ppz/1AAALoElEQVR42u2aaZuiuhKAsxgB2dTWts85dwHCsAjo//93tyohgIiCTj8z98PkmWmXtnmpvSqRRL9pkT/gP+A/4D/g/x9wmv4esEdp9hvA3KNxRfkvB6fUTeLE9X41WHFh0eLXgiW1FDdeIvI3gqXnWnGC6CVW/kawh/aNLRvoCxybfGMcKT3b0W6Re30bmHwp835GkR0nFU2/BSyzrJAzDv1VocBWDrGMuibfAZYedWnoETljYKVoWIt0vQT8zxf4auVS6gWP2NkXcBMlMOp66NcyLYpUvgXOtNskMbDJbaDw4p+AwILMAQstrMEmh6QZYytYV5alb4MBDV7To9PsL6gIerkxghNb340FYAyoGqmMXa/qUb4PRnRMv9DYkgDUdatYExP9CWun0FaFyStH2hWpTD28DiYU8wIkBiO1p6hxxxsu6zOPPiswcsEAqyRm+nE52OnAcD2O3hprY7tfNJ6Ctlr5tEERFJHwX8ehrNlqMZg73KgaLof+2gr9BKp/CQqyfBSTDTwqWwxumkaTA7SxMh7fxQsWpmzksuzNOHZakQtqUoMOlQXocHW9rsgLCeQmSnlj6juIYMDJEi71wYupJ5eDjZCjAg95ePeCwLG/vq5D62nCXgJWiRjdeoabdAJDpvKhG/GL5armDypAhbq2lzlWAgJvwCETyn6yLGIgV5+LuAn+Awv7qv0Ki58Do1tXu2i3gItkywcLq9dPRF7WCFDIgdbnPFNp2gKf3gDYgnQT7n+u9WnL/DOnSrqUloT/ZisKIbXyn4g8CXbKU3P7KTdZoOK2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" alt="">

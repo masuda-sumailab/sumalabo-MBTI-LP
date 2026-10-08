@@ -137,6 +137,12 @@ details.col{background:#FFF9F2;border:2px solid #F3D9BE;border-radius:14px;paddi
 details.col summary{cursor:pointer;font-weight:800;color:#C05A10;list-style:none;font-size:.95rem}
 details.col summary::-webkit-details-marker{display:none}
 details.col[open] summary{margin-bottom:6px}
+
+.faq details{background:#fff;border:1.5px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.faq summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;gap:12px;align-items:baseline}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q";font-family:var(--font-display);font-weight:900;color:var(--orange);flex-shrink:0}
+.faq details .a{padding:0 18px 16px 42px;font-size:14px;color:var(--ink-soft);line-height:1.8}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -264,12 +270,20 @@ details.col[open] summary{margin-bottom:6px}
     <p>オンライン内見で「無し」を先に消しておくと、来阪当日は本命の内見と手続きだけ。往復3万円の新幹線代を、1回で済ませられます。</p>
 
     <h2 id="faq">よくある質問</h2>
-    <p><strong>東京から大阪の引っ越しは、何日かかりますか?</strong></p>
-    <p>移動距離は約500kmで、荷物は1〜2日で届くのが一般的です。単身パック(混載便)は集荷の翌々日着が多いので、入居日の2〜3日前に集荷する段取りが安心です。新幹線は東京→新大阪で約2時間30分です。</p>
-    <p><strong>会社の転勤で、法人契約(会社名義)になります。対応できますか?</strong></p>
-    <p>対応しています。会社の規定(家賃上限・契約名義・必要書類)をLINEで送っていただければ、条件に合う物件だけをご提案します。</p>
-    <p><strong>東京にいながら、契約まで進められますか?</strong></p>
-    <p>オンライン内見で候補を絞ってから動くので、来阪は本命の内見と手続きの1回にまとめられることが多いです。スケジュールによっては来阪せずに進める段取りもご案内しますので、まずはLINEで入居日と勤務地をお知らせください。</p>
+    <div class="faq">
+    <details>
+      <summary>東京から大阪の引っ越しは、何日かかりますか?</summary>
+      <div class="a">移動距離は約500kmで、荷物は1〜2日で届くのが一般的です。単身パック(混載便)は集荷の翌々日着が多いので、入居日の2〜3日前に集荷する段取りが安心です。新幹線は東京→新大阪で約2時間30分です。</div>
+    </details>
+    <details>
+      <summary>会社の転勤で、法人契約(会社名義)になります。対応できますか?</summary>
+      <div class="a">対応しています。会社の規定(家賃上限・契約名義・必要書類)をLINEで送っていただければ、条件に合う物件だけをご提案します。</div>
+    </details>
+    <details>
+      <summary>東京にいながら、契約まで進められますか?</summary>
+      <div class="a">オンライン内見で候補を絞ってから動くので、来阪は本命の内見と手続きの1回にまとめられることが多いです。スケジュールによっては来阪せずに進める段取りもご案内しますので、まずはLINEで入居日と勤務地をお知らせください。</div>
+    </details>
+    </div>
 
     <div class="cat-note">
       <img src="data:image/png;base64,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" alt="">

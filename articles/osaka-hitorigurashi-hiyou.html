@@ -254,7 +254,7 @@ details.col[open] summary{margin-bottom:6px}
       <li><b>スマホ・ネット</b><span class="y">0.8万</span><span class="m">格安プラン+固定回線。ネット無料物件なら0.5万に</span></li>
       <li><b>日用品</b><span class="y">0.5万</span><span class="m">洗剤・紙類・消耗品</span></li>
       <li><b>交際・娯楽</b><span class="y">2.7万</span><span class="m">ここが調整弁。ゼロにはできないが、1.7万まで絞る人も</span></li>
-      <li><b>貯金</b><span class="y">2.0万</span><span class="m">生活費とは別枠。家賃が手取りの3割なら確保できる</span></li>
+      <li><b>貯金</b><span class="y">2.0万</span><span class="m">生活費とは別枠。家賃が手取りの3〜3.5割なら確保できる</span></li>
     </ul>
     <p>手取り16万円の人が家賃5万円でこの通りに暮らす"リアル家計簿"は、<a href="osaka-seikatsuhi.html" style="color:var(--orange);font-weight:700">No.005「大阪で一人暮らし、生活費は月いくら?」</a>に。固定費を先に決めてから残りで暮らす、という組み立て方をそのまま使えます。</p>
     <p class="pt">5,000円の差は、1年で約8万円。</p>
@@ -312,8 +312,8 @@ details.col[open] summary{margin-bottom:6px}
     <p>家具家電は一式7〜10万円。当店の特典(適用条件あり)を使うと、引っ越し代か家電のどちらかがまるごと浮きます。補助金が無い一人暮らしの、実質的な補助の使い方は<a href="hikkoshi-hojokin-osaka.html" style="color:var(--orange);font-weight:700">補助金の記事</a>に。</p>
 
     <h2 id="kotsu"><span class="kp">失敗しない</span><span class="kp">3つのコツ</span></h2>
-    <h3>① 家賃は「手取りの3割」を目安に</h3>
-    <p>家賃7万円なら手取り21万円(月給26万円前後)が目安。手取り18万円の人が7万円の部屋に住むと、生活費9万円を引いて残り2万円——貯金ができません。背伸びは5,000円まで、が現場の感覚です。</p>
+    <h3>① 家賃の目安は手取りの3割。相場高のいまは3.5割まで</h3>
+    <p>家賃7万円なら手取り20〜23万円が目安。大阪の相場は上がっていて3割ぴったりだと選択肢が狭いので、3.5割までは現実的な範囲です。ただし手取り18万円の人が7万円の部屋に住むと、生活費9万円を引いて残り2万円——貯金ができません。そこから先の背伸びは5,000円まで、が現場の感覚です。</p>
     <h3>② 初期費用は「敷金礼金ゼロ+総額見積り」で</h3>
     <p>礼金1か月の有無で家賃1か月分(6.5〜7.5万円)の差。ただし敷礼ゼロの物件は付帯費用に注意。必ず総額で比較する(→No.002)。</p>
     <h3>③ 最初の1か月は予備費を厚めに</h3>
@@ -356,7 +356,7 @@ details.col[open] summary{margin-bottom:6px}
       <div class="nr-grid">
       <a href="osaka-shokihiyou.html"><span class="nr-cat">レポート No.002</span><b>大阪の一人暮らし、初期費用はいくら?|敷金礼金の相場・内訳と抑えるコツ</b><p>目安は家賃の4〜6.5ヶ月分。内訳と抑えるコツ、特典の活用法をプロが解説します。</p></a>
       <a href="osaka-seikatsuhi.html"><span class="nr-cat">レポート No.005</span><b>大阪で一人暮らし、生活費は月いくら?|新社会人の手取りと内訳</b><p>手取り16万円のリアル家計簿。家賃・食費・光熱費の現実的な内訳を、大阪の相場で解説します。</p></a>
-      <a href="osaka-yachin-souba.html"><span class="nr-cat">レポート No.004</span><b>大阪の一人暮らし、家賃相場はどれくらい?|月給別の目安と住める街</b><p>月給18万〜26万円ごとの手取りと無理のない家賃、狙える街を早見表で解説します。</p></a>
+      <a href="osaka-hitorigurashi-guide.html"><span class="nr-cat">レポート No.020</span><b>大阪で一人暮らしするなら、どこに住む?|駅・家賃・安心・費用、19本のレポートの歩き方</b><p>答えは「通勤先×家賃×安心」の3つ。通勤先を押せば読む記事が3本に絞れる案内ページ。</p></a>
       </div>
     </div>
 
@@ -400,7 +400,7 @@ function render(){
   document.getElementById("cnt").textContent="家賃"+R+"万円・"+(TY==="zero"?"敷金礼金ゼロ":"礼金あり")+"の目安";
   document.getElementById("list").innerHTML=
   '<div class="eki"><div class="top"><span class="name">最初の1か月に用意するお金</span><span class="badge">スタート費用</span></div><div class="row2"><span class="yen"><b>約'+f(c.start)+'万円</b></span></div><div class="say2">初期費用'+f(c.init)+'万(家賃×'+(TY==="zero"?4:5)+')+引っ越し4万+家具家電8.5万。特典で4〜8万円下がる場合あり</div></div>'+
-  '<div class="eki"><div class="top"><span class="name">毎月の支出(家賃込み)</span><span class="badge">月々</span></div><div class="row2"><span class="yen"><b>約'+f(c.month)+'万円</b></span></div><div class="say2">家賃'+R+'万+生活費9万。手取りの目安は家賃の3倍以上='+f(R*3)+'万円〜(貯金2万は別枠)</div></div>'+
+  '<div class="eki"><div class="top"><span class="name">毎月の支出(家賃込み)</span><span class="badge">月々</span></div><div class="row2"><span class="yen"><b>約'+f(c.month)+'万円</b></span></div><div class="say2">家賃'+R+'万+生活費9万。手取りの目安は家賃の約3倍(3〜3.5割)='+f(R*3)+'万円前後(貯金2万は別枠)</div></div>'+
   '<div class="eki" style="border-color:var(--orange)"><div class="top"><span class="name">1年目の合計</span><span class="badge">12か月</span></div><div class="row2"><span class="yen"><b>約'+f(c.year)+'万円</b></span></div><div class="say2">スタート費用+月々×12。家賃を1万円下げると年'+f(12+(TY==="zero"?4:5))+'万円変わる</div></div>';
 }
 chips();render();

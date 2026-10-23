@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一人暮らしの生活費シミュレーション【大阪版】|手取りを入れると、家賃の上限・月の内訳・住める駅まで出る|住まらぼ 大阪福島店</title>
+<meta name="description" content="一人暮らしの生活費を1分でシミュレーション。手取り(または額面)・自炊か外食か・奨学金などの固定費を選ぶだけで、家賃の上限(手取りの3.5割)・食費/光熱費/通信費/交際費/貯金の内訳・初期費用の目安を計算。大阪版だけの機能として、その家賃で住める駅を相場(SUUMO 2026年10月)・梅田までの分数・区の街頭トラブル件数つきで一覧にし、各駅のレポートへつなげます。数字は大阪の賃貸のプロ(宅建業者)の家計簿モデル。(生活費シュミレーションと検索された方もこちら)">
+<link rel="canonical" href="https://sumalabo-mbti-lp.vercel.app/seikatsuhi.html">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta property="og:site_name" content="住まらぼ 大阪福島店">
+<meta property="og:type" content="website">
+<meta property="og:title" content="一人暮らしの生活費シミュレーション【大阪版】|手取りを入れると、家賃の上限・月の内訳・住める駅まで出る">
+<meta property="og:description" content="一人暮らしの生活費を1分でシミュレーション。手取り(または額面)・自炊か外食か・奨学金などの固定費を選ぶだけで、家賃の上限(手取りの3.5割)・食費/光熱費/通信費/交際費/貯金の内訳・初期費用の目安を計算。大阪版だけの機能として、その家賃">
+<meta property="og:url" content="https://sumalabo-mbti-lp.vercel.app/seikatsuhi.html">
+<meta property="og:image" content="https://sumalabo-mbti-lp.vercel.app/img/og-image.png">
+<meta property="og:locale" content="ja_JP">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FCF7F7;--grid:rgba(96,58,92,.07);--ink:#4A3455;--ink-soft:#7A6684;
+  --orange:#B45FBF;--apricot:#DE6E3C;--apricot-soft:#F0906B;--mint:#1F9E77;
+  --marker:#F8CFE0;--line:#EDE0E6;--radius:14px;--maxw:760px;
+  --font-display:'Zen Maru Gothic',sans-serif;--font-body:'Zen Kaku Gothic New',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--ink);background:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;line-height:1.9;font-size:16px}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+.header{position:sticky;top:0;z-index:50;background:rgba(252,247,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.header-in{max-width:1040px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo-img{height:40px;width:auto;display:block}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;text-decoration:none;border-radius:99px;padding:12px 24px;font-size:15px;border:2px solid transparent}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:0 4px 0 #8E4397}
+.btn-line{background:var(--mint);color:#fff;box-shadow:0 4px 0 #157A5B}
+.btn-sm{padding:9px 18px;font-size:13px}
+.crumb{font-size:12px;color:var(--ink-soft);margin:28px 0 0}
+.crumb a{color:var(--orange);text-decoration:none}
+.article-head{padding:16px 0 8px}
+.cat{font-family:var(--font-display);font-weight:700;font-size:12px;color:var(--orange);display:inline-block;border:1.5px solid var(--marker);background:#fff;border-radius:99px;padding:3px 14px;margin-bottom:14px}
+h1{font-family:var(--font-display);font-weight:900;font-size:clamp(24px,4.4vw,32px);line-height:1.5;margin-bottom:14px}
+.article-body{padding:8px 0 64px}
+.article-body p{margin:0 0 20px}
+.note{font-size:12.5px;color:var(--ink-soft);background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:12px 16px;margin:0 0 28px}
+h2{font-family:var(--font-display);font-weight:900;font-size:22px;margin:52px 0 20px;padding:10px 16px;background:#fff;border-left:6px solid var(--orange);border-radius:8px}
+h3{font-family:var(--font-display);font-weight:700;font-size:18px;margin:34px 0 10px;scroll-margin-top:84px}
+h3 .type{color:var(--orange)}
+.type-card{display:block;width:100%;max-width:300px;border-radius:12px;border:1.5px solid var(--line);margin:4px 0 12px;background:#fff}
+.rent{font-size:13.5px;color:var(--ink-soft);background:#FBEFF4;border-radius:8px;padding:8px 14px;margin:10px 0 6px}
+.rent b{color:var(--apricot)}
+.toc{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin:8px 0 8px}
+.toc p{font-weight:700;margin-bottom:10px;font-size:14px}
+.toc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media(max-width:560px){.toc-grid{grid-template-columns:repeat(4,1fr)}}
+.toc-grid a{display:block;text-align:center;font-size:13px;font-weight:700;color:var(--orange);text-decoration:none;background:var(--paper);border:1.5px solid var(--line);border-radius:8px;padding:7px 2px}
+.toc-grid a:hover{border-color:var(--orange)}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;font-size:13.5px;margin:0 0 24px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}
+thead th{background:var(--ink);color:#fff;font-weight:700}
+tbody tr:nth-child(even){background:#FBF3F7}
+.table-scroll{overflow-x:auto;margin:0 0 24px}
+.cta-band{background:var(--ink);border-radius:var(--radius);color:#fff;text-align:center;padding:36px 24px;margin:44px 0}
+.cta-band p.t{font-family:var(--font-display);font-weight:900;font-size:20px;margin-bottom:6px}
+.cta-band p.s{color:#D9CCE0;font-size:13.5px;margin-bottom:18px}
+.cta-band .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+details{background:#fff;border:1.5px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;gap:12px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"Q";font-family:var(--font-display);font-weight:900;color:var(--orange);flex-shrink:0}
+details .a{padding:0 18px 16px 42px;font-size:14px;color:var(--ink-soft)}
+.author{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:20px 22px;font-size:13px;color:var(--ink-soft);margin-top:44px}
+.author b{color:var(--ink)}
+.footer{border-top:1px solid var(--line);padding:32px 0 110px;font-size:12px;color:var(--ink-soft);background:#fff}
+.footer-in{max-width:1040px;margin:0 auto;padding:0 20px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.fixed-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 14px;display:flex;gap:10px}
+.fixed-cta .btn{flex:1;padding:13px 8px;font-size:14px}
+@media(min-width:821px){.fixed-cta{display:none}.footer{padding-bottom:32px}}
+@media(max-width:680px){.cta-band .btns .btn{width:100%}}
+
+h2 .h2-cat{width:38px;height:38px;border-radius:50%;border:2px solid #EDE0E6;background:#fff;vertical-align:-11px;margin-right:10px}
+.cat-note{display:flex;gap:12px;align-items:flex-start;margin:22px 0}
+.cat-note img{width:54px;height:54px;border-radius:50%;border:2px solid #EDE0E6;background:#fff;flex-shrink:0}
+.cat-note .say{background:#fff;border:2px solid #EDE0E6;border-radius:14px;padding:12px 16px;font-weight:700;color:#4A3455;position:relative}
+.cat-note .say:before{content:"";position:absolute;left:-8px;top:20px;width:12px;height:12px;background:#fff;border-left:2px solid #EDE0E6;border-bottom:2px solid #EDE0E6;transform:rotate(45deg)}
+
+/* 次に読むレポート(廊下増設) */
+.next-read{margin:40px 0 0}
+.next-read .nr-title{font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--ink);margin-bottom:12px}
+.next-read .nr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.next-read .nr-grid a{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:16px 16px 14px;text-decoration:none;display:block;color:var(--ink);transition:transform .15s}
+.next-read .nr-grid a:hover{transform:translateY(-3px)}
+.next-read .nr-cat{font-family:var(--font-display);font-size:11px;font-weight:700;color:var(--orange);display:block;margin-bottom:6px;letter-spacing:.02em}
+.next-read .nr-grid b{display:block;font-size:14px;line-height:1.55;margin-bottom:6px}
+.next-read .nr-grid p{font-size:12.5px;color:var(--ink-soft);line-height:1.6;margin:0}
+@media(max-width:680px){.next-read .nr-grid{grid-template-columns:1fr}}
+</style>
+<style>
+.series{background:#FFF9F2;border:2px solid #F3D9BE;border-radius:14px;padding:14px 18px;margin:20px 0;font-size:.9rem}
+.series b{color:#C05A10}.series .now{font-weight:900}.series .soon{color:#7A6B85}
+.checker{background:#fff;border:2px solid #EDE0E6;border-radius:18px;padding:16px 14px 18px;margin:18px 0}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.chip{border:2px solid #EDE0E6;background:#fff;color:#7A6B85;font-family:inherit;font-weight:700;font-size:.85rem;padding:7px 14px;border-radius:999px;cursor:pointer}
+.chip.on{background:var(--orange);border-color:var(--orange);color:#fff}
+.count{font-size:.78rem;color:#7A6B85;margin:4px 2px 10px}
+.eki{border:2px solid #EDE0E6;border-radius:14px;padding:12px 14px;margin:10px 0}
+.eki .top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.eki .name{font-size:1.08rem;font-weight:900}
+.eki .ln{font-size:.75rem;color:#7A6B85}
+.eki .badge{font-size:.7rem;font-weight:700;padding:2px 10px;border-radius:999px;background:#FDEBDD;color:#C05A10;margin-left:auto;white-space:nowrap}
+.eki .badge.mo{background:#fff;border:1.5px solid #EDE0E6;color:#7A6B85}
+.eki .row2{display:flex;gap:14px;font-size:.85rem;margin-top:4px}
+.eki .yen b{font-size:1.05rem;color:var(--orange)}
+.eki .say2{font-size:.83rem;color:#7A6B85;margin-top:4px}
+.kp{display:inline-block}
+h1,h2,h3,.cat-note .say,.cta-band .t,.series{word-break:auto-phrase}
+
+.pt{font-weight:900;font-size:1.02rem;margin:14px 0 6px}
+.st-list{list-style:none;padding:0;margin:10px 0 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
+.st-list li{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;padding:9px 14px;border-top:1px solid var(--line);font-size:.92rem}
+.st-list li:first-child{border-top:0}
+.st-list b{min-width:5.2em}
+.st-list .y{color:var(--orange);font-weight:800;white-space:nowrap}
+.st-list .m{color:var(--ink-soft);font-size:.83rem;flex-basis:100%;margin-left:0}
+@media(min-width:560px){.st-list .m{flex-basis:auto}}
+
+.morebtn{display:block;width:100%;margin-top:8px;text-align:center}
+details.col{background:#FFF9F2;border:2px solid #F3D9BE;border-radius:14px;padding:10px 14px;margin:18px 0}
+details.col summary{cursor:pointer;font-weight:800;color:#C05A10;list-style:none;font-size:.95rem}
+details.col summary::-webkit-details-marker{display:none}
+details.col[open] summary{margin-bottom:6px}
+
+.sc-grid{display:grid;grid-template-columns:1fr;gap:12px;margin:14px 0 18px}
+@media(min-width:680px){.sc-grid{grid-template-columns:1fr 1fr}}
+.sc{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px 12px}
+.sc-head{display:flex;align-items:baseline;gap:8px}
+.sc-rank{font-family:var(--font-display);font-weight:900;color:var(--orange);font-size:1.05rem}
+.sc-name{font-family:var(--font-display);font-weight:900;font-size:1.08rem;flex:1}
+.sc-tot{font-family:var(--font-display);font-weight:900;color:var(--orange);font-size:1.2rem}
+.sc-tot small{font-size:.65rem;color:var(--ink-soft);font-weight:700;margin-left:2px}
+.sc-sub{font-size:.78rem;color:var(--ink-soft);margin:2px 0 8px}
+.sc-axes{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px}
+.sc-ax{display:grid;grid-template-columns:3.6em 1fr;grid-template-rows:auto auto;align-items:center;column-gap:4px;font-size:.8rem}
+.sc-ax span{white-space:nowrap}
+.sc-ax em{grid-column:2;text-align:left;margin-top:-1px}
+.sc-ax span{color:var(--ink-soft);font-weight:700}
+.sc-ax b{display:inline-flex;gap:3px}
+.sc-ax b i{width:10px;height:10px;border-radius:50%;background:#F3D9BE;display:inline-block}
+.sc-ax b i.on{background:var(--orange)}
+.sc-ax em{font-style:normal;color:var(--ink-soft);font-size:.74rem}
+.sc-say{margin-top:9px;font-size:.88rem;line-height:1.6;border-top:1px dashed var(--line);padding-top:8px}
+
+.ax4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.ax4-i{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center}
+.ax4-e{font-size:1.4rem;display:block}
+.ax4-i b{display:block;font-family:var(--font-display);font-size:.95rem;margin:2px 0}
+.ax4-i small{display:block;font-size:.68rem;color:var(--ink-soft);line-height:1.4}
+
+.faq details{background:#fff;border:1.5px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.faq summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;gap:12px;align-items:baseline}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q";font-family:var(--font-display);font-weight:900;color:var(--orange);flex-shrink:0}
+.faq details .a{padding:0 18px 16px 42px;font-size:14px;color:var(--ink-soft);line-height:1.8}
+
+.detour{background:#FFF9F2;border-left:4px solid var(--orange);border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.9rem;line-height:1.6}
+.detour b{color:var(--orange);margin-right:6px}
+.detour a{color:var(--orange);font-weight:800}
+.detour span{color:var(--ink-soft);display:block;font-size:.82rem;margin-top:2px}
+</style>
+<style>.btn-ghost{background:#fff;border:2px solid var(--line);color:var(--ink);box-shadow:0 4px 0 var(--line)} .tel-big{font-family:var(--font-display);font-size:1.6rem;font-weight:900;color:var(--orange);letter-spacing:.02em} .btn-tel{background:#fff;border:2px solid var(--orange);color:var(--orange)} table td:first-child{white-space:nowrap;font-weight:700;width:34%}</style>
+<script defer src="/_vercel/insights/script.js"></script>
+<style>
+/* ===== app ===== */
+.app{max-width:480px;margin:10px auto 18px;background:#fff;border:2px solid #F3D9BE;border-radius:20px;box-shadow:0 10px 30px rgba(74,57,44,.10);overflow:hidden}
+.app-top{display:flex;align-items:center;gap:10px;padding:12px 14px;background:linear-gradient(135deg,#FFF3E6,#FFE2C6);border-bottom:1px solid #F3D9BE}
+.app-top img{width:44px;height:44px;border-radius:50%;background:#fff;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.app-top .ttl{font-weight:900;color:#4A392C;font-size:1.02em;line-height:1.2}
+.app-top .sub{font-size:.78em;color:#7A6752}
+.prog{height:6px;background:#F3D9BE}.prog i{display:block;height:100%;background:#D96820;transition:width .35s}
+.stepno{font-size:.78em;color:#C9611A;font-weight:700;letter-spacing:.06em;padding:12px 16px 0}
+.scr{padding:6px 16px 16px;animation:in .28s ease}
+@keyframes in{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+.q{font-size:1.18em;font-weight:900;color:#4A392C;margin:6px 0 4px;line-height:1.35}
+.qs{font-size:.86em;color:#7A6752;margin:0 0 12px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cards.one{grid-template-columns:1fr}.cards.three{grid-template-columns:repeat(3,1fr)}
+.card{border:2px solid #F3D9BE;border-radius:14px;padding:14px 10px;text-align:center;cursor:pointer;background:#FFFDFA;transition:transform .08s,border-color .15s,background .15s;user-select:none}
+.card:active{transform:scale(.97)}
+.card .ic{font-size:1.6em;line-height:1}.card .t{font-weight:800;color:#4A392C;margin-top:6px;font-size:.95em}.card .d{font-size:.76em;color:#7A6752;margin-top:3px}
+.card.on{border-color:#D96820;background:#FFF1E4;box-shadow:0 0 0 3px #FBD9BF inset}
+.amt{display:flex;align-items:center;justify-content:center;gap:14px;margin:8px 0 10px}
+.amt .num{font-size:2.6em;font-weight:900;color:#C9611A;min-width:3.2em;text-align:center;line-height:1}
+.amt .num small{font-size:.42em;color:#7A6752;font-weight:700;margin-left:2px}
+.amt button{width:48px;height:48px;border-radius:50%;border:2px solid #F3D9BE;background:#fff;font-size:1.4em;font-weight:900;color:#C9611A;cursor:pointer}
+.amt button:active{background:#FFF1E4}
+.seg{display:flex;border:2px solid #F3D9BE;border-radius:999px;overflow:hidden;margin:0 auto 10px;max-width:300px}
+.seg span{flex:1;text-align:center;padding:8px 0;font-size:.86em;font-weight:700;color:#7A6752;cursor:pointer}
+.seg span.on{background:#D96820;color:#fff}
+.quick{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:6px}
+.quick b{font-size:.82em;border:1px solid #E6C9A8;border-radius:999px;padding:5px 10px;color:#4A392C;cursor:pointer;font-weight:600;background:#fff}
+.nav{display:flex;gap:10px;margin-top:14px}
+.nav .go{flex:1;background:#D96820;color:#fff;border:0;border-radius:999px;padding:14px;font-weight:900;font-size:1em;cursor:pointer;box-shadow:0 6px 14px rgba(217,104,32,.28)}
+.nav .go:disabled{background:#E6C9A8;box-shadow:none}
+.nav .bk{background:#fff;border:2px solid #F3D9BE;color:#7A6752;border-radius:999px;padding:12px 16px;font-weight:700;cursor:pointer}
+.guide{display:flex;gap:10px;align-items:flex-start;margin:4px 0 10px}
+.guide img{width:40px;height:40px;border-radius:50%;flex:none}
+.guide p{margin:0;background:#FFF3E6;border-radius:12px;padding:8px 12px;font-size:.88em;color:#4A392C;position:relative}
+.guide p:before{content:"";position:absolute;left:-7px;top:12px;border:7px solid transparent;border-right-color:#FFF3E6;border-left:0}
+/* result */
+.res-hero{background:linear-gradient(160deg,#FFF3E6,#fff);padding:16px;border-radius:14px;border:1px solid #F3D9BE;text-align:center;margin-bottom:12px}
+.res-hero .lab{font-size:.82em;color:#7A6752;font-weight:700}
+.res-hero .big{font-size:2.9em;font-weight:900;color:#C9611A;line-height:1.05;margin:4px 0}
+.res-hero .big small{font-size:.4em;color:#7A6752;margin-left:2px}
+.res-hero .sub{font-size:.82em;color:#7A6752}
+.judge{display:inline-block;padding:7px 14px;border-radius:999px;font-weight:900;margin-top:8px;font-size:.92em}
+.judge.ok{background:#EAF6EC;color:#2F6B3B}.judge.mid{background:#FFF4E0;color:#9A5A00}.judge.ng{background:#FDECEC;color:#A33}
+.sec{font-weight:900;color:#4A392C;margin:14px 0 8px;font-size:1em;display:flex;align-items:center;gap:6px}
+.sec small{font-weight:600;color:#7A6752;font-size:.8em}
+.stack{display:flex;height:22px;border-radius:999px;overflow:hidden;background:#F3D9BE;margin-bottom:8px}
+.stack i{display:block;height:100%}
+.leg{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;font-size:.84em;color:#4A392C}
+.leg span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.leg b{float:right;font-weight:700}
+.st{border:1px solid #F3D9BE;border-radius:12px;padding:10px 12px;margin:8px 0;background:#fff;display:block;text-decoration:none;color:inherit}
+.st .n{font-weight:900;color:#4A392C;font-size:1em}.st .y{float:right;font-weight:900;color:#C9611A}
+.st .m{font-size:.8em;color:#7A6752;margin-top:3px}.st .m em{font-style:normal;background:#FFF1E4;color:#C9611A;border-radius:6px;padding:1px 6px;margin-right:4px;font-weight:700}
+.st .go2{font-size:.8em;color:#C9611A;font-weight:700;margin-top:4px}
+.more{display:block;width:100%;background:#fff;border:1px dashed #C9A27A;border-radius:10px;padding:9px;font-weight:700;color:#7A6752;cursor:pointer;margin-top:4px}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 4px}
+.acts a,.acts button{display:block;text-align:center;border-radius:12px;padding:12px 8px;font-weight:900;font-size:.9em;cursor:pointer;text-decoration:none;border:0}
+.acts .line{background:#06C755;color:#fff}.acts .cp{background:#4A392C;color:#fff}.acts .x{background:#fff;border:2px solid #4A392C;color:#4A392C}.acts .re{background:#fff;border:2px solid #F3D9BE;color:#7A6752}
+.copybox{display:none}
+.tiny{font-size:.76em;color:#7A6752;margin:8px 0 0;line-height:1.5}
+.ex-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:640px){.ex-grid{grid-template-columns:repeat(3,1fr)}}
+.ex{background:#fff;border:1px solid #F3D9BE;border-radius:12px;padding:12px;line-height:1.7}.ex b{color:#C9611A;font-size:1.05em}.ex .sm{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed #F3D9BE;font-size:.8em;color:#7A6752;line-height:1.5}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "一人暮らしの生活費シミュレーション【大阪版】", "url": "https://sumalabo-mbti-lp.vercel.app/seikatsuhi.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}, "author": {"@type": "Organization", "name": "住まらぼ 大阪福島店"}, "description": "一人暮らしの生活費を1分でシミュレーション。手取り(または額面)・自炊か外食か・奨学金などの固定費を選ぶだけで、家賃の上限(手取りの3.5割)・食費/光熱費/通信費/交際費/貯金の内訳・初期費用の目安を計算。大阪版だけの機能として、その家賃で住める駅を相場(SUUMO 2026年10月)・梅田までの分数・区の街頭トラブル件数つきで一覧にし、各駅のレポートへつなげます。数字は大阪の賃貸のプロ(宅建業者)の家計簿モデル。(生活費シュミレーションと検索された方もこちら)"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "一人暮らしの生活費は、月いくらが平均ですか?", "acceptedAnswer": {"@type": "Answer", "text": "総務省の家計調査では家賃を除く単身世帯の支出が月13〜14万円前後ですが、全年齢・持ち家を含む平均です。このサイトでは大阪の賃貸店の家計簿モデルとして、家賃を除く生活費を月9万円(食費4.0・水道光熱1.0・通信0.8・日用品0.5・交際2.7)と置き、自炊派8万円・外食派10.5万円に調整しています。"}}, {"@type": "Question", "name": "家賃は手取りの何割にすればいいですか?", "acceptedAnswer": {"@type": "Answer", "text": "店頭で見ている現実的な線は3〜3.5割、背伸びは5,000円まで。判定は「手取り − 家賃 − 生活費9万 − 固定費 = 貯金の余力」で、2万円以上残れば◎。手取り18万円なら家賃6.3万円で貯金2.7万円です。"}}, {"@type": "Question", "name": "大阪で生活費を抑えるなら、何から見直すべきですか?", "acceptedAnswer": {"@type": "Answer", "text": "家賃です。駅を1〜2駅ずらすだけで月1万円変わり、大阪は梅田から10〜15分の圏に5万円台、北摂・東大阪・京阪沿線に4万円台の駅があります。引っ越し後はネット無料物件と都市ガスの物件が効きます。"}}]}</script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-in">
+    <a class="logo" href="index.html" aria-label="住まらぼ トップページ">
+      <img class="logo-img" src="data:image/png;base64,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" alt="住まらぼ Sumai Laboratory" width="110" height="40">
+    </a>
+    <nav>
+      <a class="btn btn-ghost btn-sm" href="articles/index.html">エリアレポート</a>
+      <a class="btn btn-primary btn-sm" href="https://sumalabo-line.vercel.app" rel="noopener">無料診断</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="crumb"><a href="index.html">トップ</a> › 一人暮らしの生活費シミュレーション</p>
+
+  <div class="article-head" style="text-align:center">
+    <span class="cat">ツール|大阪版</span>
+    <h1><span class="kp">一人暮らしの生活費シミュレーション</span><br><span class="kp" style="font-size:.78em">手取りを入れると、家賃の上限・月の内訳・住める駅まで1分で</span></h1>
+  </div>
+
+  <div class="app" id="app">
+    <div class="app-top"><img src="data:image/png;base64,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" alt=""><div><div class="ttl">生活費シミュレーター【大阪版】</div><div class="sub">5つの質問 → 家賃の上限・内訳・住める駅</div></div></div>
+    <div class="prog"><i id="prog" style="width:0%"></i></div>
+    <div id="screen"></div>
+  </div>
+
+  <div class="article-body">
+    <p class="note" style="text-align:center">執筆:住まらぼ 大阪福島店(宅建業者)。家賃相場はSUUMO沿線1K/1DK(2026年10月10日更新)、生活費の内訳は当店の家計簿モデル(No.005)、家賃の割合はNo.021、治安は大阪府警2025年統計(市区町村別)と兵庫県警(令和7年)。通勤時間は乗換なし・日中の目安。</p>
+
+    <h2 id="model"><span class="kp">この道具の数字は、</span><span class="kp">どこから来ているか</span></h2>
+    <p class="pt">平均ではなく、大阪の賃貸店が店頭で使っている家計簿モデル。51本のレポートと同じ物差しです。</p>
+    <div class="table-scroll">
+    <table>
+      <tr><th>項目</th><th>月額</th><th>中身・調整のしかた</th></tr>
+      <tr><td><strong>家賃</strong></td><td>手取りの<strong>3.5割</strong></td><td>「3割」は目安、「3.5割」が現実、背伸びは5,000円まで。管理費・共益費込みで考える(No.021)</td></tr>
+      <tr><td>食費</td><td>3.0〜5.5万</td><td>自炊派3.0・半々4.0・外食派5.5。半々=自炊7割+外食。週1の外食を2回にすると+1万</td></tr>
+      <tr><td>水道・光熱</td><td>1.0万</td><td>電気4,500〜6,000・ガス3,000〜4,000・水道1,500。冬は+5,000</td></tr>
+      <tr><td>スマホ・ネット</td><td>0.8万</td><td>格安プラン+固定回線。ネット無料の物件なら0.5万に</td></tr>
+      <tr><td>日用品</td><td>0.5万</td><td>洗剤・紙類・消耗品</td></tr>
+      <tr><td>交際・娯楽</td><td>2.7万</td><td>ここが調整弁。ゼロにはできないが、1.7万まで絞る人も</td></tr>
+      <tr><td>固定の支払い</td><td>任意</td><td>奨学金・ローン・仕送り。家賃より先に引く</td></tr>
+      <tr><td><strong>貯金の余力</strong></td><td>=残り</td><td><strong>2万円以上残れば◎</strong>。0〜2万は○(家賃か交際費を調整)、マイナスは△</td></tr>
+    </table>
+    </div>
+    <p class="note">額面(総支給)しか分からない人は「額面で」を押せば、手取り=額面×約8割で換算します。初期費用は敷金礼金ゼロ〜礼金1か月の物件で家賃の4.5〜5か月分(No.002)。法人契約・ペット可は6〜6.5か月分になることも。住める駅は、このサイトのレポートで扱った100駅(大阪市内・北摂・東大阪・京阪沿線・阪神間)から選んでいます。</p>
+    <p><strong>プロの気づき:</strong>生活費の相談で一番多いズレは、「家賃を先に決めて、残りで暮らす」順番です。店頭では逆にします——<strong>食費と固定費を先に置いて、残りから家賃の上限を出す</strong>。この道具はその順番で計算しているので、出た上限は「暮らしが回る家賃」です。駅の候補が物足りないときは、手取りを上げるのではなく、通勤先を「こだわらない」にして1〜2駅ずらす。それが大阪で一番効く節約です。</p>
+
+    <div class="detour">🐾 <b>寄り道</b><a href="articles/yachin-tedori-nanwari.html">家賃は手取りの何割が目安?</a><span>3.5割の根拠と、手取り別の早見表はこちら</span></div>
+
+    <h2 id="ex"><span class="kp">使い方の例:</span><span class="kp">手取り15万・18万・20万</span></h2>
+    <p class="pt">同じ「半々」の暮らし方で、手取りが3万円違うと住める駅がどう変わるか。</p>
+    <div class="ex-grid">
+      <div class="ex"><b>手取り15万円</b><br>家賃上限5.2万(背伸び5.7万)<br>生活費9万を引いて貯金0.8万 → ○<br>住める駅: 守口5.2・枚方市4.9・長居4.8・園田4.9・下新庄4.8…<br><span class="sm">梅田18〜22分の圏。数字が少ない側の駅が多い</span></div>
+      <div class="ex"><b>手取り18万円</b><br>家賃上限6.3万(背伸び6.8万)<br>貯金2.7万 → ◎<br>住める駅: 塚口5.7・吹田5.6・茨木5.7・京橋6.2・西九条6.2・玉造6.1…<br><span class="sm">主要駅の多くが射程に入る。選べる手取り</span></div>
+      <div class="ex"><b>手取り20万円</b><br>家賃上限7.0万(背伸び7.5万)<br>貯金4.0万 → ◎<br>住める駅: 本町7.3(背伸び)・江坂6.8・阿波座6.6・南森町6.7・福島6.5…<br><span class="sm">都心に住める。ただし貯金を優先するなら6万円台で</span></div>
+    </div>
+    <p class="note">駅の相場はSUUMO沿線1K/1DK(2026年10月)。例は「半々・固定費なし・通勤先こだわらない」の場合。</p>
+
+    <div class="cta-band">
+      <p class="t">🔎 家賃の上限が出たら、MBTI×通勤でエリアも3分で</p>
+      <p class="s">性格と通勤先から、大阪のおすすめエリアをその場で絞り込む診断です。</p>
+      <div class="btns"><a class="btn btn-primary" href="https://sumalabo-line.vercel.app" rel="noopener">無料エリア診断をする</a></div>
+    </div>
+
+    <h2 id="osaka"><span class="kp">大阪の一人暮らしの生活費は、</span><span class="kp">東京より安いのか</span></h2>
+    <p class="pt">家賃以外はほぼ同じ。差がつくのは家賃だけ——だから大阪では「駅選び」が生活費の勝負です。</p>
+    <p>食費・光熱費・通信費は、大阪と東京でほとんど変わりません。変わるのは家賃で、東京23区の1K/1DKが7〜9万円台なのに対し、大阪の主要駅は6〜7万円台、1駅ずらすと5万円台、北摂・東大阪・京阪沿線なら4万円台があります。<strong>手取り18万円なら、東京では家賃で手一杯でも、大阪では貯金2.7万円が残る</strong>——この差は、暮らし方ではなく駅選びで生まれます。</p>
+    <p>もうひとつ、大阪ならではの話。大阪市内の区は街頭トラブルの数字(府警の6種/1万人)が公表されていて、このサイトでは「平均より少ない側の区」だけを採点しています。同じ家賃でも、数字が少ない区と対象外の区がある。STEP 5で「はい」を押すと、その順で並び替わります。</p>
+
+    <div class="cat-note">
+      <img src="data:image/png;base64,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" alt="">
+      <p class="say">大阪は、家賃で生活費が決まる街。だから駅の候補まで出すのが、この道具の仕事です!</p>
+    </div>
+
+    <h2 id="faq">よくある質問</h2>
+    <details>
+      <summary>一人暮らしの生活費は、月いくらが平均ですか?</summary>
+      <div class="a">総務省の家計調査では、家賃を除く単身世帯の支出が月13〜14万円前後とされますが、これは全年齢・持ち家を含む平均で、20代の一人暮らしの実感より大きめです。このサイトでは、大阪の賃貸店の店頭で使っている家計簿モデルとして、家賃を除く生活費を月9万円(食費4.0・水道光熱1.0・通信0.8・日用品0.5・交際2.7)と置いています。自炊派なら8万円、外食派なら10.5万円。この道具は、その内訳を手取りと暮らし方に合わせて動かします。</div>
+    </details>
+    <details>
+      <summary>家賃は手取りの何割にすればいいですか?</summary>
+      <div class="a">「3割」は昔からの目安ですが、大阪の相場が上がった2026年、3割で探すと選択肢が急に狭くなります。店頭で見ている現実的な線は3〜3.5割、背伸びは5,000円まで。判定は割合ではなく引き算で、「手取り − 家賃 − 生活費9万 − 固定費 = 貯金の余力」が2万円以上残れば◎です。手取り18万円なら家賃6.3万円で貯金2.7万円。手取り15万円なら5.2万円で0.8万円なので、交際費を絞るか、家賃を5,000円下げる相談になります。詳しくはNo.021へ。</div>
+    </details>
+    <details>
+      <summary>大阪で生活費を抑えるなら、何から見直すべきですか?</summary>
+      <div class="a">家賃です。食費・光熱費・通信費は工夫しても月1〜2万円の差ですが、家賃は駅を1〜2駅ずらすだけで月1万円、年12万円変わります。しかも大阪は、梅田から10〜15分の圏に5万円台の駅、北摂・東大阪・京阪沿線に4万円台の駅があり、その多くが街頭トラブルの数字でも「少ない側」の区です。通勤先を「こだわらない」にすると、その候補が並びます。引っ越し後の固定費では、ネット無料物件(通信0.8→0.5万)と、都市ガスの物件(プロパンより月2,000〜3,000円安い)を選ぶのが効きます。</div>
+    </details>
+
+    <div class="cat-note">
+      <img src="data:image/png;base64,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" alt="">
+      <p class="say">結果をコピーしてLINEに貼ってくれたら、その条件で空室と初期費用の総額をお返事します!</p>
+    </div>
+
+    <div class="cta-band">
+      <p class="t">💬 この条件で、空室を探します</p>
+      <p class="s">結果画面の「結果をコピー」→LINEに貼るだけ。通勤先・入居日・手取りがそろっていれば、無理のない家賃の候補と初期費用の総額をまとめてお返事します。尼崎・西宮・伊丹の物件も扱っています。</p>
+      <div class="btns"><a class="btn btn-line" href="https://lin.ee/o3OHmib">LINEで空室を探してもらう</a></div>
+    </div>
+
+    <p class="note">【この道具の根拠】家賃相場はSUUMO沿線ページの1K/1DK(2026年10月10日更新・47路線)。生活費の内訳は当店の家計簿モデル(No.005・No.019)、家賃の割合と判定の式はNo.021。治安は大阪府警「令和7年中の犯罪統計(市区町村別・確定値)」の街頭6種(路上強盗・暴行・傷害・ひったくり・公然わいせつ・住居侵入)を人口1万人あたりに換算し、大阪市24区の平均11.6より少ない区だけ採点(平均超・平均並みは「対象外」)。兵庫県の駅は兵庫県警「市区町別主な刑法犯認知状況(令和7年中)」の刑法犯総数/1,000人で表示。通勤時間は各社の時刻表にもとづく乗換なし・日中の目安。初期費用の月数はNo.002。金額はいずれも目安で、物件・管理会社により異なります。</p>
+
+    <div class="next-read">
+      <div class="nr-title">🐾 次に読むレポート</div>
+      <div class="nr-grid">
+        <a href="articles/yachin-tedori-nanwari.html"><span class="nr-cat">レポート No.021</span><b>家賃は手取りの何割が目安?|「3割」はもう古い——大阪の相場で考える現実的な割合</b><p>この道具の「3.5割」と判定の式の根拠。手取り別の早見表つき。</p></a>
+        <a href="articles/osaka-hitorigurashi-hiyou.html"><span class="nr-cat">レポート No.019</span><b>大阪で一人暮らし、費用は全部でいくら?|初期費用・引っ越し・家具家電から1年目の家賃・光熱費まで</b><p>月の生活費9万円の中身と、1年目の総額約233万円の内訳。</p></a>
+        <a href="articles/osaka-hitorigurashi-guide.html"><span class="nr-cat">レポート No.020</span><b>大阪で一人暮らし、どこに住む?|通勤先・予算・性格から答えを出す案内</b><p>結果で出た駅の先に、51本のレポートの入口。</p></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="author">
+    <p class="who"><strong>住まらぼ 大阪福島店</strong>(運営: AS-PARTNERS株式会社)</p>
+    <p>宅地建物取引業免許:国土交通大臣(1)第10816号 所在地:〒553-0003 大阪府大阪市福島区福島5丁目3-7 エスティ西梅田ビル1F/TEL:06-4950-5432(担当ますだ直通 070-6450-0496)</p>
+  </div>
+</div>
+<script>
+var ST=[{"s": "福島", "l": "JR環状線・阪神・JR東西線", "y": 6.5, "m": {"u": 2, "k": 8}, "w": "福島区", "a": 8.1, "h": null, "art": "osaka-fukushima-hitorigurashi"}, {"s": "野田・野田阪神", "l": "JR環状線・阪神・千日前線", "y": 6.5, "m": {"u": 3, "n": 10, "k": 10}, "w": "福島区", "a": 8.1, "h": null, "art": "nodahanshin-hitorigurashi"}, {"s": "玉川", "l": "千日前線・JR野田", "y": 6.5, "m": {"u": 4, "n": 8}, "w": "福島区", "a": 8.1, "h": null, "art": "osaka-fukushima-hitorigurashi"}, {"s": "御幣島", "l": "JR東西線", "y": 5.9, "m": {"u": 6}, "w": "西淀川区", "a": 4.2, "h": null, "art": "josei-eki-ranking-umeda"}, {"s": "姫島", "l": "阪神本線", "y": 6.0, "m": {"u": 8}, "w": "西淀川区", "a": 4.2, "h": null, "art": "josei-eki-ranking-umeda"}, {"s": "千船", "l": "阪神本線", "y": 5.7, "m": {"u": 10}, "w": "西淀川区", "a": 4.2, "h": null, "art": "josei-eki-ranking-umeda"}, {"s": "出来島", "l": "阪神なんば線", "y": 5.5, "m": {"n": 14}, "w": "西淀川区", "a": 4.2, "h": null, "art": "nishikujo-hitorigurashi"}, {"s": "塚本", "l": "JR神戸線", "y": 5.9, "m": {"u": 4}, "w": "淀川区", "a": 8.1, "h": null, "art": "juso-hitorigurashi"}, {"s": "十三", "l": "阪急3線", "y": 6.0, "m": {"u": 3}, "w": "淀川区", "a": 8.1, "h": null, "art": "juso-hitorigurashi"}, {"s": "神崎川", "l": "阪急神戸線", "y": 6.0, "m": {"u": 6}, "w": "淀川区", "a": 8.1, "h": null, "art": "juso-hitorigurashi"}, {"s": "三国", "l": "阪急宝塚線", "y": 6.3, "m": {"u": 8}, "w": "淀川区", "a": 8.1, "h": null, "art": "juso-hitorigurashi"}, {"s": "西中島南方", "l": "御堂筋線・阪急京都線", "y": 6.2, "m": {"u": 5, "n": 12, "s": 2}, "w": "淀川区", "a": 8.1, "h": null, "art": "shin-osaka-hitorigurashi"}, {"s": "新大阪", "l": "御堂筋線・JR", "y": 6.4, "m": {"u": 6, "n": 14, "s": 0}, "w": "淀川区", "a": 8.1, "h": null, "art": "shin-osaka-hitorigurashi"}, {"s": "東三国", "l": "御堂筋線", "y": 6.4, "m": {"u": 9, "s": 2}, "w": "淀川区", "a": 8.1, "h": null, "art": "shin-osaka-hitorigurashi"}, {"s": "淡路", "l": "阪急京都線・千里線", "y": 5.7, "m": {"u": 7, "n": 10}, "w": "東淀川区", "a": 5.5, "h": null, "art": "shin-osaka-hitorigurashi"}, {"s": "崇禅寺", "l": "阪急京都線", "y": 6.3, "m": {"u": 7, "s": 15}, "w": "東淀川区", "a": 5.5, "h": null, "art": "juso-hitorigurashi"}, {"s": "下新庄", "l": "阪急千里線", "y": 4.8, "m": {"u": 12, "n": 13}, "w": "東淀川区", "a": 5.5, "h": null, "art": "minamimorimachi-hitorigurashi"}, {"s": "相川", "l": "阪急京都線", "y": 4.7, "m": {"u": 11}, "w": "東淀川区", "a": 5.5, "h": null, "art": "suita-hitorigurashi"}, {"s": "上新庄", "l": "阪急京都線", "y": 4.2, "m": {"u": 10}, "w": "東淀川区", "a": 5.5, "h": null, "art": "josei-eki-ranking-umeda"}, {"s": "江坂", "l": "御堂筋線・北急", "y": 6.8, "m": {"u": 11, "n": 17, "s": 4}, "w": "吹田市", "a": 2.5, "h": null, "art": "esaka-hitorigurashi"}, {"s": "緑地公園", "l": "北大阪急行", "y": 6.0, "m": {"u": 13, "s": 6}, "w": "豊中市", "a": 4.5, "h": null, "art": "esaka-hitorigurashi"}, {"s": "桃山台", "l": "北大阪急行", "y": 5.5, "m": {"u": 15, "s": 8}, "w": "吹田市", "a": 2.5, "h": null, "art": "esaka-hitorigurashi"}, {"s": "千里中央", "l": "北大阪急行", "y": 5.3, "m": {"u": 18, "s": 11}, "w": "豊中市", "a": 4.5, "h": null, "art": "toyonaka-hitorigurashi"}, {"s": "吹田(JR)", "l": "JR京都線", "y": 5.6, "m": {"u": 10, "s": 7}, "w": "吹田市", "a": 2.5, "h": null, "art": "suita-hitorigurashi"}, {"s": "吹田(阪急)", "l": "阪急千里線", "y": 6.1, "m": {"u": 15}, "w": "吹田市", "a": 2.5, "h": null, "art": "suita-hitorigurashi"}, {"s": "岸辺", "l": "JR京都線", "y": 6.0, "m": {"u": 12, "s": 9}, "w": "吹田市", "a": 2.5, "h": null, "art": "suita-hitorigurashi"}, {"s": "千里丘", "l": "JR京都線", "y": 5.7, "m": {"u": 14, "s": 11}, "w": "摂津市", "a": 5.9, "h": null, "art": "ibaraki-hitorigurashi"}, {"s": "茨木(JR)", "l": "JR京都線(快速)", "y": 5.7, "m": {"u": 15, "s": 11}, "w": "茨木市", "a": 3.9, "h": null, "art": "ibaraki-hitorigurashi"}, {"s": "茨木市(阪急)", "l": "阪急京都線(特急)", "y": 5.5, "m": {"u": 17}, "w": "茨木市", "a": 3.9, "h": null, "art": "ibaraki-hitorigurashi"}, {"s": "総持寺", "l": "阪急京都線", "y": 5.0, "m": {"u": 22}, "w": "茨木市", "a": 3.9, "h": null, "art": "ibaraki-hitorigurashi"}, {"s": "高槻(JR)", "l": "JR京都線(新快速)", "y": 5.3, "m": {"u": 15, "s": 11}, "w": "高槻市", "a": 3.2, "h": null, "art": "takatsuki-hitorigurashi"}, {"s": "高槻市(阪急)", "l": "阪急京都線(特急)", "y": 5.5, "m": {"u": 20}, "w": "高槻市", "a": 3.2, "h": null, "art": "takatsuki-hitorigurashi"}, {"s": "摂津富田", "l": "JR京都線", "y": 5.0, "m": {"u": 20, "s": 16}, "w": "高槻市", "a": 3.2, "h": null, "art": "takatsuki-hitorigurashi"}, {"s": "富田", "l": "阪急京都線", "y": 4.6, "m": {"u": 25}, "w": "高槻市", "a": 3.2, "h": null, "art": "takatsuki-hitorigurashi"}, {"s": "豊中", "l": "阪急宝塚線(急行)", "y": 5.4, "m": {"u": 15}, "w": "豊中市", "a": 4.5, "h": null, "art": "toyonaka-hitorigurashi"}, {"s": "曽根", "l": "阪急宝塚線", "y": 5.2, "m": {"u": 14}, "w": "豊中市", "a": 4.5, "h": null, "art": "toyonaka-hitorigurashi"}, {"s": "庄内", "l": "阪急宝塚線", "y": 5.7, "m": {"u": 10}, "w": "豊中市", "a": 4.5, "h": null, "art": "toyonaka-hitorigurashi"}, {"s": "蛍池", "l": "阪急宝塚線(急行)・モノレール", "y": 5.0, "m": {"u": 17}, "w": "豊中市", "a": 4.5, "h": null, "art": "toyonaka-hitorigurashi"}, {"s": "石橋阪大前", "l": "阪急宝塚線(急行)", "y": 5.0, "m": {"u": 15}, "w": "池田市", "a": 4.4, "h": null, "art": "toyonaka-hitorigurashi"}, {"s": "南森町", "l": "谷町線・堺筋線・JR東西線", "y": 6.7, "m": {"u": 2, "n": 5, "k": 6}, "w": "北区", "a": null, "h": null, "art": "minamimorimachi-hitorigurashi"}, {"s": "天神橋筋六丁目", "l": "谷町線・堺筋線・阪急", "y": 6.2, "m": {"u": 4, "n": 7}, "w": "北区", "a": null, "h": null, "art": "minamimorimachi-hitorigurashi"}, {"s": "都島", "l": "谷町線", "y": 6.2, "m": {"u": 9}, "w": "都島区", "a": null, "h": null, "art": "miyakojima-hitorigurashi"}, {"s": "野江内代", "l": "谷町線", "y": 6.1, "m": {"u": 10, "k": 3, "s": 12}, "w": "城東区", "a": 4.4, "h": null, "art": "kyobashi-hitorigurashi"}, {"s": "関目高殿", "l": "谷町線", "y": 5.7, "m": {"u": 12, "k": 5}, "w": "城東区", "a": 4.4, "h": null, "art": "miyakojima-hitorigurashi"}, {"s": "千林大宮", "l": "谷町線", "y": 5.3, "m": {"u": 14}, "w": "旭区", "a": 6.4, "h": null, "art": "moriguchi-hitorigurashi"}, {"s": "守口", "l": "谷町線・京阪", "y": 5.2, "m": {"u": 18, "k": 5}, "w": "守口市", "a": 5.0, "h": null, "art": "moriguchi-hitorigurashi"}, {"s": "大日", "l": "谷町線(始発)・モノレール", "y": 4.3, "m": {"u": 20}, "w": "守口市", "a": 5.0, "h": null, "art": "moriguchi-hitorigurashi"}, {"s": "京橋", "l": "JR環状線・京阪・長堀鶴見緑地線", "y": 6.2, "m": {"u": 7, "k": 0, "t": 15}, "w": "都島区", "a": null, "h": null, "art": "kyobashi-hitorigurashi"}, {"s": "桜ノ宮", "l": "JR環状線", "y": 6.3, "m": {"u": 5, "k": 2}, "w": "都島区", "a": null, "h": null, "art": "miyakojima-hitorigurashi"}, {"s": "蒲生四丁目", "l": "長堀鶴見緑地線・今里筋線", "y": 6.0, "m": {"k": 1, "n": 10}, "w": "城東区", "a": 4.4, "h": null, "art": "kyobashi-hitorigurashi"}, {"s": "鴫野", "l": "JR学研都市線・今里筋線", "y": 6.0, "m": {"k": 2}, "w": "城東区", "a": 4.4, "h": null, "art": "kyobashi-hitorigurashi"}, {"s": "放出", "l": "JR学研都市線・おおさか東線", "y": 6.0, "m": {"k": 4, "s": 14}, "w": "城東区", "a": 4.4, "h": null, "art": "kyobashi-hitorigurashi"}, {"s": "今福鶴見", "l": "長堀鶴見緑地線", "y": 5.9, "m": {"k": 3, "n": 12}, "w": "鶴見区", "a": 7.7, "h": null, "art": "kyobashi-hitorigurashi"}, {"s": "天満橋", "l": "谷町線・京阪", "y": 6.8, "m": {"u": 4, "k": 3, "t": 12}, "w": "中央区", "a": null, "h": null, "art": "temmabashi-hitorigurashi"}, {"s": "北浜", "l": "堺筋線・京阪", "y": 7.0, "m": {"n": 2, "k": 4}, "w": "中央区", "a": null, "h": null, "art": "kitahama-hitorigurashi"}, {"s": "枚方市", "l": "京阪本線(特急)", "y": 4.9, "m": {"k": 12, "n": 20}, "w": "枚方市", "a": 3.7, "h": null, "art": "hirakata-hitorigurashi"}, {"s": "樟葉", "l": "京阪本線(特急)", "y": 4.6, "m": {"k": 16, "n": 24}, "w": "枚方市", "a": 3.7, "h": null, "art": "hirakata-hitorigurashi"}, {"s": "寝屋川市", "l": "京阪本線(急行)", "y": 3.7, "m": {"k": 8, "n": 19}, "w": "寝屋川市", "a": 5.7, "h": null, "art": "hirakata-hitorigurashi"}, {"s": "門真市", "l": "京阪・モノレール", "y": 4.7, "m": {"k": 8}, "w": "門真市", "a": 9.2, "h": null, "art": "moriguchi-hitorigurashi"}, {"s": "本町", "l": "御堂筋線・四つ橋線・中央線", "y": 7.3, "m": {"u": 5, "n": 0, "t": 11, "s": 10}, "w": "中央区/西区", "a": 10.2, "h": null, "art": "honmachi-hitorigurashi"}, {"s": "阿波座", "l": "中央線・千日前線", "y": 6.6, "m": {"n": 2, "u": 12}, "w": "西区", "a": 10.2, "h": null, "art": "awaza-hitorigurashi"}, {"s": "九条", "l": "中央線・阪神なんば線", "y": 6.1, "m": {"n": 4, "u": 10}, "w": "西区", "a": 10.2, "h": null, "art": "awaza-hitorigurashi"}, {"s": "弁天町", "l": "中央線・JR環状線", "y": 6.0, "m": {"n": 5, "u": 8}, "w": "港区", "a": 8.3, "h": null, "art": "honmachi-hitorigurashi"}, {"s": "大正", "l": "JR環状線・長堀鶴見緑地線", "y": 6.0, "m": {"u": 10, "n": 10}, "w": "大正区", "a": 9.1, "h": null, "art": "nishikujo-hitorigurashi"}, {"s": "西九条", "l": "JR環状線・阪神なんば線", "y": 6.2, "m": {"u": 5, "n": 7}, "w": "此花区", "a": null, "h": null, "art": "nishikujo-hitorigurashi"}, {"s": "森ノ宮", "l": "中央線・JR環状線", "y": 6.3, "m": {"n": 6, "k": 5, "t": 8}, "w": "中央区/城東区", "a": 4.4, "h": null, "art": "honmachi-hitorigurashi"}, {"s": "緑橋", "l": "中央線・今里筋線", "y": 6.1, "m": {"n": 8}, "w": "東成区", "a": 6.4, "h": null, "art": "honmachi-hitorigurashi"}, {"s": "深江橋", "l": "中央線", "y": 6.0, "m": {"n": 9}, "w": "東成区", "a": 6.4, "h": null, "art": "honmachi-hitorigurashi"}, {"s": "玉造", "l": "JR環状線・長堀鶴見緑地線", "y": 6.1, "m": {"t": 7, "n": 6, "k": 6}, "w": "東成区側", "a": 6.4, "h": null, "art": "tamatsukuri-hitorigurashi"}, {"s": "鶴橋", "l": "JR環状線・近鉄・千日前線", "y": 6.0, "m": {"t": 5, "n": 8, "k": 10}, "w": "生野区側", "a": 7.2, "h": null, "art": "tamatsukuri-hitorigurashi"}, {"s": "桃谷", "l": "JR環状線", "y": 5.8, "m": {"t": 3, "k": 12}, "w": "生野区", "a": 7.2, "h": null, "art": "tennoji-hitorigurashi"}, {"s": "今里", "l": "千日前線・今里筋線", "y": 6.0, "m": {"n": 12}, "w": "東成区", "a": 6.4, "h": null, "art": "tamatsukuri-hitorigurashi"}, {"s": "布施", "l": "近鉄奈良線・大阪線", "y": 5.5, "m": {"n": 12}, "w": "東大阪市", "a": 7.5, "h": null, "art": "fuse-hitorigurashi"}, {"s": "河内小阪", "l": "近鉄奈良線", "y": 4.6, "m": {"n": 16}, "w": "東大阪市", "a": 7.5, "h": null, "art": "fuse-hitorigurashi"}, {"s": "八戸ノ里", "l": "近鉄奈良線", "y": 4.6, "m": {"n": 17}, "w": "東大阪市", "a": 7.5, "h": null, "art": "fuse-hitorigurashi"}, {"s": "長瀬", "l": "近鉄大阪線", "y": 4.3, "m": {"n": 16}, "w": "東大阪市", "a": 7.5, "h": null, "art": "fuse-hitorigurashi"}, {"s": "近鉄八尾", "l": "近鉄大阪線(準急)", "y": 5.2, "m": {"n": 20}, "w": "八尾市", "a": 3.7, "h": null, "art": "fuse-hitorigurashi"}, {"s": "天王寺", "l": "御堂筋線ほか6路線", "y": 6.1, "m": {"t": 0, "n": 5, "u": 16}, "w": "阿倍野区側", "a": 7.8, "h": null, "art": "tennoji-hitorigurashi"}, {"s": "昭和町", "l": "御堂筋線", "y": 5.8, "m": {"t": 2, "n": 7, "u": 18}, "w": "阿倍野区", "a": 7.8, "h": null, "art": "tennoji-hitorigurashi"}, {"s": "西田辺", "l": "御堂筋線", "y": 5.4, "m": {"t": 4, "n": 9, "u": 20}, "w": "阿倍野区", "a": 7.8, "h": null, "art": "tennoji-hitorigurashi"}, {"s": "長居", "l": "御堂筋線・JR阪和線", "y": 4.8, "m": {"t": 6, "n": 11, "u": 22}, "w": "住吉区", "a": 6.1, "h": null, "art": "nagai-hitorigurashi"}, {"s": "あびこ", "l": "御堂筋線・JR阪和線", "y": 4.7, "m": {"t": 8, "n": 13, "u": 24}, "w": "住吉区", "a": 6.1, "h": null, "art": "nagai-hitorigurashi"}, {"s": "杉本町", "l": "JR阪和線", "y": 4.6, "m": {"t": 10}, "w": "住吉区", "a": 6.1, "h": null, "art": "nagai-hitorigurashi"}, {"s": "住吉大社", "l": "南海本線", "y": 4.5, "m": {"n": 10}, "w": "住吉区", "a": 6.1, "h": null, "art": "nagai-hitorigurashi"}, {"s": "平野", "l": "谷町線・JR大和路線", "y": 4.5, "m": {"t": 5}, "w": "平野区", "a": 4.9, "h": null, "art": "josei-eki-ranking-tennoji"}, {"s": "針中野", "l": "近鉄南大阪線", "y": 4.1, "m": {"t": 8}, "w": "東住吉区", "a": 7.6, "h": null, "art": "nagai-hitorigurashi"}, {"s": "駒川中野", "l": "谷町線", "y": 4.4, "m": {"t": 8}, "w": "東住吉区", "a": 7.6, "h": null, "art": "nagai-hitorigurashi"}, {"s": "今川", "l": "近鉄南大阪線", "y": 4.7, "m": {"t": 5}, "w": "東住吉区", "a": 7.6, "h": null, "art": "tennoji-hitorigurashi"}, {"s": "尼崎(JR)", "l": "JR神戸線(新快速)・JR東西線", "y": 5.7, "m": {"u": 6}, "w": "尼崎市", "a": null, "h": 10.5, "art": "amagasaki-hitorigurashi"}, {"s": "尼崎(阪神)", "l": "阪神本線・なんば線", "y": 5.7, "m": {"u": 10, "n": 17}, "w": "尼崎市", "a": null, "h": 10.5, "art": "amagasaki-hitorigurashi"}, {"s": "塚口", "l": "阪急神戸線(急行)", "y": 5.7, "m": {"u": 10}, "w": "尼崎市", "a": null, "h": 10.5, "art": "tsukaguchi-hitorigurashi"}, {"s": "武庫之荘", "l": "阪急神戸線", "y": 5.6, "m": {"u": 13}, "w": "尼崎市", "a": null, "h": 10.5, "art": "tsukaguchi-hitorigurashi"}, {"s": "園田", "l": "阪急神戸線", "y": 4.9, "m": {"u": 9}, "w": "尼崎市", "a": null, "h": 10.5, "art": "tsukaguchi-hitorigurashi"}, {"s": "西宮北口", "l": "阪急神戸線(特急)", "y": 6.1, "m": {"u": 13}, "w": "西宮市", "a": null, "h": 7.3, "art": "nishinomiya-kitaguchi-hitorigurashi"}, {"s": "夙川", "l": "阪急神戸線(特急)", "y": 5.8, "m": {"u": 15}, "w": "西宮市", "a": null, "h": 7.3, "art": "nishinomiya-kitaguchi-hitorigurashi"}, {"s": "甲子園", "l": "阪神本線(直通特急)", "y": 5.9, "m": {"u": 14}, "w": "西宮市", "a": null, "h": 7.3, "art": "koshien-hitorigurashi"}, {"s": "鳴尾・武庫川女子大前", "l": "阪神本線", "y": 5.8, "m": {"u": 17}, "w": "西宮市", "a": null, "h": 7.3, "art": "koshien-hitorigurashi"}, {"s": "今津", "l": "阪神本線・阪急今津線", "y": 5.9, "m": {"u": 17}, "w": "西宮市", "a": null, "h": 7.3, "art": "koshien-hitorigurashi"}, {"s": "伊丹(JR)", "l": "JR宝塚線(快速)", "y": 5.5, "m": {"u": 14}, "w": "伊丹市", "a": null, "h": 7.9, "art": "itami-hitorigurashi"}, {"s": "北伊丹", "l": "JR宝塚線", "y": 5.2, "m": {"u": 17}, "w": "伊丹市", "a": null, "h": 7.9, "art": "itami-hitorigurashi"}];
+var S={mode:"tedori",T:18,G:22,life:null,area:null,fix:null,fem:null};
+var step=0, more=false, LAST_TXT="";
+var TED_ART={20:"tedori-20man-hitorigurashi"};
+(function(){var m=(location.hash||"").match(/#t(\d+)/);if(m){var v=parseInt(m[1],10);if(v>=8&&v<=60){S.T=v;S.mode="tedori";step=1;}}})();
+var AREAN={"u":"梅田","n":"なんば・本町","t":"天王寺","s":"新大阪・江坂","k":"京橋","any":"こだわらない"};
+var FOOD={"jisui":3.0,"half":4.0,"gaishoku":5.5}, LIFEN={"jisui":"自炊派","half":"半々","gaishoku":"外食派"};
+var CAT="data:image/png;base64,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";
+function f1(x){return (Math.round(x*10)/10).toFixed(1);}
+function ted(){return S.mode==="tedori"?S.T:Math.round(S.G*0.8*10)/10;}
+function el(id){return document.getElementById(id);}
+function guide(t){return '<div class="guide"><img src="'+CAT+'" alt=""><p>'+t+'</p></div>';}
+function render(){
+  var total=5; el("prog").style.width=(step>=5?100:Math.round(step/total*100))+"%";
+  var h="";
+  if(step===0){
+    var cur=S.mode==="tedori"?S.T:S.G;
+    h+='<div class="stepno">STEP 1 / 5</div><div class="scr">'+guide("まず、毎月のお金から。手取りが分からなければ「額面」に切り替えてOK!")+'<p class="q">毎月の手取りは、いくら?</p><p class="qs">給料から税金・保険が引かれた、口座に入る金額</p>'
+      +'<div class="seg"><span class="'+(S.mode==="tedori"?"on":"")+'" onclick="S.mode=\'tedori\';render()">手取りで</span><span class="'+(S.mode==="gross"?"on":"")+'" onclick="S.mode=\'gross\';render()">額面で</span></div>'
+      +'<div class="amt"><button type="button" onclick="bump(-1)">−</button><div class="num" id="num">'+cur+'<small>万円</small></div><button type="button" onclick="bump(1)">＋</button></div>'
+      +'<div class="quick">'+[12,15,18,20,23,26,30].map(function(v){return '<b onclick="setAmt('+v+')">'+v+'万</b>';}).join("")+'</div>'
+      +(S.mode==="gross"?'<p class="qs" style="text-align:center">額面'+S.G+'万円 → 手取り約<strong>'+f1(ted())+'万円</strong>(約8割で換算)</p>':'')
+      +'<div class="nav"><button class="go" onclick="next()">次へ →</button></div></div>';
+  }else if(step===1){
+    h+='<div class="stepno">STEP 2 / 5</div><div class="scr">'+guide("食費が一番ブレる項目。正直に選ぶほど、答えが当たります!")+'<p class="q">ふだんのごはんは?</p><p class="qs">食費の目安が変わります</p><div class="cards three">'
+      +[["jisui","🍳","自炊派","食費 3.0万"],["half","🥗","半々","食費 4.0万"],["gaishoku","🍜","外食派","食費 5.5万"]].map(function(c){return '<div class="card'+(S.life===c[0]?" on":"")+'" onclick="S.life=\''+c[0]+'\';next()"><div class="ic">'+c[1]+'</div><div class="t">'+c[2]+'</div><div class="d">'+c[3]+'</div></div>';}).join("")
+      +'</div><div class="nav"><button class="bk" onclick="back()">← 戻る</button><button class="go" onclick="next()" '+(S.life?"":"disabled")+'>次へ →</button></div></div>';
+  }else if(step===2){
+    h+='<div class="stepno">STEP 3 / 5</div><div class="scr">'+guide("通勤先が決まると、住める駅が絞れます。決まっていなければ「こだわらない」で!")+'<p class="q">通勤(通学)先は、どのあたり?</p><p class="qs">大阪版だけの機能。この後、住める駅を出します</p><div class="cards">'
+      +[["u","🏙️","梅田"],["n","🏢","なんば・本町"],["t","🗼","天王寺"],["s","🚄","新大阪・江坂"],["k","🌉","京橋"],["any","🧭","こだわらない"]].map(function(c){return '<div class="card'+(S.area===c[0]?" on":"")+'" onclick="S.area=\''+c[0]+'\';next()"><div class="ic">'+c[1]+'</div><div class="t">'+c[2]+'</div></div>';}).join("")
+      +'</div><div class="nav"><button class="bk" onclick="back()">← 戻る</button><button class="go" onclick="next()" '+(S.area?"":"disabled")+'>次へ →</button></div></div>';
+  }else if(step===3){
+    h+='<div class="stepno">STEP 4 / 5</div><div class="scr">'+guide("奨学金やローンは、家賃より先に引きます。ここを忘れると後で苦しくなる!")+'<p class="q">毎月の固定の支払いは?</p><p class="qs">奨学金・ローン・仕送り・車など</p><div class="cards three">'
+      +[[0,"なし"],[1,"1万円"],[2,"2万円"],[3,"3万円"],[5,"5万円"],[7,"7万円"]].map(function(c){return '<div class="card'+(S.fix===c[0]?" on":"")+'" onclick="S.fix='+c[0]+';next()"><div class="t">'+c[1]+'</div></div>';}).join("")
+      +'</div><div class="nav"><button class="bk" onclick="back()">← 戻る</button><button class="go" onclick="next()" '+(S.fix!==null?"":"disabled")+'>次へ →</button></div></div>';
+  }else if(step===4){
+    h+='<div class="stepno">STEP 5 / 5</div><div class="scr">'+guide("最後の質問。女性の一人暮らしなら、安心の数字が少ない駅から並べます")+'<p class="q">女性の一人暮らしですか?</p><p class="qs">区の街頭トラブル件数(府警統計)で並び替えます</p><div class="cards">'
+      +'<div class="card'+(S.fem===true?" on":"")+'" onclick="S.fem=true;next()"><div class="ic">👩</div><div class="t">はい</div><div class="d">安心の数字が少ない順に</div></div>'
+      +'<div class="card'+(S.fem===false?" on":"")+'" onclick="S.fem=false;next()"><div class="ic">🙂</div><div class="t">いいえ</div><div class="d">通勤先に近い順に</div></div>'
+      +'</div><div class="nav"><button class="bk" onclick="back()">← 戻る</button><button class="go" onclick="next()" '+(S.fem!==null?"":"disabled")+'>結果を見る →</button></div></div>';
+  }else{ h+=result(); }
+  el("screen").innerHTML=h; el("screen").scrollIntoView({block:"nearest"});
+}
+function bump(d){if(S.mode==="tedori"){S.T=Math.max(8,Math.min(60,S.T+d));}else{S.G=Math.max(10,Math.min(75,S.G+d));} render();}
+function setAmt(v){if(S.mode==="tedori")S.T=v;else S.G=v;render();}
+function next(){ if(step===1&&!S.life)return; if(step===2&&!S.area)return; if(step===3&&S.fix===null)return; if(step===4&&S.fem===null)return; step=Math.min(5,step+1); more=false; render(); if(step===5)animate(); }
+function back(){step=Math.max(0,step-1);render();}
+function restart(){S={mode:"tedori",T:18,G:22,life:null,area:null,fix:null,fem:null};step=0;render();}
+function result(){
+  var T=ted(), rent=Math.round(T*0.35*10)/10, stretch=Math.round((rent+0.5)*10)/10;
+  var food=FOOD[S.life], util=1.0, net=0.8, daily=0.5, fun=2.7, fixed=S.fix||0;
+  var save=Math.round((T-rent-food-util-net-daily-fun-fixed)*10)/10;
+  var cls=save>=2?"ok":(save>=0?"mid":"ng");
+  var jmsg=save>=2?"◎ この家賃で行ける。貯金"+f1(save)+"万円":(save>=0?"○ 貯金は"+f1(save)+"万円。家賃か交際費を少し絞る":"△ "+f1(-save)+"万円足りない。家賃を下げるか固定費を見直す");
+  var basis=S.mode==="gross"?"額面"+S.G+"万 → 手取り約"+f1(T)+"万":"手取り"+f1(T)+"万";
+  var key=S.area==="any"?null:S.area;
+  var list=ST.filter(function(d){return d.y<=stretch && (key===null||d.m[key]!==undefined);});
+  list.sort(function(a,b){var oa=a.y>rent?1:0,ob=b.y>rent?1:0;if(oa!==ob)return oa-ob;if(S.fem){var sa=a.a!==null?a.a:(a.h!==null?a.h:99),sb=b.a!==null?b.a:(b.h!==null?b.h:99);if(sa!==sb)return sa-sb;}if(key!==null){if(a.m[key]!==b.m[key])return a.m[key]-b.m[key];}return a.y-b.y;});
+  var top=list.slice(0,more?14:5);
+  function anz(d){if(d.a!==null)return d.a+"件/1万人";if(d.h!==null)return "刑法犯"+d.h+"/千人(兵庫)";return "採点対象外";}
+  function tomin(d){var o=[];["u","n","t","s","k"].forEach(function(k){if(d.m[k]!==undefined)o.push(AREAN[k]+(d.m[k]===0?"":d.m[k]+"分"));});return o.slice(0,2).join(" / ");}
+  var items=[["家賃",rent,"#D96820"],["食費",food,"#F2A65A"],["光熱",util,"#C9A27A"],["通信",net,"#A08870"],["日用",daily,"#8E7A6A"],["交際",fun,"#E8B98A"]];
+  if(fixed>0)items.push(["固定費",fixed,"#6E5A4A"]);
+  var sv=Math.max(save,0); items.push(["貯金",sv,"#5B9A6B"]);
+  var sum=items.reduce(function(a,b){return a+b[1];},0);
+  var sh1=Math.round(rent*4.5*10)/10, sh2=Math.round(rent*5*10)/10;
+  var txt="【生活費シミュレーション】\n"+basis+"円 / "+LIFEN[S.life]+" / 固定費"+(fixed?fixed+"万":"なし")+" / 通勤先:"+AREAN[S.area]+(S.fem?" / 女性":"")+"\n家賃の上限: "+f1(rent)+"万円(背伸び〜"+f1(stretch)+"万円) 貯金の余力: "+f1(save)+"万円\n候補の駅: "+list.slice(0,3).map(function(d){return d.s+" "+d.y.toFixed(1)+"万";}).join("・")+"\n→ この条件で空室を探してください";
+  LAST_TXT=txt;
+  var xurl="https://x.com/intent/post?text="+encodeURIComponent("手取り"+f1(T)+"万円の一人暮らし、家賃の上限は"+f1(rent)+"万円・貯金の余力"+f1(save)+"万円。住める駅は"+list.slice(0,2).map(function(d){return d.s;}).join("・")+"… #一人暮らし生活費シミュレーション 大阪版")+"&url="+encodeURIComponent("https://sumalabo-mbti-lp.vercel.app/seikatsuhi.html");
+  return '<div class="stepno">RESULT</div><div class="scr">'+guide("出ました! 家賃は「暮らしが回る上限」。駅をタップすると、その駅のレポートへ")
+   +'<div class="res-hero"><div class="lab">'+basis+'円 の場合、家賃の上限は</div><div class="big"><span id="cnt">0.0</span><small>万円</small></div><div class="sub">手取りの3.5割。背伸びは5,000円まで(〜'+f1(stretch)+'万円)・管理費込みで考える</div><div class="judge '+cls+'">'+jmsg+'</div></div>'
+   +(function(){var k=Math.round(T),a=TED_ART[k]||TED_ART[k-1]||TED_ART[k+1];var kk=TED_ART[k]?k:(TED_ART[k-1]?k-1:k+1);return a?'<p class="tiny" style="text-align:center;margin:-4px 0 8px"><a href="articles/'+a+'.html" style="color:#C9611A;font-weight:800">手取り'+kk+'万円の暮らし、くわしくはこちら →</a></p>':'';})()
+   +'<div class="sec">月の内訳 <small>手取り'+f1(T)+'万をこう使う</small></div><div class="stack">'+items.map(function(it){return '<i style="width:'+(it[1]/sum*100)+'%;background:'+it[2]+'"></i>';}).join("")+'</div><div class="leg">'+items.map(function(it){return '<span style="--c:'+it[2]+'">'+it[0]+'<b>'+f1(it[1])+'万</b></span>';}).join("")+'</div>'
+   +'<div class="sec">この家賃で住める駅 <small>'+list.length+'駅・'+(key?AREAN[key]+"に近い順":"安い順")+(S.fem?"・安心の数字が少ない順":"")+'</small></div>'
+   +(list.length?top.map(function(d){return '<a class="st" href="articles/'+d.art+'.html"><span class="y">'+d.y.toFixed(1)+'万'+(d.y>rent?'<small style="font-size:.7em;color:#9A5A00"> 背伸び</small>':'')+'</span><div class="n">'+d.s+'</div><div class="m"><em>'+tomin(d)+'</em>'+d.w+'・'+anz(d)+'</div><div class="go2">この駅のレポートを読む →</div></a>';}).join("")+(list.length>top.length?'<button class="more" onclick="more=true;render()">あと'+(list.length-top.length)+'駅を見る ▼</button>':''):'<p class="tiny">この家賃で住める駅がありません。手取りか通勤先を変えてみてください。</p>')
+   +'<div class="sec">入居のときに要るお金 <small>敷金礼金ゼロ〜礼金1か月</small></div><p style="margin:0;font-weight:900;color:#C9611A;font-size:1.3em">'+f1(sh1)+'〜'+f1(sh2)+'万円 <small style="font-size:.6em;color:#7A6752;font-weight:600">家賃の4.5〜5か月分</small></p><p class="tiny">内訳と抑え方は<a href="articles/osaka-shokihiyou.html" style="color:#C9611A;font-weight:700">No.002</a>、1年目の総額は<a href="articles/osaka-hitorigurashi-hiyou.html" style="color:#C9611A;font-weight:700">No.019</a>へ。</p>'
+   +'<div class="acts"><button class="cp" onclick="copyTxt()" id="cpbtn">結果をコピー</button><a class="line" href="https://lin.ee/o3OHmib">LINEに貼って空室を探す</a><a class="x" href="'+xurl+'" target="_blank" rel="noopener">Xでシェア</a><button class="re" onclick="restart()">もう一度</button></div>'
+   +'<div class="copybox" id="copy">'+txt.replace(/</g,"&lt;")+'</div>'
+   +'<p class="tiny">コピーした文面をLINEに貼ってもらえれば、その条件で候補の空室と初期費用の総額をお返事します(無料・しつこい営業なし)。数字の出どころは下の「この道具の数字」。</p></div>';
+}
+function animate(){var e=el("cnt");if(!e)return;var T=ted(),rent=Math.round(T*0.35*10)/10,t0=null;function fr(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/700);var v=rent*(1-Math.pow(1-p,3));e.textContent=f1(v);if(p<1)requestAnimationFrame(fr);}requestAnimationFrame(fr);}
+function copyTxt(){var t=LAST_TXT||el("copy").textContent;function ok(){el("cpbtn").textContent="コピーしました ✓";}if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,function(){fallback(t);ok();});}else{fallback(t);ok();}}
+function fallback(t){var ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");}catch(e){}document.body.removeChild(ta);}
+render();
+</script>
+<footer class="footer">
+  <div class="footer-in">
+    <span>© AS-PARTNERS株式会社|住まらぼ 大阪福島店(大阪・関西の部屋探し研究所)</span>
+    <span>宅地建物取引業免許 国土交通大臣(1)第10816号</span>
+  </div>
+</footer>
+
+<div class="fixed-cta">
+  <a class="btn btn-primary" href="https://sumalabo-line.vercel.app" rel="noopener">3分無料診断</a>
+  <a class="btn btn-line" href="https://lin.ee/o3OHmib">LINEで相談</a>
+</div>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "RealEstateAgent", "name": "住まらぼ 大阪福島店", "alternateName": "住まらぼ 大阪・関西の部屋探し研究所", "parentOrganization": {"@type": "Organization", "name": "AS-PARTNERS株式会社"}, "telephone": "+81-70-6450-0496", "employee": {"@type": "Person", "name": "ますだ", "jobTitle": "賃貸営業担当", "telephone": "+81-70-6450-0496", "worksFor": {"@type": "Organization", "name": "住まらぼ 大阪福島店(AS-PARTNERS株式会社)"}}, "contactPoint": [{"@type": "ContactPoint", "telephone": "+81-70-6450-0496", "contactType": "customer service", "name": "担当 ますだ 直通", "areaServed": "JP", "availableLanguage": "ja"}, {"@type": "ContactPoint", "telephone": "+81-6-4950-5432", "contactType": "customer service", "areaServed": "JP", "availableLanguage": "ja"}], "url": "https://sumalabo-mbti-lp.vercel.app/about.html", "image": "https://sumalabo-mbti-lp.vercel.app/img/og-image.png", "address": {"@type": "PostalAddress", "postalCode": "553-0003", "addressRegion": "大阪府", "addressLocality": "大阪市福島区", "streetAddress": "福島5丁目3-7 エスティ西梅田ビル1F", "addressCountry": "JP"}, "areaServed": "大阪府", "sameAs": ["https://lin.ee/o3OHmib", "https://sumalabo-line.vercel.app"], "identifier": "宅地建物取引業免許 国土交通大臣(1)第10816号"}
+</script>
+</body>
+</html>

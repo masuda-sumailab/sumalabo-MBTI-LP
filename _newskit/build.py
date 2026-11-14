@@ -98,6 +98,8 @@ def validate():
         if not c.get('title') or not c.get('note'): errors.append(f'{w}: title と note が要ります')
         rs = c.get('rows') or []
         if len(rs) < 2 or any(len(r) < 2 or not isinstance(r[1], (int, float)) for r in rs): errors.append(f'{w}: rows は [ラベル, 数字] を2つ以上')
+        for n in ('kw', 'vw'):
+            if c.get(n) and not re.fullmatch(r'\d+(\.\d+)?em', str(c[n])): errors.append(f'{w}: {n}(欄の幅)は 5.4em のような形')
         ss = c.get('sources') or []
         if not ss or any(not (x.get('org') and x.get('doc') and str(x.get('url', '')).startswith('https://')) for x in ss): errors.append(f'{w}: sources(org・doc・url)が要ります')
         for b in BANNED:
@@ -192,7 +194,9 @@ def chart(c):
         lis.append(f'        <li><span class="k">{e(label)}</span><span class="t" aria-hidden="true"><i class="z" style="left:{zero:.1f}%"></i>'
                    f'<i class="b {"pos" if v >= 0 else "neg"}" style="left:{left:.1f}%;width:{max(w, 0.8):.1f}%"></i></span><span class="v">{e(txt)}</span></li>')
     src = ' / '.join(f'<a href="{x["url"]}" target="_blank" rel="noopener">{e(x["org"])}「{e(x["doc"])}」</a>' for x in c['sources'])
-    return (f'    <div class="nw-chart">\n      <p class="ttl">{e(c["title"])}</p>\n      <ul>\n' + '\n'.join(lis)
+    # 文字の欄の幅(kw=左のラベル、vw=右の数字)。「84,672件」のように長い数字のときだけ広げる
+    wd = ';'.join(f'--{n}:{c[n]}' for n in ('kw', 'vw') if c.get(n))
+    return (f'    <div class="nw-chart">\n      <p class="ttl">{e(c["title"])}</p>\n      <ul' + (f' style="{wd}"' if wd else '') + '>\n' + '\n'.join(lis)
             + f'\n      </ul>\n      <p class="cap">{mk(c["note"])}<span class="s">出どころ: {src}</span></p>\n    </div>')
 
 

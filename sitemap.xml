@@ -433,7 +433,43 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://sumalabo-mbti-lp.vercel.app/news/theme-shoki.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sumalabo-mbti-lp.vercel.app/news/theme-seido.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sumalabo-mbti-lp.vercel.app/news/theme-machi.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://sumalabo-mbti-lp.vercel.app/news/theme-kurashi.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sumalabo-mbti-lp.vercel.app/news/theme-shijo.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sumalabo-mbti-lp.vercel.app/news/theme-setsubi.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sumalabo-mbti-lp.vercel.app/news/theme-bousai.html</loc>
     <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

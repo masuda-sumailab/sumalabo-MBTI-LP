@@ -28,6 +28,8 @@ SHELL = rd(os.path.join(KIT, 'shell.html'))
 WD = '月火水木金土日'
 KINDS = ('役所の発表', '会社の発表', '団体の発表', '報道')
 IMG = ['shocho-shiraberu.png', 'shocho-point.png', 'neko-yotei.png'] + [f'neko-{k}.png' for k in TH]
+HIST = sorted(L.get('history', []), key=lambda h: str(h.get('date', '')), reverse=True)   # 2019年からの動き(年表)。新しい順
+HIST_MIN = int(os.environ.get('NEWS_HIST_MIN', 3))   # 年表は、そのテーマに3件以上そろってから表に出す(スカスカの年表を出さない)
 errors = []
 
 
@@ -80,6 +82,16 @@ def validate():
                 if tgt.startswith('news:'):
                     if tgt[5:] not in ISSUES: errors.append(f'{w}: [[{tgt}|…]] の号がありません')
                 elif not os.path.exists(os.path.join(ROOT, 'articles', tgt + '.html')): errors.append(f'{w}: [[{tgt}|…]] の記事がありません')
+    for h in L.get('history', []):
+        w = '年表 ' + str(h.get('date'))
+        if h.get('theme') not in TH: errors.append(f'{w}: テーマ「{h.get("theme")}」は themes にありません')
+        if not re.fullmatch(r'\d{4}(-\d{2}){0,2}', str(h.get('date', ''))): errors.append(f'{w}: date は 2019 / 2019-03 / 2019-03-05 のどれかの形')
+        if not h.get('text'): errors.append(f'{w}: text がありません')
+        if not isdate(str(h.get('added', ''))): errors.append(f'{w}: added(年表に足した日)が要ります')
+        ss = h.get('sources') or []
+        if not ss or any(not (s.get('org') and s.get('doc') and str(s.get('url', '')).startswith('https://')) for s in ss): errors.append(f'{w}: sources(org・doc・url)が要ります')
+        for b in BANNED:
+            if b in str(h.get('text', '')): errors.append(f'{w}: 使わない言葉「{b}」が入っています')
     for u in L.get('upcoming', []):
         if u.get('date') and not isdate(u['date']): errors.append(f'upcoming: 日付の形がちがいます {u}')
         if not u.get('date') and not u.get('when'): errors.append(f'upcoming: date か when のどちらかが要ります {u}')
@@ -156,6 +168,22 @@ def cards(it):
     return ('<div class="next-read">\n      <div class="nr-title">🐾 くわしく読む(特集のレポート)</div>\n      <div class="nr-grid">\n' + '\n'.join(cs) + '\n      </div>\n    </div>')
 
 
+def hdate(s):
+    """年表の日付の見せ方: 2019 → 2019年 / 2019-03 → 2019年3月 / 2019-03-05 → 2019年3月5日"""
+    p = s.split('-')
+    return f'{int(p[0])}年' + (f'{int(p[1])}月' if len(p) > 1 else '') + (f'{int(p[2])}日' if len(p) > 2 else '')
+
+
+def row(x):
+    """一覧やテーマのページに並べる、短信1本ぶんのカード"""
+    return f'''      <li data-t="{x['theme']}"><a href="{x['issue']}.html">
+        <img class="face" src="img/neko-{x['theme']}.png" alt="" width="52" height="52" loading="lazy">
+        <span class="tx"><span class="d">{jp(x['issue'], year=True)}<span class="th">{TH[x['theme']]['label']}</span></span>
+        <b>{e(x['title'])}</b>
+        <span class="p">{e(cut(plain(x['lead']), 120))}</span></span>
+      </a></li>'''
+
+
 def item_block(it, multi):
     hx = 'h3' if multi else 'h2'
     h = []
@@ -203,6 +231,7 @@ for k, iss in enumerate(ISSUES):
     themes = '・'.join(dict.fromkeys(TH[x['theme']]['label'] for x in its))
     newer = ISSUES[k - 1] if k > 0 else None; older = ISSUES[k + 1] if k + 1 < len(ISSUES) else None
     nav = ('<p class="nw-nav">' + (f'<a href="{older}.html">← 前の号({md(older)})</a>' if older else '<span></span>')
+           + f'<a href="theme-{first["theme"]}.html">「{TH[first["theme"]]["label"]}」をまとめて読む</a>'
            + '<a href="index.html">一覧へ</a>' + (f'<a href="{newer}.html">次の号({md(newer)}) →</a>' if newer else '<span></span>') + '</p>')
     late = '' if posted == iss else f'\n    <p class="note">この号は、創刊の前に出た発表を、{d_(posted).year}年{d_(posted).month}月の創刊のときにまとめて載せたものです。</p>\n'
     body = f'''<div class="wrap">
@@ -228,20 +257,85 @@ for k, iss in enumerate(ISSUES):
 '''
     out[f'{iss}.html'] = checked(f'{iss}.html', page(TITLE, DESC, URL, ld, body))
 
+# ───────── テーマごとのページ(上に最新の短信、下に2019年からの動き) ─────────
+MADE = ST.get('history_made', '')          # 年表をまとめた時期(例: 2026年11月)
+THEME_PAGES = [k for k in TH if any(x['theme'] == k for x in ITEMS) or sum(1 for h in HIST if h['theme'] == k) >= HIST_MIN]
+theme_mod = {}
+for k in THEME_PAGES:
+    v = TH[k]; its = [x for x in ITEMS if x['theme'] == k]; hs = [h for h in HIST if h['theme'] == k]
+    show_hist = len(hs) >= HIST_MIN
+    theme_mod[k] = max([x['posted'] for x in its] + ([h['added'] for h in hs] if show_hist else []))
+    URL = f'{SITE}/news/theme-{k}.html'
+    TITLE = f'{v["label"]}のニュース' + ('と、2019年からの動き' if show_hist else '') + f'|{SERIES}'
+    DESC = (f'{v["label"]}({v["desc"]})について、新しい発表の短信' + ('と、2019年からの動きの年表' if show_hist else '')
+            + 'をまとめています。大阪で部屋を借りる人の目線で、大阪の賃貸店(宅建業者)が更新。')
+    ld = json.dumps({"@context": "https://schema.org", "@type": "CollectionPage", "name": TITLE, "url": URL,
+                     "publisher": {"@type": "Organization", "name": "AS-PARTNERS株式会社"}}, ensure_ascii=False)
+    newest = ('<ul class="nw-list">\n' + '\n'.join(row(x) for x in its) + '\n    </ul>') if its else '<p>このテーマの短信は、発表があり次第ここに並びます。</p>'
+    hist = ''
+    if show_hist:
+        blocks = []
+        for y in sorted({h['date'][:4] for h in hs}, reverse=True):
+            lis = '\n'.join(f'        <li><span class="d">{hdate(h["date"])}</span>{mk(h["text"])}<span class="s">出どころ: '
+                            + ' / '.join(f'<a href="{s["url"]}" target="_blank" rel="noopener">{e(s["org"])}「{e(s["doc"])}」</a>' for s in h['sources'])
+                            + '</span></li>' for h in hs if h['date'][:4] == y)
+            blocks.append(f'      <h3>{y}年</h3>\n      <ul>\n{lis}\n      </ul>')
+        hist = (f'\n    <h2>2019年からの動き</h2>\n    <p class="pt">当時の発表資料をさかのぼって調べ、{MADE}にまとめた年表です。新しい年が上です。</p>\n'
+                '    <div class="nw-hist">\n' + '\n'.join(blocks) + '\n    </div>\n')
+    tcards = ''
+    if v.get('ukezara'):
+        cs = []
+        for slug in v['ukezara']:
+            no, t = art(slug)
+            cs.append(f'      <a href="../articles/{slug}.html"><span class="nr-cat">{"レポート " + no if no.startswith("No.") else no}</span><b>{e(t)}</b><p>特集のレポート</p></a>')
+        tcards = ('\n    <div class="next-read">\n      <div class="nr-title">🐾 くわしく読む(特集のレポート)</div>\n      <div class="nr-grid">\n' + '\n'.join(cs) + '\n      </div>\n    </div>\n')
+    body = f'''<div class="wrap">
+  <p class="crumb"><a href="../index.html">トップ</a> › <a href="index.html">{SERIES}</a> › {e(v["label"])}</p>
+
+  <div class="article-head">
+    <a class="nw-plate" href="index.html"><img src="img/neko-{k}.png" alt="" width="46" height="46"><span><b>{SERIES}</b><span class="m">テーマ別・新しい順</span></span></a>
+    <h1>{e(v["label"])}のニュース</h1>
+  </div>
+
+  <div class="article-body">
+    <p>入る話題は、{e(v["desc"])}。新しい短信が上に並びます。</p>
+
+    <h2>最新の短信</h2>
+    {newest}
+{hist}{tcards}
+    {CTA_NEAGE if k == 'neage' else CTA_HEYA}
+
+    {NOTE}
+
+    <p class="nw-nav"><a href="index.html">← 一覧へ</a><span></span></p>
+  </div>
+
+  {AUTHOR}
+</div>
+'''
+    out[f'theme-{k}.html'] = checked(f'theme-{k}.html', page(TITLE, DESC, URL, ld, body))
+
 # ───────── 一覧ページ ─────────
 used = [t for t in TH if any(x['theme'] == t for x in ITEMS)]
 chips = '<button type="button" class="chip on" data-t="all" id="nw-chip-all">すべて</button>' + ''.join(
     f'<button type="button" class="chip" data-t="{t}" id="nw-chip-{t}">{TH[t]["label"]}</button>' for t in used)
-rows = '\n'.join(f'''      <li data-t="{x['theme']}"><a href="{x['issue']}.html">
-        <img class="face" src="img/neko-{x['theme']}.png" alt="" width="52" height="52" loading="lazy">
-        <span class="tx"><span class="d">{jp(x['issue'], year=True)}<span class="th">{TH[x['theme']]['label']}</span></span>
-        <b>{e(x['title'])}</b>
-        <span class="p">{e(cut(plain(x['lead']), 120))}</span></span>
-      </a></li>''' for x in ITEMS)
+rows = '\n'.join(row(x) for x in ITEMS)
+
+
+def tile(k):
+    """テーマのタイル。いちばん新しい短信の見出しを添える"""
+    v = TH[k]; its = [x for x in ITEMS if x['theme'] == k]
+    inner = f'<img src="img/neko-{k}.png" alt="" width="44" height="44" loading="lazy"><span><b>{e(v["label"])}</b><span class="m">{e(v["desc"])}</span>'
+    if its: inner += f'<span class="new"><i>{md(its[0]["issue"])}</i>{e(its[0]["short"])}</span>'
+    elif k in THEME_PAGES: inner += '<span class="new">2019年からの動き(年表)</span>'
+    inner += '</span>'
+    return f'      <li><a href="theme-{k}.html">{inner}</a></li>' if k in THEME_PAGES else f'      <li><span class="off">{inner}</span></li>'
+# 新しい短信があるテーマが上。同じなら themes の順のまま
+order = sorted(TH, key=lambda k: (max([x['issue'] for x in ITEMS if x['theme'] == k], default=''), k in THEME_PAGES), reverse=True)
+tiles = '\n'.join(tile(k) for k in order)
 latest = max(ISSUES)
 ups = '\n'.join(f'      <li><span class="w">{jp(u["date"]) if u.get("date") else e(u["when"])}</span>{e(u["label"])}<span class="n">{e(u["note"])}</span></li>'
                 for u in L['upcoming'] if not u.get('date') or u['date'] > latest)
-themes_html = '\n'.join(f'      <li><img src="img/neko-{k}.png" alt="" width="44" height="44" loading="lazy"><span><b>{e(v["label"])}</b><span class="m">{e(v["desc"])}</span></span></li>' for k, v in TH.items())
 URL = f'{SITE}/news/'
 TITLE = f'{SERIES}|{TAGLINE}'
 DESC = ('、'.join(v['label'] for v in TH.values()) + '。役所や不動産会社の発表から、大阪で部屋を借りる人に関係するものだけを拾い、'
@@ -264,6 +358,13 @@ body = f'''<div class="wrap">
   <div class="article-body">
     <p>どの短信にも、<strong>「大阪ではどうなる?」</strong>を所長がひとこと添えています。発表があった日の翌朝に更新し、伝えることのない日はお休みします。</p>
 
+    <h2>テーマごとの最新</h2>
+    <p class="pt">新しい短信が出たテーマが上に来ます。押すと、そのテーマだけをまとめて読めます。</p>
+    <ul class="nw-tiles">
+{tiles}
+    </ul>
+
+    <h2>新しい順に読む</h2>
     <div class="nw-chips" id="nw-chips">{chips}</div>
     <ul class="nw-list" id="nw-list">
 {rows}
@@ -273,11 +374,6 @@ body = f'''<div class="wrap">
     {catnote('neko-yotei.png', '日付が決まっている発表は、先に並べておきます。出た朝にお届けしますよ!')}
     <ul class="nw-up">
 {ups}
-    </ul>
-
-    <h2>扱うテーマ</h2>
-    <ul class="nw-themes">
-{themes_html}
     </ul>
 
     {CTA_HEYA}
@@ -304,7 +400,7 @@ if errors:
 ND = os.path.join(ROOT, 'news')
 os.makedirs(ND, exist_ok=True)
 for f in os.listdir(ND):                                   # 切り抜き帳から消した号は、ページも消す
-    if re.fullmatch(r'\d{4}-\d{2}-\d{2}\.html', f) and f not in out: os.remove(os.path.join(ND, f))
+    if re.fullmatch(r'(\d{4}-\d{2}-\d{2}|theme-[a-z]+)\.html', f) and f not in out: os.remove(os.path.join(ND, f))
 for name, html in out.items(): wr(os.path.join(ND, name), html)
 
 # サイトマップ: ニュースの行をいったん外して、入れ直す
@@ -315,7 +411,9 @@ block = url(SITE + '/news/', max(x['posted'] for x in ITEMS), 'daily', '0.8')
 for iss in sorted(ISSUES):
     its = [x for x in ITEMS if x['issue'] == iss]
     block += url(f'{SITE}/news/{iss}.html', max([x['posted'] for x in its] + [x['modified'] for x in its if x.get('modified')]), 'monthly', '0.6')
+for k in THEME_PAGES: block += url(f'{SITE}/news/theme-{k}.html', theme_mod[k], 'weekly', '0.7')
 assert sm.count('</urlset>') == 1
 wr(SM, sm.replace('</urlset>', block + '</urlset>'))
 
-print('○', SERIES, ':', len(ISSUES), '号 /', len(ITEMS), '件 を news/ に書き込みました。サイトマップのニュースは', len(ISSUES) + 1, '行。')
+print('○', SERIES, ':', len(ISSUES), '号 /', len(ITEMS), '件、テーマのページ', len(THEME_PAGES), '枚 を news/ に書き込みました。年表は',
+      len(HIST), '件(表に出ているテーマ:', '・'.join(TH[k]['label'] for k in THEME_PAGES if sum(1 for h in HIST if h['theme'] == k) >= HIST_MIN) or 'まだなし', ')。')

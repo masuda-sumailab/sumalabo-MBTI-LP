@@ -226,6 +226,22 @@ details.col[open] summary{margin-bottom:6px}
 .nw-themes img{width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:#fff;flex-shrink:0}
 .nw-themes b{display:block;font-family:var(--font-display);font-size:14.5px;line-height:1.4}
 .nw-themes .m{display:block;font-size:12px;line-height:1.55;color:var(--ink-soft)}
+.nw-tiles{list-style:none;padding:0;margin:10px 0 26px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.nw-tiles a,.nw-tiles .off{display:flex;gap:10px;align-items:flex-start;height:100%;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--ink)}
+.nw-tiles a:hover{border-color:var(--orange)}
+.nw-tiles .off{opacity:.62}
+.nw-tiles img{width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:#fff;flex-shrink:0}
+.nw-tiles b{display:block;font-family:var(--font-display);font-size:14.5px;line-height:1.4}
+.nw-tiles .m{display:block;font-size:12px;line-height:1.55;color:var(--ink-soft)}
+.nw-tiles .new{display:block;font-size:12.5px;line-height:1.55;margin-top:4px;font-weight:700}
+.nw-tiles .new i{font-style:normal;color:var(--orange);margin-right:.5em}
+.nw-hist{margin:0 0 26px}
+.nw-hist ul{list-style:none;padding:0;margin:0 0 6px 6px;border-left:3px solid var(--marker)}
+.nw-hist li{position:relative;padding:0 0 14px 18px;font-size:.95rem;line-height:1.75}
+.nw-hist li:before{content:"";position:absolute;left:-8px;top:.55em;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--orange);box-sizing:border-box}
+.nw-hist .d{display:block;font-size:12px;font-weight:800;color:var(--orange)}
+.nw-hist .s{display:block;font-size:12px;color:var(--ink-soft)}
+.nw-hist .s a{color:var(--ink-soft)}
 @media (max-width:420px){.nw-mast .who img{width:76px;height:76px}.nw-mast .say{font-size:13px;padding:10px 12px}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "賃貸物件ニュース|家賃動向と、住まい・街・お金のニュースを、大阪で部屋を借りる人の目線で", "url": "https://sumalabo-mbti-lp.vercel.app/news/", "publisher": {"@type": "Organization", "name": "AS-PARTNERS株式会社"}}</script>
@@ -259,6 +275,21 @@ details.col[open] summary{margin-bottom:6px}
   <div class="article-body">
     <p>どの短信にも、<strong>「大阪ではどうなる?」</strong>を所長がひとこと添えています。発表があった日の翌朝に更新し、伝えることのない日はお休みします。</p>
 
+    <h2>テーマごとの最新</h2>
+    <p class="pt">新しい短信が出たテーマが上に来ます。押すと、そのテーマだけをまとめて読めます。</p>
+    <ul class="nw-tiles">
+      <li><a href="theme-yachin.html"><img src="img/neko-yachin.png" alt="" width="44" height="44" loading="lazy"><span><b>家賃動向</b><span class="m">相場・募集家賃・物価統計の家賃</span><span class="new"><i>11/12</i>東京23区の一人暮らし向け家賃、7か月連続で下落</span></span></a></li>
+      <li><a href="theme-neage.html"><img src="img/neko-neage.png" alt="" width="44" height="44" loading="lazy"><span><b>値上げ・更新</b><span class="m">値上げの通知・更新料・契約のトラブル・相談件数</span><span class="new"><i>11/5</i>内閣府が7〜9月の家賃の動きを公表。東京の募集家賃は1年前より7.4%高い</span></span></a></li>
+      <li><span class="off"><img src="img/neko-shoki.png" alt="" width="44" height="44" loading="lazy"><span><b>初期費用・引っ越し</b><span class="m">敷金礼金・仲介手数料・保証会社・引っ越し料金</span></span></span></li>
+      <li><span class="off"><img src="img/neko-seido.png" alt="" width="44" height="44" loading="lazy"><span><b>制度・補助金</b><span class="m">法改正・国や大阪の制度・家賃補助・税金</span></span></span></li>
+      <li><span class="off"><img src="img/neko-machi.png" alt="" width="44" height="44" loading="lazy"><span><b>街・再開発・交通</b><span class="m">再開発・新駅や新線・お店の開業・住みたい街ランキング・人口の動き</span></span></span></li>
+      <li><span class="off"><img src="img/neko-kurashi.png" alt="" width="44" height="44" loading="lazy"><span><b>物価・生活費</b><span class="m">電気代やガス代・食品の値段・賃上げ・初任給・最低賃金</span></span></span></li>
+      <li><span class="off"><img src="img/neko-shijo.png" alt="" width="44" height="44" loading="lazy"><span><b>賃貸市場</b><span class="m">空室・新築の供給・地価・金利・民泊・部屋探しサイトの新しい動き</span></span></span></li>
+      <li><span class="off"><img src="img/neko-setsubi.png" alt="" width="44" height="44" loading="lazy"><span><b>設備・住まい方</b><span class="m">人気の設備・ネット無料・宅配ボックス・ペット可・家具家電つき</span></span></span></li>
+      <li><span class="off"><img src="img/neko-bousai.png" alt="" width="44" height="44" loading="lazy"><span><b>防犯・防災</b><span class="m">治安の統計・空き巣対策・地震や水害への備え・ハザードマップ</span></span></span></li>
+    </ul>
+
+    <h2>新しい順に読む</h2>
     <div class="nw-chips" id="nw-chips"><button type="button" class="chip on" data-t="all" id="nw-chip-all">すべて</button><button type="button" class="chip" data-t="yachin" id="nw-chip-yachin">家賃動向</button><button type="button" class="chip" data-t="neage" id="nw-chip-neage">値上げ・更新</button></div>
     <ul class="nw-list" id="nw-list">
       <li data-t="yachin"><a href="2026-11-12.html">
@@ -298,19 +329,6 @@ details.col[open] summary{margin-bottom:6px}
       <li><span class="w">11月中旬〜下旬の見込み</span>LIFULL HOME'Sの賃料動向・大阪版(10月分)<span class="n">大阪市と大阪府下の募集家賃。東京版は11月11日に発表済み</span></li>
       <li><span class="w">11月下旬の見込み</span>アットホームの募集家賃(10月分)<span class="n">大阪市のマンション・アパートの、広さ別の家賃</span></li>
       <li><span class="w">1月の見込み</span>SUUMOの沿線相場の更新<span class="n">駅ごとの1K/1DKの相場。当店の相場表(No.004)を作り直します</span></li>
-    </ul>
-
-    <h2>扱うテーマ</h2>
-    <ul class="nw-themes">
-      <li><img src="img/neko-yachin.png" alt="" width="44" height="44" loading="lazy"><span><b>家賃動向</b><span class="m">相場・募集家賃・物価統計の家賃</span></span></li>
-      <li><img src="img/neko-neage.png" alt="" width="44" height="44" loading="lazy"><span><b>値上げ・更新</b><span class="m">値上げの通知・更新料・契約のトラブル・相談件数</span></span></li>
-      <li><img src="img/neko-shoki.png" alt="" width="44" height="44" loading="lazy"><span><b>初期費用・引っ越し</b><span class="m">敷金礼金・仲介手数料・保証会社・引っ越し料金</span></span></li>
-      <li><img src="img/neko-seido.png" alt="" width="44" height="44" loading="lazy"><span><b>制度・補助金</b><span class="m">法改正・国や大阪の制度・家賃補助・税金</span></span></li>
-      <li><img src="img/neko-machi.png" alt="" width="44" height="44" loading="lazy"><span><b>街・再開発・交通</b><span class="m">再開発・新駅や新線・お店の開業・住みたい街ランキング・人口の動き</span></span></li>
-      <li><img src="img/neko-kurashi.png" alt="" width="44" height="44" loading="lazy"><span><b>物価・生活費</b><span class="m">電気代やガス代・食品の値段・賃上げ・初任給・最低賃金</span></span></li>
-      <li><img src="img/neko-shijo.png" alt="" width="44" height="44" loading="lazy"><span><b>賃貸市場</b><span class="m">空室・新築の供給・地価・金利・民泊・部屋探しサイトの新しい動き</span></span></li>
-      <li><img src="img/neko-setsubi.png" alt="" width="44" height="44" loading="lazy"><span><b>設備・住まい方</b><span class="m">人気の設備・ネット無料・宅配ボックス・ペット可・家具家電つき</span></span></li>
-      <li><img src="img/neko-bousai.png" alt="" width="44" height="44" loading="lazy"><span><b>防犯・防災</b><span class="m">治安の統計・空き巣対策・地震や水害への備え・ハザードマップ</span></span></li>
     </ul>
 
     <div class="cta-band">

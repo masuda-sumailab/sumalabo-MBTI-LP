@@ -242,6 +242,20 @@ details.col[open] summary{margin-bottom:6px}
 .nw-hist .d{display:block;font-size:12px;font-weight:800;color:var(--orange)}
 .nw-hist .s{display:block;font-size:12px;color:var(--ink-soft)}
 .nw-hist .s a{color:var(--ink-soft)}
+.nw-chart{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px 10px;margin:0 0 18px}
+.nw-chart .ttl{font-family:var(--font-display);font-weight:900;font-size:15px;line-height:1.5;margin:0 0 10px;color:var(--ink)}
+.nw-chart ul{list-style:none;padding:0;margin:0 0 10px;display:grid;gap:7px}
+.nw-chart li{display:grid;grid-template-columns:6.2em 1fr 4.4em;gap:8px;align-items:center;font-size:13px;line-height:1.3}
+.nw-chart .k{color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.nw-chart .t{position:relative;display:block;height:16px}
+.nw-chart .z{position:absolute;top:-4px;bottom:-4px;width:0;border-left:1.5px solid #CDBFD3}
+.nw-chart .b{position:absolute;top:0;bottom:0;border-radius:3px}
+.nw-chart .b.pos{background:var(--orange)}
+.nw-chart .b.neg{background:#8FA3C4}
+.nw-chart .v{text-align:right;font-weight:800;font-variant-numeric:tabular-nums;color:var(--ink)}
+.nw-chart .cap{margin:0;font-size:12px;line-height:1.7;color:var(--ink-soft)}
+.nw-chart .cap .s{display:block}
+.nw-chart .cap a{color:var(--ink-soft)}
 @media (max-width:420px){.nw-mast .who img{width:76px;height:76px}.nw-mast .say{font-size:13px;padding:10px 12px}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "賃貸物件ニュース|家賃動向と、住まい・街・お金のニュースを、大阪で部屋を借りる人の目線で", "url": "https://sumalabo-mbti-lp.vercel.app/news/", "publisher": {"@type": "Organization", "name": "AS-PARTNERS株式会社"}}</script>
@@ -280,10 +294,10 @@ details.col[open] summary{margin-bottom:6px}
     <ul class="nw-tiles">
       <li><a href="theme-yachin.html"><img src="img/neko-yachin.png" alt="" width="44" height="44" loading="lazy"><span><b>家賃動向</b><span class="m">相場・募集家賃・物価統計の家賃</span><span class="new"><i>11/12</i>東京23区の一人暮らし向け家賃、7か月連続で下落</span></span></a></li>
       <li><a href="theme-neage.html"><img src="img/neko-neage.png" alt="" width="44" height="44" loading="lazy"><span><b>値上げ・更新</b><span class="m">値上げの通知・更新料・契約のトラブル・相談件数</span><span class="new"><i>11/5</i>内閣府が7〜9月の家賃の動きを公表。東京の募集家賃は1年前より7.4%高い</span></span></a></li>
+      <li><a href="theme-kurashi.html"><img src="img/neko-kurashi.png" alt="" width="44" height="44" loading="lazy"><span><b>物価・生活費</b><span class="m">電気代やガス代・食品の値段・賃上げ・初任給・最低賃金</span><span class="new">2019年からの動き(年表)</span></span></a></li>
       <li><span class="off"><img src="img/neko-shoki.png" alt="" width="44" height="44" loading="lazy"><span><b>初期費用・引っ越し</b><span class="m">敷金礼金・仲介手数料・保証会社・引っ越し料金</span></span></span></li>
       <li><span class="off"><img src="img/neko-seido.png" alt="" width="44" height="44" loading="lazy"><span><b>制度・補助金</b><span class="m">法改正・国や大阪の制度・家賃補助・税金</span></span></span></li>
       <li><span class="off"><img src="img/neko-machi.png" alt="" width="44" height="44" loading="lazy"><span><b>街・再開発・交通</b><span class="m">再開発・新駅や新線・お店の開業・住みたい街ランキング・人口の動き</span></span></span></li>
-      <li><span class="off"><img src="img/neko-kurashi.png" alt="" width="44" height="44" loading="lazy"><span><b>物価・生活費</b><span class="m">電気代やガス代・食品の値段・賃上げ・初任給・最低賃金</span></span></span></li>
       <li><span class="off"><img src="img/neko-shijo.png" alt="" width="44" height="44" loading="lazy"><span><b>賃貸市場</b><span class="m">空室・新築の供給・地価・金利・民泊・部屋探しサイトの新しい動き</span></span></span></li>
       <li><span class="off"><img src="img/neko-setsubi.png" alt="" width="44" height="44" loading="lazy"><span><b>設備・住まい方</b><span class="m">人気の設備・ネット無料・宅配ボックス・ペット可・家具家電つき</span></span></span></li>
       <li><span class="off"><img src="img/neko-bousai.png" alt="" width="44" height="44" loading="lazy"><span><b>防犯・防災</b><span class="m">治安の統計・空き巣対策・地震や水害への備え・ハザードマップ</span></span></span></li>

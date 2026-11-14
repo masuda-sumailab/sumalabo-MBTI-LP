@@ -92,6 +92,16 @@ def validate():
         if not ss or any(not (s.get('org') and s.get('doc') and str(s.get('url', '')).startswith('https://')) for s in ss): errors.append(f'{w}: sources(org・doc・url)が要ります')
         for b in BANNED:
             if b in str(h.get('text', '')): errors.append(f'{w}: 使わない言葉「{b}」が入っています')
+    for c in L.get('charts', []):
+        w = 'グラフ ' + str(c.get('title'))
+        if not c.get('themes') or any(t not in TH for t in c.get('themes', [])): errors.append(f'{w}: themes(どのテーマのページに出すか)を確かめてください')
+        if not c.get('title') or not c.get('note'): errors.append(f'{w}: title と note が要ります')
+        rs = c.get('rows') or []
+        if len(rs) < 2 or any(len(r) < 2 or not isinstance(r[1], (int, float)) for r in rs): errors.append(f'{w}: rows は [ラベル, 数字] を2つ以上')
+        ss = c.get('sources') or []
+        if not ss or any(not (x.get('org') and x.get('doc') and str(x.get('url', '')).startswith('https://')) for x in ss): errors.append(f'{w}: sources(org・doc・url)が要ります')
+        for b in BANNED:
+            if b in str(c.get('title', '')) + str(c.get('note', '')): errors.append(f'{w}: 使わない言葉「{b}」が入っています')
     for u in L.get('upcoming', []):
         if u.get('date') and not isdate(u['date']): errors.append(f'upcoming: 日付の形がちがいます {u}')
         if not u.get('date') and not u.get('when'): errors.append(f'upcoming: date か when のどちらかが要ります {u}')
@@ -166,6 +176,24 @@ def cards(it):
         no, t = art(slug)
         cs.append(f'      <a href="../articles/{slug}.html"><span class="nr-cat">{"レポート " + no if no.startswith("No.") else no}</span><b>{e(t)}</b><p>{e(p)}</p></a>')
     return ('<div class="next-read">\n      <div class="nr-title">🐾 くわしく読む(特集のレポート)</div>\n      <div class="nr-grid">\n' + '\n'.join(cs) + '\n      </div>\n    </div>')
+
+
+def chart(c):
+    """棒のグラフ。0の線を基準に、プラスは右、マイナスは左へ伸びる。数字は文字でも出す"""
+    vals = [r[1] for r in c['rows']]
+    lo, hi = min(0, min(vals)), max(0, max(vals)); span = (hi - lo) or 1
+    zero = (0 - lo) / span * 100
+    lis = []
+    for r in c['rows']:
+        label, v = r[0], r[1]
+        txt = r[2] if len(r) > 2 and r[2] else (('+' if v > 0 else ('−' if v < 0 else '±')) + f'{abs(v):g}' + c.get('unit', '%'))
+        w = abs(v) / span * 100
+        left = zero if v >= 0 else zero - w
+        lis.append(f'        <li><span class="k">{e(label)}</span><span class="t" aria-hidden="true"><i class="z" style="left:{zero:.1f}%"></i>'
+                   f'<i class="b {"pos" if v >= 0 else "neg"}" style="left:{left:.1f}%;width:{max(w, 0.8):.1f}%"></i></span><span class="v">{e(txt)}</span></li>')
+    src = ' / '.join(f'<a href="{x["url"]}" target="_blank" rel="noopener">{e(x["org"])}「{e(x["doc"])}」</a>' for x in c['sources'])
+    return (f'    <div class="nw-chart">\n      <p class="ttl">{e(c["title"])}</p>\n      <ul>\n' + '\n'.join(lis)
+            + f'\n      </ul>\n      <p class="cap">{mk(c["note"])}<span class="s">出どころ: {src}</span></p>\n    </div>')
 
 
 def hdate(s):
@@ -280,8 +308,9 @@ for k in THEME_PAGES:
                             + ' / '.join(f'<a href="{s["url"]}" target="_blank" rel="noopener">{e(s["org"])}「{e(s["doc"])}」</a>' for s in h['sources'])
                             + '</span></li>' for h in hs if h['date'][:4] == y)
             blocks.append(f'      <h3>{y}年</h3>\n      <ul>\n{lis}\n      </ul>')
-        hist = (f'\n    <h2>2019年からの動き</h2>\n    <p class="pt">当時の発表資料をさかのぼって調べ、{MADE}にまとめた年表です。新しい年が上です。</p>\n'
-                '    <div class="nw-hist">\n' + '\n'.join(blocks) + '\n    </div>\n')
+        charts = '\n'.join(chart(c) for c in L.get('charts', []) if k in c['themes'])
+        hist = (f'\n    <h2>2019年からの動き</h2>\n    <p class="pt">当時の発表資料をさかのぼって調べ、{MADE}にまとめた記録です。年表は新しい年が上です。</p>\n'
+                + (charts + '\n' if charts else '') + '    <div class="nw-hist">\n' + '\n'.join(blocks) + '\n    </div>\n')
     tcards = ''
     if v.get('ukezara'):
         cs = []

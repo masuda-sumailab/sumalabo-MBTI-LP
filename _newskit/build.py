@@ -22,7 +22,8 @@ L = json.loads(rd(os.path.join(KIT, 'ledger.json')))
 ST = L['settings']
 SITE, LINE_URL, SUUMO_DATE, BANNED = ST['site'], ST['line_url'], ST['suumo_date'], ST['banned']
 SERIES, TAGLINE, TH = L['series']['name'], L['series']['tagline'], L['themes']
-ITEMS = sorted(L['items'], key=lambda x: (x['issue'], x['id']), reverse=True)
+SH = ST.get('shindan') or {}               # エリア診断のボタンの帯(行き先と文言)。なければ帯を出さない
+ITEMS =sorted(L['items'], key=lambda x: (x['issue'], x['id']), reverse=True)
 ISSUES = sorted({x['issue'] for x in ITEMS}, reverse=True)
 SHELL = rd(os.path.join(KIT, 'shell.html'))
 WD = '月火水木金土日'
@@ -50,6 +51,16 @@ def texts(it):
         + [a + b for a, b in it.get('facts', [])] + [p for _, p in it.get('ukezara', [])]
 
 
+def chk_text(w, t):
+    """本文1つぶん: 使わない言葉と、[[リンク]] の行き先を確かめる"""
+    for b in BANNED:
+        if b in t: errors.append(f'{w}: 使わない言葉「{b}」が入っています')
+    for tgt in re.findall(r'\[\[([^\]|]+)\|', t):
+        if tgt.startswith('news:'):
+            if tgt[5:] not in ISSUES: errors.append(f'{w}: [[{tgt}|…]] の号がありません')
+        elif not os.path.exists(os.path.join(ROOT, 'articles', tgt + '.html')): errors.append(f'{w}: [[{tgt}|…]] の記事がありません')
+
+
 def validate():
     ids = [x.get('id') for x in L['items']]
     if len(ids) != len(set(ids)): errors.append('id が重なっています')
@@ -75,13 +86,33 @@ def validate():
         if not (1 <= len(it['ukezara']) <= 3): errors.append(f'{w}: ukezara(つなぐ特集)は1〜3本')
         for slug, _ in it['ukezara']:
             if not os.path.exists(os.path.join(ROOT, 'articles', slug + '.html')): errors.append(f'{w}: つなぐ特集 articles/{slug}.html がありません')
-        for t in texts(it):
-            for b in BANNED:
-                if b in t: errors.append(f'{w}: 使わない言葉「{b}」が入っています')
-            for tgt in re.findall(r'\[\[([^\]|]+)\|', t):
-                if tgt.startswith('news:'):
-                    if tgt[5:] not in ISSUES: errors.append(f'{w}: [[{tgt}|…]] の号がありません')
-                elif not os.path.exists(os.path.join(ROOT, 'articles', tgt + '.html')): errors.append(f'{w}: [[{tgt}|…]] の記事がありません')
+        for t in texts(it): chk_text(w, t)
+    if SH:
+        if not all(SH.get(n) for n in ('url', 't', 's', 'btn')) or not str(SH.get('url', '')).startswith('https://'):
+            errors.append('settings.shindan(エリア診断のボタン): url(https)・t・s・btn が要ります')
+        for n in ('t', 's', 'btn'): chk_text('settings.shindan', str(SH.get(n, '')))
+    for k, v in TH.items():
+        t = v.get('trend')
+        if not t: continue
+        w = f'傾向のまとめ「{v.get("label", k)}」'
+        ps = t.get('text') or []
+        if not isdate(str(t.get('asof', ''))): errors.append(f'{w}: asof(まとめた日。例 2026-11-15)が要ります')
+        if not (1 <= len(ps) <= 4) or any(not isinstance(p, str) or not p.strip() for p in ps): errors.append(f'{w}: text は1〜4段落'); continue
+        # 数字は、そのテーマの年表・グラフ・短信に出ているものだけ(まとめに新しい数字を持ち込まない)
+        hay = ' '.join(f'{h.get("date", "")} {h.get("text", "")}' for h in L.get('history', []) if h.get('theme') == k)
+        hay += ' ' + ' '.join(f'{c.get("title", "")} {c.get("note", "")} ' + ' '.join(' '.join(str(x) for x in r) for r in c.get('rows', []))
+                              for c in L.get('charts', []) if k in c.get('themes', []))
+        hay += ' ' + ' '.join(f'{it.get("issue", "")} {it.get("released", "")} ' + ' '.join(texts(it)) for it in L['items'] if it.get('theme') == k)
+        now = t.get('now')          # いちばん新しい動き(そのテーマの、いちばん新しい短信の要約)。なくてもよい
+        if now is not None:
+            if not any(it.get('issue') == now.get('issue') and it.get('theme') == k for it in L['items']):
+                errors.append(f'{w}: now.issue「{now.get("issue")}」は、このテーマの短信がある号の日付にする')
+            if not isinstance(now.get('text'), str) or not now['text'].strip() or len(now['text']) > 200:
+                errors.append(f'{w}: now.text(いちばん新しい動き)は1〜2文・200字まで'); now = None
+        for p in ps + ([now['text']] if now else []):
+            chk_text(w, p)
+            for n in dict.fromkeys(re.findall(r'\d[\d,]*(?:\.\d+)?', p)):
+                if n not in hay: errors.append(f'{w}: 数字「{n}」が、このテーマの年表・グラフ・短信のどこにもありません(そこにある数字だけで書く)')
     for h in L.get('history', []):
         w = '年表 ' + str(h.get('date'))
         if h.get('theme') not in TH: errors.append(f'{w}: テーマ「{h.get("theme")}」は themes にありません')
@@ -161,6 +192,10 @@ def cta_line(t, s, btn):
     return ('<div class="cta-band">\n      <p class="t">' + t + '</p>\n      <p class="s">' + s + '</p>\n      <div class="btns"><a class="btn btn-line" href="' + LINE_URL + '">' + btn + '</a></div>\n    </div>')
 CTA_HEYA = cta_line('💬 いまの相場で住める部屋、LINEで3件送ります', '「通勤先・家賃の上限・こだわり1つ(駅・築年・設備など)」を送ってもらえれば、SUUMOの最新相場(' + SUUMO_DATE + '更新)の中から、ますだが3件選んでお返事します。内見はオンラインでも(無料・しつこい営業なし)。', 'LINEで3件もらう')
 CTA_NEAGE = cta_line('💬 その値上げ、何パーセントで、相場と比べてどうか——無料で見ます', '「駅名・間取り・いまの家賃・値上げ後の家賃・更新日」をLINEで送ってもらえれば、SUUMOの最新相場(' + SUUMO_DATE + '更新)と比べて、値上げ後の家賃が相場の上か下かをお返事します。(無料・しつこい営業なし)', 'LINEで見てもらう')
+# エリア診断のボタンの帯。号のページとテーマのページの本文に1つずつ出す(行き先と文言は切り抜き帳の settings.shindan)
+SHINDAN = ('<div class="nw-shindan">\n      <img src="img/shocho-shiraberu.png" alt="" width="56" height="56" loading="lazy">\n'
+           f'      <p class="t">{e(SH["t"])}</p>\n      <p class="s">{e(SH["s"])}</p>\n'
+           f'      <div class="btns"><a class="btn btn-primary" href="{SH["url"]}" rel="noopener">{e(SH["btn"])}</a></div>\n    </div>') if SH else ''
 AUTHOR = ('<div class="author">\n    <p class="who"><strong>住まらぼ 大阪福島店</strong>(運営: AS-PARTNERS株式会社)</p>\n    <p>宅地建物取引業免許:国土交通大臣(1)第10816号 所在地:〒553-0003 大阪府大阪市福島区福島5丁目3-7 エスティ西梅田ビル1F/TEL:06-4950-5432(担当ますだ直通 070-6450-0496)</p>\n  </div>')
 NOTE = ('<p class="note">' + SERIES + 'について:役所や会社が発表した資料をもとに、住まらぼ 大阪福島店(宅建業者)が自分の言葉でまとめています。'
         '数字は発表資料のとおり、「当店の見方」と書いた部分は当店の意見です。大阪の相場の数字は、SUUMO沿線ページの1K/1DK(' + SUUMO_DATE + '更新)を当店が駅ごとに集計したもの(レポートNo.004)。'
@@ -216,7 +251,8 @@ def row(x):
       </a></li>'''
 
 
-def item_block(it, multi):
+def item_block(it, multi, band=''):
+    """短信1本ぶん。band(エリア診断の帯)は、所長のひとことと「くわしく読む」の間に入る"""
     hx = 'h3' if multi else 'h2'
     h = []
     if multi: h.append(f'    <h2>{e(it["title"])}</h2>')
@@ -229,6 +265,7 @@ def item_block(it, multi):
     h.append('    <div class="nw-osaka">\n      <p class="who"><img src="img/shocho-point.png" alt="" width="60" height="60" loading="lazy"><b>所長の解説</b></p>\n'
              + '\n'.join(f'      <p>{mk(p)}</p>' for p in it['osaka']) + '\n    </div>')
     h.append('    ' + catnote(f'neko-{it["theme"]}.png', e(it['cat'])))
+    if band: h.append('    ' + band)
     h.append('    ' + cards(it))
     return '\n\n'.join(h)
 
@@ -275,7 +312,7 @@ for k, iss in enumerate(ISSUES):
   </div>
 
   <div class="article-body">
-{chr(10).join(item_block(x, multi) for x in its)}
+{chr(10).join(item_block(x, multi, SHINDAN if x is its[-1] else '') for x in its)}
 
     {CTA_NEAGE if first['theme'] == 'neage' else CTA_HEYA}
 
@@ -296,10 +333,13 @@ theme_mod = {}
 for k in THEME_PAGES:
     v = TH[k]; its = [x for x in ITEMS if x['theme'] == k]; hs = [h for h in HIST if h['theme'] == k]
     show_hist = len(hs) >= HIST_MIN
-    theme_mod[k] = max([x['posted'] for x in its] + ([h['added'] for h in hs] if show_hist else []))
+    tr = v.get('trend') if show_hist else None     # 傾向のまとめ(年表のいちばん下に出す)。年表が表に出ているテーマだけ
+    now = tr.get('now') if tr else None            # まとめの中の「いちばん新しい動き」
+    tr_day = max([tr['asof']] + ([now['issue']] if now else [])) if tr else None    # まとめを最後に直した日
+    theme_mod[k] = max([x['posted'] for x in its] + ([h['added'] for h in hs] if show_hist else []) + ([tr_day] if tr else []))
     URL = f'{SITE}/news/theme-{k}.html'
     TITLE = f'{v["label"]}のニュース' + ('と、2019年からの動き' if show_hist else '') + f'|{SERIES}'
-    DESC = (f'{v["label"]}({v["desc"]})について、新しい発表の短信' + ('と、2019年からの動きの年表' if show_hist else '')
+    DESC = (f'{v["label"]}({v["desc"]})について、新しい発表の短信' + (('と、2019年からの動きの年表' + ('・傾向のまとめ' if tr else '')) if show_hist else '')
             + 'をまとめています。大阪で部屋を借りる人の目線で、大阪の賃貸店(宅建業者)が更新。')
     ld = json.dumps({"@context": "https://schema.org", "@type": "CollectionPage", "name": TITLE, "url": URL,
                      "publisher": {"@type": "Organization", "name": "AS-PARTNERS株式会社"}}, ensure_ascii=False)
@@ -313,8 +353,17 @@ for k in THEME_PAGES:
                             + '</span></li>' for h in hs if h['date'][:4] == y)
             blocks.append(f'      <h3>{y}年</h3>\n      <ul>\n{lis}\n      </ul>')
         charts = '\n'.join(chart(c) for c in L.get('charts', []) if k in c['themes'])
-        hist = (f'\n    <h2>2019年からの動き</h2>\n    <p class="pt">当時の発表資料をさかのぼって調べ、{MADE}にまとめた記録です。年表は新しい年が上です。</p>\n'
+        hist = (f'\n    <h2>2019年からの動き</h2>\n    <p class="pt">当時の発表資料をさかのぼって調べ、{MADE}にまとめた記録です。年表は新しい年が上です。'
+                + ('いちばん下に、2019年からの傾向をまとめています。' if tr else '') + '</p>\n'
                 + (charts + '\n' if charts else '') + '    <div class="nw-hist">\n' + '\n'.join(blocks) + '\n    </div>\n')
+    trend = ''
+    if tr:
+        trend = ('\n    <div class="nw-osaka nw-trend">\n      <p class="who"><img src="img/shocho-point.png" alt="" width="60" height="60" loading="lazy"><b>所長のまとめ</b></p>\n'
+                 '      <h3>2019年からの傾向</h3>\n' + '\n'.join(f'      <p>{mk(p)}</p>' for p in tr['text'])
+                 + (f'\n      <div class="now">\n        <p class="nl"><b>いちばん新しい動き</b><span>{jp(now["issue"], wd=False)}の短信から</span></p>\n'
+                    f'        <p>{mk(now["text"])}<a class="go" href="{now["issue"]}.html">この短信を読む</a></p>\n      </div>' if now else '')
+                 + f'\n      <p class="as">{"年表・グラフ・短信" if its else "年表とグラフ"}の数字をもとに、当店がまとめています({jp(tr_day, year=True, wd=False)}更新)。新しい発表が出たら書き直します。</p>\n    </div>\n')
+    sband = f'\n    {SHINDAN}\n' if SHINDAN else ''
     tcards = ''
     if v.get('ukezara'):
         cs = []
@@ -335,7 +384,7 @@ for k in THEME_PAGES:
 
     <h2>最新の短信</h2>
     {newest}
-{hist}{tcards}
+{hist}{trend}{sband}{tcards}
     {CTA_NEAGE if k == 'neage' else CTA_HEYA}
 
     {NOTE}

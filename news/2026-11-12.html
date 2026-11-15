@@ -256,6 +256,17 @@ details.col[open] summary{margin-bottom:6px}
 .nw-chart .cap{margin:0;font-size:12px;line-height:1.7;color:var(--ink-soft)}
 .nw-chart .cap .s{display:block}
 .nw-chart .cap a{color:var(--ink-soft)}
+/* 年表のあとの「2019年からの傾向」(所長のまとめ)。箱の見た目は .nw-osaka と同じ */
+.nw-trend{margin:52px 0 8px}
+.nw-trend h3{margin:0 0 12px;font-size:17px;line-height:1.5}
+.nw-trend .as{font-size:12px;line-height:1.7;color:var(--ink-soft);margin:-4px 0 16px}
+/* エリア診断のボタンの帯 */
+.nw-shindan{background:#fff;border:2px solid var(--marker);border-radius:var(--radius);text-align:center;padding:22px 18px 24px;margin:32px 0 0}
+.nw-shindan img{display:block;width:56px;height:56px;margin:0 auto 8px;border-radius:50%;border:2px solid var(--marker);background:#fff}
+.nw-shindan .t{font-family:var(--font-display);font-weight:900;font-size:18px;line-height:1.5;margin:0 0 6px;word-break:auto-phrase;text-wrap:balance}
+.nw-shindan .s{font-size:13.5px;line-height:1.75;color:var(--ink-soft);margin:0 0 16px;word-break:auto-phrase;text-wrap:balance}
+.nw-shindan .btn{min-width:270px}
+@media (max-width:680px){.nw-shindan .btn{width:100%;min-width:0}}
 @media (max-width:420px){.nw-mast .who img{width:76px;height:76px}.nw-mast .say{font-size:13px;padding:10px 12px}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "東京23区の一人暮らし向け家賃が7か月連続で下落。それでも1年前より12%高い", "datePublished": "2026-11-14", "dateModified": "2026-11-14", "author": {"@type": "Organization", "name": "住まらぼ 大阪福島店"}, "publisher": {"@type": "Organization", "name": "AS-PARTNERS株式会社"}, "mainEntityOfPage": "https://sumalabo-mbti-lp.vercel.app/news/2026-11-12.html"}</script>
@@ -307,6 +318,13 @@ details.col[open] summary{margin-bottom:6px}
     <div class="cat-note">
       <img src="img/neko-yachin.png" alt="" width="54" height="54" loading="lazy">
       <p class="say">東京は高くなりすぎて、ひと休み。大阪は、まだ上り坂の途中です!</p>
+    </div>
+
+    <div class="nw-shindan">
+      <img src="img/shocho-shiraberu.png" alt="" width="56" height="56" loading="lazy">
+      <p class="t">あなたに合う大阪のエリアを、3分で診断</p>
+      <p class="s">MBTI×通勤×家賃の3分診断で、予算に合う大阪のエリアをその場で絞り込めます。</p>
+      <div class="btns"><a class="btn btn-primary" href="https://sumalabo-line.vercel.app" rel="noopener">無料エリア診断をする</a></div>
     </div>
 
     <div class="next-read">

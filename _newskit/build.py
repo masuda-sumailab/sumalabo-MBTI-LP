@@ -98,14 +98,21 @@ def validate():
         ps = t.get('text') or []
         if not isdate(str(t.get('asof', ''))): errors.append(f'{w}: asof(まとめた日。例 2026-11-15)が要ります')
         if not (1 <= len(ps) <= 4) or any(not isinstance(p, str) or not p.strip() for p in ps): errors.append(f'{w}: text は1〜4段落'); continue
-        # 数字は、そのテーマの年表とグラフに出ているものだけ(まとめに新しい数字を持ち込まない)
+        # 数字は、そのテーマの年表・グラフ・短信に出ているものだけ(まとめに新しい数字を持ち込まない)
         hay = ' '.join(f'{h.get("date", "")} {h.get("text", "")}' for h in L.get('history', []) if h.get('theme') == k)
         hay += ' ' + ' '.join(f'{c.get("title", "")} {c.get("note", "")} ' + ' '.join(' '.join(str(x) for x in r) for r in c.get('rows', []))
                               for c in L.get('charts', []) if k in c.get('themes', []))
-        for p in ps:
+        hay += ' ' + ' '.join(f'{it.get("issue", "")} {it.get("released", "")} ' + ' '.join(texts(it)) for it in L['items'] if it.get('theme') == k)
+        now = t.get('now')          # いちばん新しい動き(そのテーマの、いちばん新しい短信の要約)。なくてもよい
+        if now is not None:
+            if not any(it.get('issue') == now.get('issue') and it.get('theme') == k for it in L['items']):
+                errors.append(f'{w}: now.issue「{now.get("issue")}」は、このテーマの短信がある号の日付にする')
+            if not isinstance(now.get('text'), str) or not now['text'].strip() or len(now['text']) > 200:
+                errors.append(f'{w}: now.text(いちばん新しい動き)は1〜2文・200字まで'); now = None
+        for p in ps + ([now['text']] if now else []):
             chk_text(w, p)
             for n in dict.fromkeys(re.findall(r'\d[\d,]*(?:\.\d+)?', p)):
-                if n not in hay: errors.append(f'{w}: 数字「{n}」が、このテーマの年表にもグラフにもありません(年表にある数字だけで書く)')
+                if n not in hay: errors.append(f'{w}: 数字「{n}」が、このテーマの年表・グラフ・短信のどこにもありません(そこにある数字だけで書く)')
     for h in L.get('history', []):
         w = '年表 ' + str(h.get('date'))
         if h.get('theme') not in TH: errors.append(f'{w}: テーマ「{h.get("theme")}」は themes にありません')
@@ -327,7 +334,9 @@ for k in THEME_PAGES:
     v = TH[k]; its = [x for x in ITEMS if x['theme'] == k]; hs = [h for h in HIST if h['theme'] == k]
     show_hist = len(hs) >= HIST_MIN
     tr = v.get('trend') if show_hist else None     # 傾向のまとめ(年表のいちばん下に出す)。年表が表に出ているテーマだけ
-    theme_mod[k] = max([x['posted'] for x in its] + ([h['added'] for h in hs] if show_hist else []) + ([tr['asof']] if tr else []))
+    now = tr.get('now') if tr else None            # まとめの中の「いちばん新しい動き」
+    tr_day = max([tr['asof']] + ([now['issue']] if now else [])) if tr else None    # まとめを最後に直した日
+    theme_mod[k] = max([x['posted'] for x in its] + ([h['added'] for h in hs] if show_hist else []) + ([tr_day] if tr else []))
     URL = f'{SITE}/news/theme-{k}.html'
     TITLE = f'{v["label"]}のニュース' + ('と、2019年からの動き' if show_hist else '') + f'|{SERIES}'
     DESC = (f'{v["label"]}({v["desc"]})について、新しい発表の短信' + (('と、2019年からの動きの年表' + ('・傾向のまとめ' if tr else '')) if show_hist else '')
@@ -351,7 +360,9 @@ for k in THEME_PAGES:
     if tr:
         trend = ('\n    <div class="nw-osaka nw-trend">\n      <p class="who"><img src="img/shocho-point.png" alt="" width="60" height="60" loading="lazy"><b>所長のまとめ</b></p>\n'
                  '      <h3>2019年からの傾向</h3>\n' + '\n'.join(f'      <p>{mk(p)}</p>' for p in tr['text'])
-                 + f'\n      <p class="as">年表とグラフの数字をもとに、当店が{jp(tr["asof"], year=True, wd=False)}にまとめました。新しい数字が出たら書き直します。</p>\n    </div>\n')
+                 + (f'\n      <div class="now">\n        <p class="nl"><b>いちばん新しい動き</b><span>{jp(now["issue"], wd=False)}の短信から</span></p>\n'
+                    f'        <p>{mk(now["text"])}<a class="go" href="{now["issue"]}.html">この短信を読む</a></p>\n      </div>' if now else '')
+                 + f'\n      <p class="as">{"年表・グラフ・短信" if its else "年表とグラフ"}の数字をもとに、当店がまとめています({jp(tr_day, year=True, wd=False)}更新)。新しい発表が出たら書き直します。</p>\n    </div>\n')
     sband = f'\n    {SHINDAN}\n' if SHINDAN else ''
     tcards = ''
     if v.get('ukezara'):

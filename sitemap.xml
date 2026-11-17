@@ -392,7 +392,7 @@
   </url>
   <url>
     <loc>https://sumalabo-mbti-lp.vercel.app/news/</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -427,6 +427,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://sumalabo-mbti-lp.vercel.app/news/2026-11-17.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://sumalabo-mbti-lp.vercel.app/news/theme-yachin.html</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -452,7 +458,7 @@
   </url>
   <url>
     <loc>https://sumalabo-mbti-lp.vercel.app/news/theme-machi.html</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

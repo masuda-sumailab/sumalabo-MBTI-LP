@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 """賃貸物件ニュースを組み立てる道具(これ1本で動く。ほかの道具箱はいらない)。
 
-  python3 _newskit/build.py          切り抜き帳(_newskit/ledger.json)から news/ のページを作り直し、sitemap.xml のニュース部分を書き換える
+  python3 _newskit/build.py          切り抜き帳(_newskit/ledger.json)から news/ のページを作り直し、sitemap.xml のニュース部分と、
+                                     トップページ(index.html)のニュースの枠(NEWS-TOP の目印の間)を書き換える
   python3 _newskit/build.py --check  ページは作らず、切り抜き帳の書き方だけ確かめる
 
 書き方の決まりと毎朝の手順は _newskit/README.md。
@@ -31,6 +32,8 @@ KINDS = ('役所の発表', '会社の発表', '団体の発表', '報道')
 IMG = ['shocho-shiraberu.png', 'shocho-point.png', 'neko-yotei.png'] + [f'neko-{k}.png' for k in TH]
 HIST = sorted(L.get('history', []), key=lambda h: str(h.get('date', '')), reverse=True)   # 2019年からの動き(年表)。新しい順
 HIST_MIN = int(os.environ.get('NEWS_HIST_MIN', 3))   # 年表は、そのテーマに3件以上そろってから表に出す(スカスカの年表を出さない)
+TOP_FILE, TOP_A, TOP_B = os.path.join(ROOT, 'index.html'), '<!-- NEWS-TOP:START -->', '<!-- NEWS-TOP:END -->'   # トップページのニュースの枠(目印の間だけを作り直す)
+TOP_N = int(ST.get('top_news', 5))         # トップページに並べる短信の数(新しい順)
 errors = []
 
 
@@ -113,6 +116,9 @@ def validate():
             chk_text(w, p)
             for n in dict.fromkeys(re.findall(r'\d[\d,]*(?:\.\d+)?', p)):
                 if n not in hay: errors.append(f'{w}: 数字「{n}」が、このテーマの年表・グラフ・短信のどこにもありません(そこにある数字だけで書く)')
+    top = rd(TOP_FILE) if os.path.exists(TOP_FILE) else ''
+    if (TOP_A in top or TOP_B in top) and not (top.count(TOP_A) == 1 and top.count(TOP_B) == 1 and top.index(TOP_A) < top.index(TOP_B)):
+        errors.append('トップページ(index.html)の NEWS-TOP の目印がこわれています(START と END が1つずつ、この順で要ります)')
     for h in L.get('history', []):
         w = '年表 ' + str(h.get('date'))
         if h.get('theme') not in TH: errors.append(f'{w}: テーマ「{h.get("theme")}」は themes にありません')
@@ -496,6 +502,20 @@ for iss in sorted(ISSUES):
 for k in THEME_PAGES: block += url(f'{SITE}/news/theme-{k}.html', theme_mod[k], 'weekly', '0.7')
 assert sm.count('</urlset>') == 1
 wr(SM, sm.replace('</urlset>', block + '</urlset>'))
+
+# トップページ(index.html)のニュースの枠: 目印の間だけを作り直す(新しい短信と、テーマの入口)。目印がなければ何もしない
+top = rd(TOP_FILE) if os.path.exists(TOP_FILE) else ''
+if TOP_A in top and TOP_B in top:
+    rows = '\n'.join(f'      <a href="news/{x["issue"]}.html"><span class="no">{md(x["issue"])}</span><span class="th">{e(TH[x["theme"]]["label"])}</span><span class="t">{e(x["short"])}</span></a>'
+                     for x in ITEMS[:TOP_N])
+    themes = ''.join(f'<a href="news/theme-{k}.html">{e(TH[k]["label"])}</a>' for k in THEME_PAGES)
+    blk = (TOP_A + '\n    <div class="nt">\n' + rows + '\n    </div>\n'
+           + (f'    <p class="rg-lead">テーマから読む(2019年からの動きと、所長のまとめ)</p>\n    <div class="nt-themes">{themes}</div>\n' if themes else '') + '    ' + TOP_B)
+    new_top = top[:top.index(TOP_A)] + blk + top[top.index(TOP_B) + len(TOP_B):]
+    if new_top != top: wr(TOP_FILE, new_top)
+    print('○ トップページのニュースの枠:', '書きかえました' if new_top != top else '変わりなし', f'(新しい順に{min(TOP_N, len(ITEMS))}本)')
+else:
+    print('・トップページ(index.html)に NEWS-TOP の目印がないので、ニュースの枠は作っていません')
 
 print('○', SERIES, ':', len(ISSUES), '号 /', len(ITEMS), '件、テーマのページ', len(THEME_PAGES), '枚 を news/ に書き込みました。年表は',
       len(HIST), '件(表に出ているテーマ:', '・'.join(TH[k]['label'] for k in THEME_PAGES if sum(1 for h in HIST if h['theme'] == k) >= HIST_MIN) or 'まだなし', ')。')

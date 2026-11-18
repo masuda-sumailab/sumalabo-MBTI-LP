@@ -124,7 +124,7 @@ a{color:inherit}
 .hero-cta .sub{font-size:12px;color:var(--ink-soft)}
 /* diagnosis start card(診断ツールとUI連続性を持たせる) */
 .diag-card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 14px 40px rgba(27,43,82,.16);border:1px solid var(--line)}
-.diag-head{background:linear-gradient(135deg,#7A4A2B 0%,#DE6E3C 100%);color:#fff;text-align:center;padding:22px 20px 20px;display:grid;gap:4px}
+.diag-head{background:linear-gradient(135deg,#C9571B 0%,#EE8A3C 100%);color:#fff;text-align:center;padding:22px 20px 20px;display:grid;gap:4px}
 .diag-head-tag{font-size:12px;opacity:.95}
 .diag-head strong{font-family:var(--font-display);font-weight:900;font-size:24px;letter-spacing:.04em}
 .diag-head-sub{font-size:12px;opacity:.92;line-height:1.6}
@@ -352,6 +352,73 @@ a{color:inherit}
 .rg-list a span:last-child{overflow:hidden;text-overflow:ellipsis}
 .rg-list a:hover span:last-child{text-decoration:underline;text-underline-offset:3px}
 @media(min-width:681px){.rg-list{grid-template-columns:repeat(2,1fr);column-gap:24px}}
+
+/* ===== v52(2026-11): 2つのツールを入口に ===== */
+/* 最初の画面: 2つの入口(横ならび)。カードは流れの中で1回ずつ(診断=3ステップのあと/生活費=16タイプのあと) */
+.ph{display:inline-block}
+.hero2 .hero-grid{grid-template-columns:1.15fr .85fr;grid-template-areas:"copy doors" "sub doors";column-gap:44px;row-gap:0}
+.hero2 .hero-copy{grid-area:copy;align-self:end}
+.hero2 .hero-sub{grid-area:sub;align-self:start}
+.hero2 .hero-lead{margin-bottom:22px}
+.hero2 .spec-list{margin-bottom:20px}
+.doors2{grid-area:doors;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.door2{position:relative;display:flex;flex-direction:column;border-radius:16px;padding:16px 15px 15px;text-decoration:none;min-height:228px;overflow:hidden;transition:transform .15s ease}
+.door2:hover{transform:translateY(-2px)}
+.door2:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.door2 .q{align-self:flex-start;font-size:12px;font-weight:700;border-radius:99px;padding:2px 11px;line-height:1.7;white-space:nowrap}
+.door2 .cat{position:absolute;top:11px;right:11px;width:48px;height:48px;border-radius:50%;background:#fff;object-fit:cover}
+.door2 strong{font-family:var(--font-display);font-weight:900;font-size:clamp(16px,1.55vw,19px);line-height:1.32;margin:22px 0 8px;letter-spacing:0;white-space:nowrap}
+.door2 .d{font-size:12.5px;line-height:1.65;margin-bottom:14px}
+.door2 .go{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:99px;padding:10px 6px;font-size:14.5px;font-weight:700;white-space:nowrap}
+.door2.a{background:linear-gradient(135deg,#C9571B 0%,#EE8A3C 100%) border-box;border:2px solid transparent;color:#fff;box-shadow:0 10px 24px rgba(201,87,27,.26)}
+.door2.a .q{background:rgba(255,255,255,.22);color:#fff}
+.door2.a .cat{border:2px solid rgba(255,255,255,.95)}
+.door2.a .d{opacity:.95}
+.door2.a .go{background:#fff;color:#C9611A}
+.door2.b{background:linear-gradient(135deg,#FFF3E6,#FFE2C6);color:#4A392C;border:2px solid #F3D9BE;box-shadow:0 10px 24px rgba(217,104,32,.13)}
+.door2.b .q{background:#fff;color:#C9611A;box-shadow:inset 0 0 0 1px #F3D9BE}
+.door2.b .cat{border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.door2.b .d{color:#7A6752}
+.door2.b .go{background:linear-gradient(135deg,#DE6E3C,#D96820);color:#fff;box-shadow:0 5px 12px rgba(217,104,32,.3)}
+/* 流れの中のカード */
+.tool-slot{max-width:420px;margin:30px auto 0;border-radius:18px}
+#tool .tool-slot{margin-top:0}
+.tool-slot-lead{display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-display);font-weight:900;font-size:15px;line-height:1.5;color:var(--ink);margin:0 0 12px;text-align:center}
+.tool-slot-lead::before,.tool-slot-lead::after{content:"";flex:1;max-width:44px;height:2px;border-radius:2px;background:var(--marker)}
+/* 生活費シミュレーションのカード(診断のカードと同じ形。頭だけ明るい色) */
+.sim-card .diag-head{background:linear-gradient(135deg,#FFF3E6,#FFE2C6);color:#4A392C;border-bottom:1px solid #F3D9BE}
+.sim-card .diag-head-tag{color:#C9611A;font-weight:700;opacity:1}
+.sim-card .diag-head-sub{color:#7A6752;opacity:1}
+.sim-card .diag-head h2{font-family:var(--font-display);font-weight:900;font-size:clamp(19px,6.15vw,24px);letter-spacing:.04em;line-height:inherit;margin:0;white-space:nowrap}
+.sim-card a.diag-start{line-height:normal}
+.sim-quick{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 4px}
+.sim-quick a{font-size:14px;font-weight:700;border:2px solid #F3D9BE;border-radius:999px;padding:7px 13px;color:#4A392C;background:#fff;text-decoration:none;line-height:1.5;white-space:nowrap}
+.sim-quick a.on{background:#D96820;border-color:#D96820;color:#fff}
+.sim-quick a:focus-visible{outline:3px solid rgba(222,110,60,.45);outline-offset:2px}
+/* 下の固定ボタン(スマホ): 2つの入口 + LINE */
+.fixed3{gap:8px;padding:10px 10px}
+.fixed3 .btn{font-size:13px;padding:13px 2px;gap:0;white-space:nowrap}
+.fixed3 .btn-ghost{border-color:var(--orange);color:var(--orange);box-shadow:0 4px 0 #E9D3EC}
+@media(max-width:960px){
+  /* せまい画面は1列: 見出し → 2つの入口 → 小さな札(→ LINE) */
+  .hero2 .hero-grid{display:block}
+  .hero2 .hero-lead{margin-bottom:18px}
+  .hero2 .spec-list{margin-bottom:16px}
+  .doors2{gap:12px;margin:0 0 16px;max-width:560px}
+  .door2{padding:13px 12px 12px;min-height:190px}
+  .door2 .q{font-size:11px;padding:2px 10px}
+  .door2 .cat{top:9px;right:9px;width:42px;height:42px}
+  .door2 strong{font-size:clamp(13px,4.2vw,17.5px);margin:16px 0 6px}
+  .door2 .d{font-size:11.5px;line-height:1.6;margin-bottom:12px}
+  .door2 .go{padding:9px 6px;font-size:13.5px}
+}
+@media(max-width:820px){
+  /* スマホは下の固定ボタンに LINE があるので、ここの LINE ボタンは出さない */
+  .hero2{padding-bottom:40px}
+  .hero2 .spec-list{margin-bottom:0}
+  .hero2 .hero-line{display:none}
+}
+@media(max-width:374px){.door2{padding:12px 10px 11px}.door2 .cat{width:36px;height:36px}.sim-quick a{padding:6px 11px;font-size:13.5px}}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -372,40 +439,38 @@ a{color:inherit}
 </header>
 
 <!-- HERO:研究レポート型 -->
-<section class="hero">
+<section class="hero hero2">
   <div class="wrap hero-grid">
-    <div>
+    <div class="hero-copy">
       <h1>性格×通勤×家賃で、<br><span class="hl">"あなたに合う大阪"</span>を<br>3分で診断。</h1>
-      <p class="hero-lead">はじめての一人暮らしも、新社会人の引越しも。<br>MBTIと暮らしの条件から、<br>ぴったりなエリアと<br>お部屋を研究所がご提案します。</p>
+      <p class="hero-lead"><span class="ph">はじめての一人暮らしも、</span><span class="ph">新社会人の引越しも。</span><br><span class="ph">まずは、</span><span class="ph">2つの無料ツールから。</span></p>
+    </div>
+    <div class="doors2">
+      <a class="door2 a" href="https://sumalabo-line.vercel.app" rel="noopener">
+        <span class="q">どこに住む?</span>
+        <img class="cat" src="img/inline/cat02.png" alt="" width="48" height="48">
+        <strong>住まい<br>エリア診断</strong>
+        <span class="d"><span class="ph">性格×通勤×</span><span class="ph">家賃から、</span><span class="ph">合う街TOP3</span></span>
+        <span class="go">3分で診断 →</span>
+      </a>
+      <a class="door2 b" href="seikatsuhi.html">
+        <span class="q">いくらかかる?</span>
+        <img class="cat" src="news/img/neko-yachin.png" alt="" width="48" height="48">
+        <strong>生活費<br>シミュレーション</strong>
+        <span class="d"><span class="ph">手取りから、</span><span class="ph">家賃の</span><span class="ph">上限と</span><span class="ph">住める駅まで</span></span>
+        <span class="go">1分で計算 →</span>
+      </a>
+    </div>
+    <div class="hero-sub">
       <div class="spec-list">
-        <span class="spec">所要時間 <b>3分</b></span>
-        <span class="spec">診断費用 <b>¥0</b></span>
         <span class="spec">来店 <b>不要</b></span>
         <span class="spec">LINEで<b>完結</b></span>
         <span class="spec">分割・カード払い<b>OK</b></span>
       </div>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="https://sumalabo-line.vercel.app" rel="noopener">無料でエリア診断をはじめる</a>
+      <div class="hero-cta hero-line">
         <a class="btn btn-line" href="https://lin.ee/o3OHmib">LINEで相談する</a>
       </div>
     </div>
-    <aside class="diag-card">
-      <div class="diag-head">
-        <span class="diag-head-tag">✨ MBTIタイプ診断搭載</span>
-        <strong>住まいエリア診断</strong>
-        <span class="diag-head-sub">MBTI診断から見つける<br>大阪・関西 あなたにぴったりの街</span>
-      </div>
-      <div class="diag-body">
-        <label class="diag-q" for="station">🏢 <b>職場の最寄り駅</b>を教えてください</label>
-        <input class="diag-input" id="station" type="text" placeholder="例:梅田、本町、天王寺…" autocomplete="off">
-        <span class="diag-hint">ひらがな・カタカナ・漢字どれでも検索できます</span>
-        <button class="btn btn-primary diag-start" id="diagStart" type="button">診断スタート →</button>
-        <div class="diag-char">
-          <img class="diag-char-face frame-orange" src="img/inline/cat02.png" alt="住まらぼのキャラクター" width="62" height="62">
-          <span class="diag-char-bubble">住まらぼ研究所へようこそ!私たち16匹の研究員が、3分で"あなたの街"を分析します</span>
-        </div>
-      </div>
-    </aside>
   </div>
 </section>
 
@@ -448,6 +513,26 @@ a{color:inherit}
         <p>気になるお部屋だけ内見(オンライン内見も可)。初期費用のご相談・分割やカード払いにも対応しています。</p>
         <div class="step-char"><img loading="lazy" decoding="async" class="frame-pink" src="img/inline/cat06.png" alt="所長" width="58" height="58"><span>実験成功!素敵な新生活をスタートしましょう!</span></div>
       </div>
+    </div>
+    <div class="tool-slot slot-a">
+      <p class="tool-slot-lead">STEP 1 は、ここから</p>
+      <aside class="diag-card">
+        <div class="diag-head">
+          <span class="diag-head-tag">✨ MBTIタイプ診断搭載</span>
+          <strong>住まいエリア診断</strong>
+          <span class="diag-head-sub">MBTI診断から見つける<br>大阪・関西 あなたにぴったりの街</span>
+        </div>
+        <div class="diag-body">
+          <label class="diag-q" for="station">🏢 <b>職場の最寄り駅</b>を教えてください</label>
+          <input class="diag-input" id="station" type="text" placeholder="例:梅田、本町、天王寺…" autocomplete="off">
+          <span class="diag-hint">ひらがな・カタカナ・漢字どれでも検索できます</span>
+          <button class="btn btn-primary diag-start" id="diagStart" type="button">診断スタート →</button>
+          <div class="diag-char">
+            <img loading="lazy" decoding="async" class="diag-char-face frame-orange" src="img/inline/cat02.png" alt="住まらぼのキャラクター" width="62" height="62">
+            <span class="diag-char-bubble">住まらぼ研究所へようこそ!私たち16匹の研究員が、3分で"あなたの街"を分析します</span>
+          </div>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
@@ -537,14 +622,28 @@ a{color:inherit}
 </section>
 
 <!-- 生活費シミュレーション(ツール) -->
-<section class="section" id="tool" style="padding-top:0;padding-bottom:8px">
+<section class="section" id="tool" style="padding-top:0;padding-bottom:44px">
   <div class="wrap">
-    <a href="seikatsuhi.html" style="display:block;background:#FFF8F0;border:2px solid #F3D9BE;border-radius:14px;padding:16px 18px;text-decoration:none;color:inherit">
-      <span class="sec-no">ツール</span>
-      <h2 class="sec-title" style="margin:6px 0">一人暮らしの<span class="hl">生活費シミュレーション</span>【大阪版】</h2>
-      <p class="sec-lead" style="margin:4px 0 8px">手取りを押すだけで、家賃の上限・月の内訳・貯金の余力、そしてその家賃で住める大阪の駅まで出ます。平均の表ではなく、あなたの数字で。</p>
-      <span class="btn btn-primary btn-sm">シミュレーションする →</span>
-    </a>
+    <div class="tool-slot slot-b">
+      <p class="tool-slot-lead">家賃は、いくらまで出せる?</p>
+      <aside class="diag-card sim-card">
+        <div class="diag-head">
+          <span class="diag-head-tag">🧮 手取りを入れるだけ・1分</span>
+          <h2>生活費シミュレーション</h2>
+          <span class="diag-head-sub">家賃の上限・月の内訳・貯金の余力、<br>その家賃で住める大阪の駅まで</span>
+        </div>
+        <div class="diag-body">
+          <span class="diag-q">💰 <b>毎月の手取り</b>をえらんでください</span>
+          <div class="sim-quick" id="simQuick"><a href="seikatsuhi.html#t12" data-t="12">12万</a><a href="seikatsuhi.html#t15" data-t="15">15万</a><a class="on" aria-current="true" href="seikatsuhi.html#t18" data-t="18">18万</a><a href="seikatsuhi.html#t20" data-t="20">20万</a><a href="seikatsuhi.html#t23" data-t="23">23万</a><a href="seikatsuhi.html#t26" data-t="26">26万</a><a href="seikatsuhi.html#t30" data-t="30">30万</a></div>
+          <span class="diag-hint"><span class="ph">手取りが分からなければ、</span><span class="ph">次の画面で「額面」に</span><span class="ph">切り替えられます</span></span>
+          <a class="btn btn-primary diag-start" id="simGo" href="seikatsuhi.html#t18">シミュレーションする →</a>
+          <div class="diag-char">
+            <img loading="lazy" decoding="async" class="diag-char-face frame-orange" src="news/img/neko-yachin.png" alt="住まらぼのキャラクター" width="62" height="62">
+            <span class="diag-char-bubble"><span class="ph">平均の表ではなく、</span><span class="ph">あなたの数字で。</span><span class="ph">5つの質問で、</span><span class="ph">住める駅まで出ます</span></span>
+          </div>
+        </div>
+      </aside>
+    </div>
   </div>
 </section>
 
@@ -793,6 +892,21 @@ a{color:inherit}
   btn.addEventListener("click", start);
   input.addEventListener("keydown", function(e){ if(e.key === "Enter") start(); });
 })();
+
+// 生活費シミュレーションのカード: 手取りをえらぶと、その手取りが入った状態で開く(seikatsuhi.html#t18 など)
+(function(){
+  var box = document.getElementById("simQuick"), go = document.getElementById("simGo");
+  if(!box || !go) return;
+  box.addEventListener("click", function(e){
+    var a = e.target.closest ? e.target.closest("a[data-t]") : null;
+    if(!a) return;
+    e.preventDefault();
+    var on = box.querySelector("a.on");
+    if(on){ on.classList.remove("on"); on.removeAttribute("aria-current"); }
+    a.classList.add("on"); a.setAttribute("aria-current", "true");
+    go.href = "seikatsuhi.html#t" + a.getAttribute("data-t");
+  });
+})();
 </script>
 
 <!-- ============================================
@@ -811,9 +925,10 @@ a{color:inherit}
   <span class="slot-bubble">ここにコメントを入力</span>
 </div>
 ============================================ -->
-<div class="fixed-cta">
-  <a class="btn btn-primary" href="https://sumalabo-line.vercel.app" rel="noopener">3分無料診断</a>
-  <a class="btn btn-line" href="https://lin.ee/o3OHmib">LINEで相談</a>
+<div class="fixed-cta fixed3">
+  <a class="btn btn-primary" href="https://sumalabo-line.vercel.app" rel="noopener">エリア診断</a>
+  <a class="btn btn-ghost" href="seikatsuhi.html">生活費を計算</a>
+  <a class="btn btn-line" href="https://lin.ee/o3OHmib">LINE相談</a>
 </div>
 
 <script>

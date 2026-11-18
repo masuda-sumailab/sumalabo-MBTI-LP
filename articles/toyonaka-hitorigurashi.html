@@ -102,6 +102,32 @@ h2 .h2-cat{width:38px;height:38px;border-radius:50%;border:2px solid #EDE0E6;bac
 .next-read .nr-grid b{display:block;font-size:14px;line-height:1.55;margin-bottom:6px}
 .next-read .nr-grid p{font-size:12.5px;color:var(--ink-soft);line-height:1.6;margin:0}
 @media(max-width:680px){.next-read .nr-grid{grid-template-columns:1fr}}
+
+/* ===== v52(2026-11): 2つのツール(帯の中の行) ===== */
+.ph{display:inline-block}
+.cta-band.tools2{padding:30px 16px 26px}
+.cta-band.tools2 p.t{word-break:auto-phrase;text-wrap:balance;padding:0 4px}
+.cta-band.tools2 p.s{word-break:auto-phrase;margin-bottom:16px;padding:0 4px}
+.t2{display:grid;gap:10px;margin:0 0 16px;text-align:left;word-break:auto-phrase}
+.t2:last-child{margin-bottom:0}
+.t2 a{display:grid;grid-template-columns:42px minmax(0,1fr) auto;column-gap:8px;align-items:center;background:#fff;border-radius:14px;padding:12px 10px;text-decoration:none;color:#4A392C;transition:transform .15s ease}
+.t2 a:hover{transform:translateY(-2px)}
+.t2 img{grid-row:1 / span 3;width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid #F3D9BE;background:#fff}
+.t2 .q{grid-column:2;font-size:11px;font-weight:700;color:#C9611A;line-height:1.4;white-space:nowrap}
+.t2 b{grid-column:2;font-family:var(--font-display);font-weight:900;font-size:clamp(12.5px,4vw,16px);line-height:1.35;white-space:nowrap}
+.t2 .d{grid-column:2;font-size:11.5px;color:#7A6752;line-height:1.5;margin-top:1px}
+.t2 .tm{grid-column:3;grid-row:1 / span 3;font-size:12px;font-weight:700;color:#fff;background:linear-gradient(135deg,#DE6E3C,#D96820);border-radius:99px;padding:7px 9px;white-space:nowrap}
+.t2 .tm i{font-style:normal}
+@media(max-width:374px){.t2 a{grid-template-columns:36px minmax(0,1fr) auto;column-gap:6px;padding:12px 8px}.t2 img{width:36px;height:36px}.t2 .tm i{display:none}.cta-band.tools2{padding-left:12px;padding-right:12px}}
+
+/* ===== v52(2026-11): 予算チェッカーの上の細い入口(生活費シミュレーションへ) ===== */
+.tslim{display:flex;gap:10px;align-items:center;background:linear-gradient(135deg,#FFF3E6,#FFE2C6);border:2px solid #F3D9BE;border-radius:14px;padding:10px 12px;margin:0 0 14px;text-decoration:none;color:#4A392C;box-shadow:0 6px 16px rgba(74,57,44,.08);word-break:auto-phrase}
+.tslim img{width:44px;height:44px;border-radius:50%;background:#fff;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.08);flex:none}
+.tslim .x{flex:1;min-width:0}
+.tslim .q{display:block;font-size:11px;font-weight:700;color:#C9611A;line-height:1.5}
+.tslim b{display:block;font-family:var(--font-display);font-weight:900;font-size:clamp(14px,4vw,15.5px);line-height:1.4}
+.tslim .d{display:block;font-size:11.5px;color:#7A6752;line-height:1.5}
+.tslim .ar{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#DE6E3C,#D96820);color:#fff;font-weight:700;font-size:15px;box-shadow:0 4px 10px rgba(217,104,32,.3)}
 </style>
 <style>
 .series{background:#FFF9F2;border:2px solid #F3D9BE;border-radius:14px;padding:14px 18px;margin:20px 0;font-size:.9rem}
@@ -251,6 +277,7 @@ details.col[open] summary{margin-bottom:6px}
 
     <h2 id="checker"><span class="kp">予算チェッカー</span><span class="kp">(家賃の上限で駅を選ぶ)</span></h2>
     <p>家賃の上限を押すと、その予算で住める豊中まわりの駅(阪急宝塚線・北大阪急行)が、梅田に近い順で出ます。</p>
+    <a class="tslim" href="../seikatsuhi.html"><img loading="lazy" decoding="async" src="../news/img/neko-yachin.png" alt="" width="44" height="44"><span class="x"><span class="q"><span class="ph">家賃の上限が、</span><span class="ph">まだ分からない人へ</span></span><b><span class="ph">手取りから、</span><span class="ph">1分で出せます</span></b><span class="d"><span class="ph">生活費シミュレーション</span><span class="ph">(無料)</span></span></span><span class="ar">→</span></a>
     <div class="checker">
       <div class="chips" id="chips"></div>
       <div class="count" id="cnt"></div>
@@ -258,11 +285,12 @@ details.col[open] summary{margin-bottom:6px}
       <p class="note">相場はSUUMO沿線1K/1DK(2026年7月10日更新)。上限は「相場+5,000円まで」で判定(背伸びは5,000円まで、の店頭ルール)。分数は乗換なしの目安。</p>
     </div>
 
-    <div class="cta-band">
+    <div class="cta-band tools2">
       <p class="t">🔎 豊中か、隣の駅か。3分診断で</p>
       <p class="s">MBTI×通勤×家賃の3分診断で、予算に合う大阪のエリアをその場で絞り込めます。北摂・豊中が候補に出たら、この記事の予算チェッカーで駅を。</p>
-      <div class="btns">
-        <a class="btn btn-primary" href="https://sumalabo-line.vercel.app" rel="noopener">無料エリア診断をする</a>
+      <div class="t2">
+        <a href="https://sumalabo-line.vercel.app" rel="noopener"><img loading="lazy" decoding="async" src="../img/inline/cat02.png" alt="" width="42" height="42"><span class="q">どこに住む?</span><b>住まいエリア診断</b><span class="d"><span class="ph">性格(MBTI)×</span><span class="ph">通勤×家賃から、</span><span class="ph">合う街TOP3</span></span><span class="tm">3分<i> →</i></span></a>
+        <a href="../seikatsuhi.html"><img loading="lazy" decoding="async" src="../news/img/neko-yachin.png" alt="" width="42" height="42"><span class="q">いくらかかる?</span><b>生活費シミュレーション</b><span class="d"><span class="ph">手取りから、</span><span class="ph">家賃の上限・</span><span class="ph">月の内訳・</span><span class="ph">住める駅</span></span><span class="tm">1分<i> →</i></span></a>
       </div>
     </div>
 

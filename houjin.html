@@ -200,14 +200,31 @@ details.col[open] summary{margin-bottom:6px}
 .steps li::before{content:counter(st);position:absolute;left:14px;top:13px;width:26px;height:26px;border-radius:50%;background:var(--orange);color:#fff;font-family:var(--font-display);font-weight:900;display:grid;place-items:center;font-size:13px}
 .steps b{display:block;font-family:var(--font-display);font-weight:900;font-size:.98rem}
 .steps span{color:var(--ink-soft);font-size:.85rem}
-.tool-links{display:grid;grid-template-columns:1fr;gap:12px;margin:14px 0 6px}
-@media(min-width:680px){.tool-links{grid-template-columns:1fr 1fr}}
-.tool-links a{display:block;background:#fff;border:2px solid var(--line);border-radius:var(--radius);padding:14px 16px 12px;text-decoration:none;color:var(--ink);box-shadow:0 4px 0 var(--line)}
-.tool-links .tl-k{display:inline-block;font-family:var(--font-display);font-weight:700;font-size:11px;color:var(--orange);border:1.5px solid var(--marker);border-radius:99px;padding:1px 10px;line-height:1.7}
-.tool-links b{display:block;font-family:var(--font-display);font-weight:900;font-size:1.08rem;margin:4px 0 2px}
-.tool-links b::after{content:" →";color:var(--orange)}
-.tool-links .tl-s{display:block;font-size:.83rem;color:var(--ink-soft);line-height:1.6}
-.lead,.opt>p,.opt .co,.opt .opt-cond,.opt-list li,.steps span,.steps b,.tool-links .tl-s,.faq summary,.st-list .m,.cta-band .s{word-break:auto-phrase}
+/* 2つのツールの入口: トップページの最初の画面と同じ部品・同じ色(診断=オレンジ/生活費=うすいオレンジ)。絵の名前だけ .neko(このページの .cat は札の名前なので) */
+.ph{display:inline-block}
+.doors2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px auto 10px;max-width:560px}
+.door2{position:relative;display:flex;flex-direction:column;border-radius:16px;padding:13px 12px 12px;text-decoration:none;min-height:190px;overflow:hidden;transition:transform .15s ease}
+.door2:hover{transform:translateY(-2px)}
+.door2:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.door2 .q{align-self:flex-start;font-size:11px;font-weight:700;border-radius:99px;padding:2px 10px;line-height:1.7;white-space:nowrap}
+.door2 .neko{position:absolute;top:9px;right:9px;width:42px;height:42px;border-radius:50%;background:#fff;object-fit:cover;display:block}
+.door2 strong{font-family:var(--font-display);font-weight:900;font-size:clamp(13px,4.2vw,17.5px);line-height:1.32;margin:16px 0 6px;letter-spacing:0;white-space:nowrap}
+.door2 .d{font-size:11.5px;line-height:1.6;margin-bottom:12px}
+.door2 .go{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:99px;padding:9px 6px;font-size:13.5px;font-weight:700;white-space:nowrap}
+.door2.a{background:linear-gradient(135deg,#C9571B 0%,#EE8A3C 100%) border-box;border:2px solid transparent;color:#fff;box-shadow:0 10px 24px rgba(201,87,27,.26)}
+.door2.a .q{background:rgba(255,255,255,.22);color:#fff}
+.door2.a .neko{border:2px solid rgba(255,255,255,.95)}
+.door2.a .d{opacity:.95}
+.door2.a .go{background:#fff;color:#C9611A}
+.door2.b{background:linear-gradient(135deg,#FFF3E6,#FFE2C6);color:#4A392C;border:2px solid #F3D9BE;box-shadow:0 10px 24px rgba(217,104,32,.13)}
+.door2.b .q{background:#fff;color:#C9611A;box-shadow:inset 0 0 0 1px #F3D9BE}
+.door2.b .neko{border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.door2.b .d{color:#7A6752}
+.door2.b .go{background:linear-gradient(135deg,#DE6E3C,#D96820);color:#fff;box-shadow:0 5px 12px rgba(217,104,32,.3)}
+@media(max-width:374px){.door2{padding:12px 10px 11px}.door2 .neko{width:36px;height:36px}}
+/* 上の帯: せまいスマホでボタンが2段になって本文に重なるのを防ぐ(トップページと同じく、スマホでは「無料診断」だけ) */
+@media(max-width:680px){.header .btn-ghost{display:none}}
+.lead,.opt>p,.opt .co,.opt .opt-cond,.opt-list li,.steps span,.steps b,.faq summary,.st-list .m,.cta-band .s{word-break:auto-phrase}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -293,9 +310,21 @@ details.col[open] summary{margin-bottom:6px}
 
     <h2 id="tool"><span class="kp">社員の方に、そのまま送れる</span><span class="kp">2つの無料ツール</span></h2>
     <p>大阪に土地勘のない方でも、住む場所の見当がつきます。内定者・着任前の方へのご案内に、リンクを貼るだけでお使いいただけます(無料・登録なし)。</p>
-    <div class="tool-links">
-      <a href="https://sumalabo-line.vercel.app" rel="noopener"><span class="tl-k">3分・無料</span><b>住まいエリア診断</b><span class="tl-s">通勤先と家賃とタイプから、合う駅がわかります</span></a>
-      <a href="seikatsuhi.html"><span class="tl-k">1分・無料</span><b>生活費シミュレーション</b><span class="tl-s">手取りを入れると、家賃の上限・月の内訳・住める駅まで出ます</span></a>
+    <div class="doors2">
+      <a class="door2 a" href="https://sumalabo-line.vercel.app" rel="noopener">
+        <span class="q">どこに住む?</span>
+        <img class="neko" src="img/inline/cat02.png" alt="" width="48" height="48" loading="lazy" decoding="async">
+        <strong>住まい<br>エリア診断</strong>
+        <span class="d"><span class="ph">性格×通勤×</span><span class="ph">家賃から、</span><span class="ph">合う街TOP3</span></span>
+        <span class="go">3分で診断 →</span>
+      </a>
+      <a class="door2 b" href="seikatsuhi.html">
+        <span class="q">いくらかかる?</span>
+        <img class="neko" src="news/img/neko-yachin.png" alt="" width="48" height="48" loading="lazy" decoding="async">
+        <strong>生活費<br>シミュレーション</strong>
+        <span class="d"><span class="ph">手取りから、</span><span class="ph">家賃の</span><span class="ph">上限と</span><span class="ph">住める駅まで</span></span>
+        <span class="go">1分で計算 →</span>
+      </a>
     </div>
 
     <h2 id="faq"><span class="kp">よくあるご質問</span></h2>

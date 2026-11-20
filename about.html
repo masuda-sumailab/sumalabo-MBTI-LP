@@ -99,6 +99,8 @@ h2 .h2-cat{width:38px;height:38px;border-radius:50%;border:2px solid #EDE0E6;bac
 .next-read .nr-grid b{display:block;font-size:14px;line-height:1.55;margin-bottom:6px}
 .next-read .nr-grid p{font-size:12.5px;color:var(--ink-soft);line-height:1.6;margin:0}
 @media(max-width:680px){.next-read .nr-grid{grid-template-columns:1fr}}
+/* 上の帯: せまいスマホで「エリアレポート」「無料診断」が2段になり本文に重なるのを防ぐ(トップページと同じく、スマホでは「無料診断」だけ) */
+@media(max-width:680px){.header .btn-ghost{display:none}}
 </style>
 <style>
 .series{background:#FFF9F2;border:2px solid #F3D9BE;border-radius:14px;padding:14px 18px;margin:20px 0;font-size:.9rem}
@@ -239,7 +241,7 @@ details.col[open] summary{margin-bottom:6px}
     <ul class="st-list">
       <li><b>単身・新社会人の部屋探し</b><span class="m">1R・1K・1DKを中心に、通勤先・手取り・入居日から無理のない家賃と駅をご提案。初期費用は総額でお見せします</span></li>
       <li><b>オンライン内見</b><span class="m">遠方(東京など)からの引っ越しは、ビデオ通話で内見→来阪1回で契約まで進められます</span></li>
-      <li><b>法人契約(転勤・会社名義)</b><span class="m">転勤の社宅・会社名義のご契約にも対応。人事ご担当者からのご相談も承ります</span></li>
+      <li><b>法人契約(転勤・会社名義)</b><span class="m">転勤の社宅・会社名義のご契約にも対応。人事ご担当者からのご相談も承ります(<a href="houjin.html" style="color:var(--orange);font-weight:700">法人のご担当者さまへ</a>)</span></li>
       <li><b>審査・保証会社の相談</b><span class="m">保証人を頼めない、学生・フリーランス・転職直後など、審査が心配な方もまずご相談ください。通りやすい物件と保証会社の選び方からご案内します</span></li>
       <li><b>特典</b><span class="m">当店でご契約の方に、お引越し無料 or 家電3点プレゼント(適用条件あり)</span></li>
     </ul>

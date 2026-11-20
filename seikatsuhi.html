@@ -99,6 +99,8 @@ h2 .h2-cat{width:38px;height:38px;border-radius:50%;border:2px solid #EDE0E6;bac
 .next-read .nr-grid b{display:block;font-size:14px;line-height:1.55;margin-bottom:6px}
 .next-read .nr-grid p{font-size:12.5px;color:var(--ink-soft);line-height:1.6;margin:0}
 @media(max-width:680px){.next-read .nr-grid{grid-template-columns:1fr}}
+/* 上の帯: せまいスマホで「エリアレポート」「無料診断」が2段になるのを防ぐ(トップページと同じく、スマホでは「無料診断」だけ) */
+@media(max-width:680px){.header .btn-ghost{display:none}}
 </style>
 <style>
 .series{background:#FFF9F2;border:2px solid #F3D9BE;border-radius:14px;padding:14px 18px;margin:20px 0;font-size:.9rem}

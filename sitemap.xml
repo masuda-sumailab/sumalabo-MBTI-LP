@@ -158,9 +158,15 @@
   </url>
   <url>
     <loc>https://sumalabo-mbti-lp.vercel.app/about.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sumalabo-mbti-lp.vercel.app/houjin.html</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sumalabo-mbti-lp.vercel.app/articles/osaka-pet-ka-chintai.html</loc>

@@ -382,7 +382,9 @@ a{color:inherit}
 .door2.b .go{background:linear-gradient(135deg,#DE6E3C,#D96820);color:#fff;box-shadow:0 5px 12px rgba(217,104,32,.3)}
 /* 流れの中のカード */
 .tool-slot{max-width:420px;margin:30px auto 0;border-radius:18px}
-#tool .tool-slot{margin-top:0}
+#sim .tool-slot{margin-top:0}
+/* 会社HPなどから「…/#tool」「…/#sim」で開いたとき、上の帯にカードがかくれないように */
+#tool,#sim{scroll-margin-top:77px}
 .tool-slot-lead{display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-display);font-weight:900;font-size:15px;line-height:1.5;color:var(--ink);margin:0 0 12px;text-align:center}
 .tool-slot-lead::before,.tool-slot-lead::after{content:"";flex:1;max-width:44px;height:2px;border-radius:2px;background:var(--marker)}
 /* 生活費シミュレーションのカード(診断のカードと同じ形。頭だけ明るい色) */
@@ -514,7 +516,7 @@ a{color:inherit}
         <div class="step-char"><img loading="lazy" decoding="async" class="frame-pink" src="img/inline/cat06.png" alt="所長" width="58" height="58"><span>実験成功!素敵な新生活をスタートしましょう!</span></div>
       </div>
     </div>
-    <div class="tool-slot slot-a">
+    <div class="tool-slot slot-a" id="tool">
       <p class="tool-slot-lead">STEP 1 は、ここから</p>
       <aside class="diag-card">
         <div class="diag-head">
@@ -622,7 +624,7 @@ a{color:inherit}
 </section>
 
 <!-- 生活費シミュレーション(ツール) -->
-<section class="section" id="tool" style="padding-top:0;padding-bottom:44px">
+<section class="section" id="sim" style="padding-top:0;padding-bottom:44px">
   <div class="wrap">
     <div class="tool-slot slot-b">
       <p class="tool-slot-lead">家賃は、いくらまで出せる?</p>
